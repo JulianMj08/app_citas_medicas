@@ -7,5 +7,8 @@
 </head>
 <body>
     <h1>Home</h1>
+
+    <button id="button-login">Ir al login</button>
+    <script src="/js/home.js"></script>
 </body>
 </html>
