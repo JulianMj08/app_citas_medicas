@@ -33,6 +33,7 @@ class Route {
      *
      * @return url aplicando el callback
      */
+
      public static function dispatch() {       
         $url = $_SERVER['REQUEST_URI'];
         $url = trim($url, '/'); // quitamos el '/' que viene al comenzar la ruta
