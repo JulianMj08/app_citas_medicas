@@ -1,9 +1,9 @@
 <?php
 require_once '../config.php';
 
-echo 'Conexion funcionandooooo';
+//echo 'Conexion funcionandooooo';
 
-/*
+
 class Conexion {
 
     private static $conexion;
@@ -17,8 +17,10 @@ class Conexion {
         }else {
             echo "Conexion Exitosa";
         }
+
+        return self::$conexion;
     }
-} */
+} 
 
 
 

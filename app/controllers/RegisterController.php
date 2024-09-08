@@ -1,6 +1,10 @@
 <?php
 namespace app\controllers;
 
+include __DIR__ . '/../models/RegisterModel.php';
+
+use RegisterModel;
+
 class RegisterController {
     /* public static function verDatos() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,13 +27,14 @@ class RegisterController {
 // Asegúrate de iniciar la sesión al principio del archivo
 
     // Guardar los datos del formulario en la sesión
-    $_SESSION['nombre'] = $_POST['nombre'];
-    $_SESSION['apellidos'] = $_POST['apellidos'];
-    $_SESSION['email'] = $_POST['email'];
+    $nombre = $_SESSION['nombre'] = $_POST['nombre'];
+    $apellidos = $_SESSION['apellidos'] = $_POST['apellidos'];
+    //$_SESSION['email'] = $_POST['email'];
     // ... otros campos del formulario
+    RegisterModel::insertUser($nombre, $apellidos);
 
     // Redirigir a login después de guardar los datos
-    header('Location: login');
+    //header('Location: login');
     exit();
     }
       
