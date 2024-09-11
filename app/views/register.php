@@ -34,8 +34,8 @@
             <input class="form-control" type="email" name="email" id="email" placeholder="Correo electrónico">
         </div>
         <div class="mb-2">
-            <label for="contraseña">Contraseña</label>
-            <input class="form-control" type="password" name="contraseña" id="contraseña" placeholder="Contraseña">
+            <label for="contrasena">Contraseña</label>
+            <input class="form-control" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
         </div>
         <!-- segunda parte del formulario -->
         </div>

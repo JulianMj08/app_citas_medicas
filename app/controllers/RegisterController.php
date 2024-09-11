@@ -22,19 +22,26 @@ class RegisterController {
     //     session_start(); 
     // }
 
-    public static function registerUsuario(){
+    public static function registerUser(){
+        session_start();
         
 // Asegúrate de iniciar la sesión al principio del archivo
 
     // Guardar los datos del formulario en la sesión
     $nombre = $_SESSION['nombre'] = $_POST['nombre'];
     $apellidos = $_SESSION['apellidos'] = $_POST['apellidos'];
-    //$_SESSION['email'] = $_POST['email'];
-    // ... otros campos del formulario
-    RegisterModel::insertUser($nombre, $apellidos);
+    $usuario = $_SESSION['usuario'] = $_POST['usuario'];
+    $email = $_SESSION['email'] = $_POST['email'];
+    $contrasena = $_SESSION['contrasena'] = $_POST['contrasena'];
+    $direccion = $_SESSION['direccion'] = $_POST['direccion'];
+    $telefono = $_SESSION['telefono'] = $_POST['telefono'];
+    $fechaNacimiento = $_SESSION['fecha-nacimiento'] = $_POST['fecha-nacimiento'];
+    $sexo = $_SESSION['sexo'] = $_POST['sexo'];
+    
+    RegisterModel::insertUser($nombre, $apellidos, $email, $telefono, $fechaNacimiento, $direccion, $sexo, $usuario, $contrasena);
 
     // Redirigir a login después de guardar los datos
-    //header('Location: login');
+    header('Location: home');
     exit();
     }
       

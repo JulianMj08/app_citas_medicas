@@ -15,12 +15,13 @@ class Conexion {
         if(self::$conexion->connect_error) {
             die("Conexion fallida: " . self::$conexion->connect_error);
         }else {
-            echo "Conexion Exitosa";
+            //echo "Conexion Exitosa";
         }
 
         return self::$conexion;
     }
 } 
+
 
 
 
