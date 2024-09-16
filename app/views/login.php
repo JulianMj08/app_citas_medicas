@@ -7,20 +7,9 @@
 </head>
 <body>
     <?php
-include 'includes/navbar.php';
+        use app\controllers\LoginController;
 
-
-// // Verificar si existen los datos en la sesión
-// if (isset($_SESSION['nombre']) && isset($_SESSION['apellidos'])) {
-//     echo "Nombre: " . htmlspecialchars($_SESSION['nombre']) . "<br>";
-//     echo "Apellidos: " . htmlspecialchars($_SESSION['apellidos']) . "<br>";
-//     //echo "Email: " . htmlspecialchars($_SESSION['email']) . "<br>";
-//     // ... muestra otros datos si es necesario
-// } else {
-//     echo "No hay datos del formulario";
-// }
-
-// //session_destroy();
+        include 'includes/navbar.php';
     ?>
 <div class="container d-flex w-50 mt-4">
     <div>
@@ -39,12 +28,20 @@ include 'includes/navbar.php';
             <label for="email">Email</label>
             <input class="form-control" type="email" name="email" id="email" placeholder="Correo electrónico">
         </div>
+        <?php //echo isset($mensaje) ? "<div style='color:red;'>{$mensaje}</div>" : ""; ?>
+
+        
         <div class="mb-4">
             <label for="contrasena">Contraseña</label>
             <input class="form-control" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
         </div>
+            <?php if (isset($error) && $error): ?>
+                <div style="color:red;">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
         <div>
-             <input type="submit" class="btn btn-primary" name="register-btn" value="Iniciar Sesion">
+             <input type="submit" class="btn btn-primary" name="login-btn" value="Iniciar Sesion">
         </div>
     </form>    
 

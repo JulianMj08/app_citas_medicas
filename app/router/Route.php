@@ -58,9 +58,15 @@ class Route {
      * @param [type] $view
      * @return la vista segun la url solicitada.
      */
-    public static function render($view) {
-        include __DIR__ . '/../views/' . $view . '.php';
-    }
+    // public static function render($view) {
+        
+    //     include __DIR__ . '/../views/' . $view . '.php';
+    // }
+
+     public static function render($view, $data = []) {
+         extract($data);
+         include __DIR__ . '/../views/' . $view . '.php';
+     }
 
 }
 

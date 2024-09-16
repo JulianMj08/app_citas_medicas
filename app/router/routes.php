@@ -32,7 +32,20 @@ Route::get('register', function() {
 });
 
 Route::post('register', function() {
-    RegisterController::registerUser();
+    $userRegister = new RegisterController;
+
+    // Solo llenamos los datos si el formulario fue enviado
+    if (isset($_POST['register-btn'])) {
+        $userRegister->fillFromPost($_POST);
+    }
+
+    // Si el registro falla por validación, muestra los errores en pantalla
+    if (!$userRegister->registerUser()) {
+        $errors = $userRegister->getErrors(); // Obtener los errores
+        Route::render('register', ['errors' => $errors]); // Pasar los errores a la vista
+    }
+
+    
 
 });
 
@@ -41,7 +54,42 @@ Route::get('login', function() {
 });
 
 Route::post('login', function(){
-    LoginController:: loginUser();
+    LoginController::LoginValidation();
+
+    
+
+    ////////$error = LoginController::loginUser();
+    
+    // Renderizar la página de login con el mensaje de error
+    ////////Route::render('login', ['error' => $error]);
+    /*$error = LoginController::loginUser();
+        
+        if ($error) {
+            // Si hay un error, renderizar de nuevo la página de login y mostrar el mensaje
+            Route::render('login', ['message' => $error]);
+        } else {
+            // Si no hay error, redirigir al home
+            header('Location: home');
+            exit();
+        } */
+
+    /*if(isset($_POST['login-btn'])){
+
+
+
+
+        $email = $_POST['email'];
+        $contrasena = $_POST['contrasena'];
+
+        echo "Email " . $email;
+        echo "Contraseña " . $contrasena;
+
+        if(empty($email) || empty($contrasena)) {
+
+            echo "<div> DATOS VACIOS </div>";
+
+        }*/
+    
 });
 
 

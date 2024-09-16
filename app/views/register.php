@@ -21,6 +21,17 @@
             <label for="nombre">Nombre</label>
             <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
         </div>
+
+        <?php if (!empty($errors)): ?>
+    <div class="alert alert-danger">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?= htmlspecialchars($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+        <?php endif; ?>
+
         <div class="mb-2">
             <label for="apellidos">Apellidos</label>
             <input class="form-control" type="text" name="apellidos" id="apellidos" placeholder="Escribe tus apellidos">
@@ -46,7 +57,7 @@
         </div>
         <div class="mb-2">
             <label for="telefono">Telefono</label>
-            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Número de telefono">
+            <input class="form-control" type="number" name="telefono" id="telefono" placeholder="Número de telefono">
         </div>
         <div class="mb-2">
             <label for="fecha-nacimiento">Fecha-nacimiento</label>
