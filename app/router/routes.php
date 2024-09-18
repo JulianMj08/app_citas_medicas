@@ -3,8 +3,6 @@
 use app\controllers\LoginController;
 use app\controllers\RegisterController;
 
-
-
 require_once 'Route.php';
 //require_once '/../controllers/RegisterController';
 require_once __DIR__ . '/../controllers/RegisterController.php';
@@ -44,9 +42,6 @@ Route::post('register', function() {
         $errors = $userRegister->getErrors(); // Obtener los errores
         Route::render('register', ['errors' => $errors]); // Pasar los errores a la vista
     }
-
-    
-
 });
 
 Route::get('login', function() {
@@ -54,42 +49,7 @@ Route::get('login', function() {
 });
 
 Route::post('login', function(){
-    LoginController::LoginValidation();
-
-    
-
-    ////////$error = LoginController::loginUser();
-    
-    // Renderizar la página de login con el mensaje de error
-    ////////Route::render('login', ['error' => $error]);
-    /*$error = LoginController::loginUser();
-        
-        if ($error) {
-            // Si hay un error, renderizar de nuevo la página de login y mostrar el mensaje
-            Route::render('login', ['message' => $error]);
-        } else {
-            // Si no hay error, redirigir al home
-            header('Location: home');
-            exit();
-        } */
-
-    /*if(isset($_POST['login-btn'])){
-
-
-
-
-        $email = $_POST['email'];
-        $contrasena = $_POST['contrasena'];
-
-        echo "Email " . $email;
-        echo "Contraseña " . $contrasena;
-
-        if(empty($email) || empty($contrasena)) {
-
-            echo "<div> DATOS VACIOS </div>";
-
-        }*/
-    
+    LoginController::LoginValidation();    
 });
 
 

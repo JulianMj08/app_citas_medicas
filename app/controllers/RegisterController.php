@@ -3,6 +3,7 @@ namespace app\controllers;
 
 include __DIR__ . '/../models/RegisterModel.php';
 
+use DateTime;
 use RegisterModel;
 
 class RegisterController {
@@ -20,7 +21,6 @@ class RegisterController {
         private $errors = [];
 
     public function __construct() {
-
         // Puedes inicializar las propiedades si es necesario, pero no llenarlas con $_POST.
         $this->errors = [];
     }
@@ -41,26 +41,90 @@ class RegisterController {
 
         //validacion campo nombre
         if(empty($this->nombre)) {
-            $this->errors[] = "El Campo nombre no puede estar vacío";
-        } elseif (strlen($this->nombre) < 10) {
-            $this->errors[] = "El Campo nombre no puede tener menos de 10 caracteres";
+            $this->errors[] = "El Campo nombre es obligatorio";
+        } elseif (strlen($this->nombre) < 3) {
+            $this->errors[] = "El Campo nombre no puede tener menos de 3 carácteres";
         } elseif (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]+$/", $this->nombre)) {
-            $this->errors[] = "El nombre solo puede contener letras, espacios, apóstrofes y guiones";
+            $this->errors[] = "El  campo nombre solo puede contener letras, espacios, apóstrofes y guiones";
+        } elseif (strlen($this->nombre) > 20) {
+            $this->errors[] = "El Campo nombre no puede tener mas de 20 carácteres";
         }
 
-        //validacion campo email
+        // validacion campo apellidos
+        if(empty($this->apellidos)) {
+            $this->errors[] = "El Campo apellidos es obligatorio";
+        } elseif (strlen($this->apellidos) < 3) {
+            $this->errors[] = "El Campo apellidos no puede tener menos de 3 carácteres";
+        } elseif (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]+$/", $this->apellidos)) {
+            $this->errors[] = "El  campo apellidos solo puede contener letras, espacios, apóstrofes y guiones";
+        } elseif (strlen($this->apellidos) > 30) {
+            $this->errors[] = "El Campo apellidos no puede tener mas de 30 carácteres";
+        }
+
+        // validacion campo usuario
+        if(empty($this->usuario)) {
+            $this->errors[] = "El Campo usuario es obligatorio";
+        } elseif (strlen($this->usuario) < 3) {
+            $this->errors[] = "El Campo usuario no puede tener menos de 3 carácteres";
+        } elseif (strlen($this->usuario) > 12) {
+            $this->errors[] = "El Campo usuario no puede tener mas de 3 carácteres";
+        }
+
+        //validación campo email
         if(empty($this->email)) {
-            $this->errors[] = "El campo email no puede estar vacio";
+            $this->errors[] = "El campo email es obligatorio";
         } elseif (strlen($this->email) > 30) {
             $this->errors[] = "El Campo email no puede tener mas de 30 caracteres";
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $this->errors[] = "El campo Email tiene un error";
         }
+
+        //validación campo contraseña
+        if(empty($this->contrasena)) {
+            $this->errors[] = "El campo contraseña es obligatorio";
+        } elseif (strlen($this->contrasena) > 15) {
+            $this->errors[] = "El Campo contraseña no puede tener mas de 15 caracteres";
+        } elseif (strlen($this->contrasena) < 8) {
+            $this->errors[] = "El Campo contraseña no puede tener menos de 8 caracteres";
+        }
+
+        //validación campo telefono
+        if (empty($this->telefono)) {
+            $this->errors[] = "El campo telefono es obligatorio";
+        } elseif (strlen($this->telefono) !== 9) {
+            $this->errors[] = "El campo telefono debe tener exactamente 9 números";
+        } elseif (!preg_match('/^[0-9]+$/', $this->telefono)) {
+            $this->errors[] = "El campo telefono solo debe contener números";
+        }
+        
+
+        //validación campo fecha de nacimiento
+        $fechaActual = new DateTime();
+        // var_dump($this->fechaNacimiento);
+        // var_dump($fechaActual);
+
+        if (empty($this->fechaNacimiento)) {
+            $this->errors[] = "El campo fecha de nacimiento es obligatorio";
+        } else {
+            $fechaConvertida = new DateTime($this->fechaNacimiento);
+            
+            if (!$fechaConvertida) {
+                $this->errors[] = "El formato de la fecha de nacimiento es incorrecto.";
+            } elseif ($fechaConvertida > $fechaActual) {
+                $this->errors[] = "El campo fecha de nacimiento no puede ser mayor a la fecha actual";
+            } elseif (strlen($this->fechaNacimiento) < 8) {
+                $this->errors[] = "El campo fecha de nacimiento no puede tener menos de 8 caracteres";
+            }
+        }
+        
+        //validación campo sexo
+        if(empty($this->sexo)) {
+            $this->errors[] = "El campo sexo es obligatorio";
+        }
         return empty($this->errors);
      }
     
-    
-     public function getErrors() {
+    public function getErrors() {
         return $this->errors;
     }
 
