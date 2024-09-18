@@ -29,16 +29,38 @@ class LoginController {
             $errors[] = "la contraseña debe tener al menos 3 caracteres.";
         }
 
-        $hashedcontrasena = LoginModel::verified($email);
+        // Mostrar errores si los hay
+        if (!empty($errors)) {
+            Route::render('login', ['errors' => $errors]);
+            return false; // Detener ejecución si hay errores
+        }
 
-        if (password_verify($contrasena, $hashedcontrasena)) {
-            echo "Inicio de sesión exitoso: la contraseña es correcta.";
+        $userData = LoginModel::searchUserByEmail($email); // si no tiene errores entonces entra a validar la contraseña hasheada
+
+        if ($userData && password_verify($contrasena, $userData['contrasena'])) {
+            // Si la verificación de la contraseña es correcta, iniciar sesión
+            return self::loginUser($userData);
         } else {
-            echo "Error: la contraseña es incorrecta.";
+            //echo "<div style='color:red;'>Correo electrónico o contraseña incorrectos.</div>";
+            $errors[] = " contraseña incorrecta.";
+            Route::render('login', ['errors' => $errors]);
+            return false;
         }
-        foreach ($errors as $error) {
-            echo "<div style='color:red;'>{$error}</div>";
-        }
+        
+
+       
+
+        /* $hashedcontrasena = LoginModel::verified($email);
+
+         // Verificar si existe el usuario y si la contraseña es correcta
+         $hashedcontrasena = LoginModel::verified($email); // Obtiene la contraseña hasheada desde la BD
+         if ($hashedcontrasena && password_verify($contrasena, $hashedcontrasena)) {
+             // Si la verificación de la contraseña es correcta, iniciar sesión
+             return self::loginUser();
+         } else {
+             echo "<div style='color:red;'>Correo electrónico o contraseña incorrectos.</div>";
+             return false;
+         } */
         
 
         /*if (isset($_POST['login-btn'])) {
@@ -55,13 +77,12 @@ class LoginController {
         //Route::render('login', ['error' => $error]);
     }
 
-    public static function loginUser() {
+    public static function loginUser($userData) {
 
-        $email = $_POST['email'];
-        $contrasena = $_POST['contrasena'];
-        $userData = LoginModel::searchUser($email, $contrasena);
+        //$email = $_POST['email'];
+        //$contrasena = $_POST['contrasena'];
 
-        if ($userData) {
+        //if ($userData) {
             session_start();
             $_SESSION['nombre'] = $userData['nombre'];
             $_SESSION['idUser'] = $userData['idUser'];
@@ -70,10 +91,10 @@ class LoginController {
 
             header('Location: home');
             exit();
-        } else {
-            echo "Correo electrónico o contraseña incorrectos.";
-        }
-        return "no funciono";
+        // } else {
+        //     echo "Correo electrónico o contraseña incorrectos.";
+        // }
+        // return "no funciono";
     }     
 } 
 ?>

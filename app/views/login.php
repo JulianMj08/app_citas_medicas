@@ -35,10 +35,14 @@
             <label for="contrasena">Contraseña</label>
             <input class="form-control" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
         </div>
-            <?php if (isset($error) && $error): ?>
-                <div style="color:red;">
-                    <?php echo htmlspecialchars($error); ?>
-                </div>
+        <?php if (!empty($errors)): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?= htmlspecialchars($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
             <?php endif; ?>
         <div>
              <input type="submit" class="btn btn-primary" name="login-btn" value="Iniciar Sesion">

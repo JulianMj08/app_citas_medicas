@@ -2,7 +2,7 @@
 require_once 'Conexion.php';
 class LoginModel {
 
-    public static function searchUser($email, $contrasena) {
+    /* public static function searchUser($email, $contrasena) {
         
         $conexion = Conexion::connect();
         $sqlSentence = 
@@ -24,9 +24,9 @@ class LoginModel {
         } else {
             return false;
         }
-    }
+    } */
 
-    public static function verified($email) {
+    public static function searchUserByEmail($email) {
 
         $conexion = Conexion::connect();
         $sql = "SELECT contrasena FROM users_data
@@ -40,10 +40,7 @@ class LoginModel {
         $res = $result->get_result();
 
         if ($res->num_rows > 0) {
-
-            $user = $res->fetch_assoc(); // aca esta devolviendo un array con los datos de la consulta
-            return $user['contrasena']; // traigo solo el dato que necesito, en este caso contrasena
-           
+            return $res->fetch_assoc(); // aca esta devolviendo un array con los datos del usuario incluido la contraseña           
         } else {
             return false;
         }
