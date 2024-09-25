@@ -28,6 +28,11 @@ class Route {
         $url = trim($url, '/');
     }
 
+    public static function delete($url, $callback) {
+        self::$routes['DELETE'][$url] = $callback;
+        $url = trim($url, '/');
+    }
+
     /**
      * envía URL
      *
@@ -43,9 +48,19 @@ class Route {
         $method = $_SERVER['REQUEST_METHOD']; // vemos el method por medio de REQUEST_METHOD
         if (isset(self::$routes[$method])) {  // si existe el method en el array de routes haz lo siguiente
             foreach (self::$routes[$method] as $route => $callback) { // recorre el array 
-                if ($route === $url) {              // si el method que viene es exactamente igual a la url
+                $routeRegex = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([a-zA-Z0-9_]+)', $route);
+
+                // Prepara la expresión regular para que coincida exactamente con la URL completa
+                $routeRegex = str_replace('/', '\/', $routeRegex);
+                $routeRegex = '/^' . $routeRegex . '$/';
+
+                if (preg_match($routeRegex, $url, $matches)) {
+                    array_shift($matches); // Elimina el primer valor del array que es la URL completa
+                    call_user_func_array($callback, $matches); // Pasa los parámetros al callback
+                    return;
+               /* if ($route === $url) {              // si el method que viene es exactamente igual a la url
                     call_user_func($callback);      // con la función call_user_func invocamos el callback
-                    return;                     // retorname el callback.
+                    return;    */                 // retorname el callback.
                 }
             }
         }

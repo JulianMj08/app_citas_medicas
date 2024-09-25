@@ -19,6 +19,7 @@
     <form id="register-form" action=""  method="post" class="container d-flex flex-column w-50 border rounded shadow p-4">
         <div>
             <img src="/assets/icons/icono_logo.png" class="logo" alt="">
+            <h2 class="fw-bolder">Iniciar Sesión</h2>
         </div>
         <div>
             <h5 class="mt-4">Acceder a TuHospi</h5>

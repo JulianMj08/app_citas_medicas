@@ -3,21 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title>Home</title>
 </head>
 <body>
-    <h1>Home</h1>
+
+    <style>
+
+html {
+    background-color: blue;
+    max-width: 992px;
+    margin: 0 auto;
+}
+body {
+    
+    background-color: aqua;
+}
+
+.image-container {
+    position: relative;
+    height: 100%;
+}
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(white 80%, transparent);
+}
+
+.container-dos img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.border-radius-20 {
+    border-radius: 20px !important;
+}
+    </style>
+
+
+
 
     <?php
-    
  session_start();
-
- /*
- echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>'; */
-
-
 //  Verifica si el usuario está autenticado
   if (isset($_SESSION['nombre'])) {
       echo "Bienvenido, " . htmlspecialchars($_SESSION['nombre']) . "!";   //Mostramos el nombre
@@ -26,9 +57,362 @@ echo '</pre>'; */
   }
  session_destroy();
 ?>
+<?php
+include 'includes/navbar.php';
+?>
+<main class="container bg-light">
 
-    <button id="button-login">Ir al login</button>
-    <script src="/js/home.js"></script>
+<!-- HEADER -->
+<header class="container bg-white">
+    <div class="row" >
+        <div class="col-md-8 d-flex flex-column p-5">
+            <div>
+                <h2 class="fs-1 fw-bold">Bienvenido a tu sitio donde puedes gestionar todas tus citas</h2>
+            </div>
+            <div>
+                <p class="fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta sit repellat nemo eos, aliquam provident ab unde? Nisi, dolorum repellendus magni omnis deserunt magnam sed tempora minima debitis dolores aperiam!</p>
+            </div>
+            <div class="mt-3">
+                <button  type="button" class="btn btn-primary rounded-pill"> Agendar</button>
+            </div>
+        </div>
+
+        <div class="col-md-4 image-container">
+            <img src="/assets/img/doctor-header.png" alt=""  class="img-fluid">
+        </div>
+    </div>
+</header>
+
+<div class="m-5">
+    <h3 class="fw-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, eosilfhsukfh.</h3>
+    <p class="text-center">Lorem ipsum dolor sit amet laudantium reprehenderit minima! Quidem soluta ipsum laudantium minus quasi!</p>
+</div>
+<button class="abrir-News">Abrir noticias</button>
+
+<div id="lista-noticias">
+
+</div>
+<!-- <button class="eliminar">eliminar</button> -->
+
+<!-- CARDS -->
+<section class="container">
+    <div class="row d-flex justify-content-evenly m-4">
+
+            <div class="card" style="width: 18rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 container-dos m-5 rounded">
+            <img class="rounded" src="/assets/img/tres_doctores.jpg" alt="">
+        </div>
+        
+        <div class="card col-md-6" style="width: 18rem;">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+            </ul>
+            </div>
+    </div>
+</section>
+
+<div class="m-5">
+    <h3 class="fw-bold text-center">meet Our specialist Doctors.</h3>
+    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa natus nostrum laudantium reprehenderit minima! Quidem soluta ipsum laudantium minus quasi!</p>
+</div>
+
+<!-- DOCTORES -->
+<section class="d-flex justify-content-evenly">
+    
+<div class="card" style="width: 18rem;">
+  <img src="/assets/img/Doctor_1.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img src="/assets/img/Doctora.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img src="/assets/img/Doctor_2.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</section>
+
+<div class="m-5">
+    <h3 class="fw-bold text-center">Latest Blog and Events</h3>
+    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa natus nostrum laudantium reprehenderit minima! Quidem soluta ipsum laudantium minus quasi!</p>
+</div>
+
+<!-- BLOGS -->
+<section class="d-flex justify-content-evenly mb-5">
+    
+<div class="card" style="width: 18rem;">
+  <img src="/assets/img/Doctor_1.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img src="/assets/img/Doctora.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img src="/assets/img/Doctor_2.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="pt-5">
+<div class="card text-center w-75 m-auto bg-primary">
+  <div class="">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <div class=" text-body-secondary">
+    2 days ago
+  </div>
+</div>
+</section>
+
+<script>
+
+    const btnAbrir = document.querySelector('.abrir-News');
+    //const btnEliminar = document.querySelector('.eliminar');
+
+    /* btnEliminar.addEventListener('click', function(){
+        const noticiaId = prompt('Ingrese el ID de la noticia a eliminar:');
+        eliminarNoticia(noticiaId);
+        //alert("btn funcionando");
+    }) */
+
+    btnAbrir.addEventListener('click', function() {
+        mostrar();
+    })
+    function mostrar() {
+
+    const URL = 'http://app_citas_medicas.test:3000/newsAdmin'    
+    //const URL = '../controllers/NewsAdminController.php';
+    fetch(URL, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+    })
+    .then(response => response.json())  // Convertir la respuesta a JSON
+    /*.then(data => {
+        console.log('Noticias:', data); // Manejar la respuesta JSON en el cliente
+
+        data.forEach(noticia => {
+            const contenedor = document.getElementById('contenedor-allNews');
+
+
+           // console.log('titulo', noticia.titulo);
+        //  console.log('texto', noticia.texto);
+            
+        })
+    }) */
+    
+    .then(noticias => {
+        const listaNoticias = document.getElementById('lista-noticias');
+        noticias.forEach(noticia => {
+            const boton = document.createElement('button');
+            boton.textContent = noticia.titulo;
+            boton.onclick = () => verNoticia(noticia.idNoticia);
+            listaNoticias.appendChild(boton);
+            console.log(noticia);
+            
+        });
+    });
+    // .catch(error => {
+    //     console.error('Error al obtener las noticias:', error);
+    // });
+
+    console.log("funcionando"); 
+    
+
+    
+    
+    }
+
+    function verNoticia(id) {
+
+        const URL_ID = `http://app_citas_medicas.test:3000/newsAdmin/${id}`;
+        fetch(URL_ID, {
+            method: 'GET',
+            headers: {
+        'Content-Type': 'application/json'
+    }
+
+            })
+
+            .then(response => response.json())
+            .then(data => {
+                console.log('Noticia:', data); // Manejar la respuesta JSON en el cliente
+                mostrarDetalles(data);
+    })
+    .catch(error => {
+        console.error('Error al obtener las notic:', error);
+    });
+        }
+
+
+        function mostrarDetalles(noticia) {
+
+            const detallesContenedor = document.createElement('div');
+
+            detallesContenedor.innerHTML = `
+            <h3>${noticia.titulo}</h3>
+            <p>${noticia.texto}</p>
+            <small>Publicado el: ${noticia.fecha}</small>
+            <button class="btn btn-secondary mt-3">cerrar</button>
+            <button class="btn btn-danger mt-3" id="eliminar">Eliminar</button>
+        `;
+
+         // Agrega el contenedor al DOM
+            const listaNoticias = document.getElementById('lista-noticias');
+            listaNoticias.innerHTML = ''; // Limpia la lista de noticias previas
+            listaNoticias.appendChild(detallesContenedor); // Añade el nuevo contenedor con detalles
+
+            // Evento para eliminar la noticia
+        const btnEliminar = detallesContenedor.querySelector('#eliminar');
+        btnEliminar.addEventListener('click', function() {
+            eliminarNoticia(noticia.idNoticia); // Llama a la función de eliminar usando el ID de la noticia directamente
+    });
+        }
+
+        
+
+        function eliminarNoticia(id) {
+
+            const URL_DELETE = `http://app_citas_medicas.test:3000/newsAdmin/delete/${id}`;
+            fetch(URL_DELETE, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                         }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    console.log('Noticia eliminada:', data);
+                    alert('Noticia eliminada correctamente');
+                } else {
+                    console.log('Error al eliminar:', data.error);
+                    alert('No se pudo eliminar la noticia');
+                }
+            })
+            .catch(error => {
+        console.error('Error en la solicitud de eliminación:', error);
+    });
+                }
+    //mostrar();
+
+    
+      /*  fetch('app_citas_medicas.test:3000/newsAdmin', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => response.json())  // Convertir la respuesta a JSON
+.then(data => {
+    console.log('Noticias:', data); // Manejar la respuesta JSON en el cliente
+})
+.catch(error => {
+    console.error('Error al obtener las noticias:', error);
+});
+
+console.log("funcionando"); 
+*/
+
+/*
+fetch('/newsAdmin')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la red');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Noticias:', data);
+    })
+    .catch(error => {
+        console.error('Error al obtener las noticias:', error);
+    });
+    }
+
+    console.log("muestraaaaa");
+    alert("essssss");
+    
+
+    
+    mostrar(); */
+    
+
+</script>
+</main>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="/js/home.js"></script> -->
 
 
 </body>

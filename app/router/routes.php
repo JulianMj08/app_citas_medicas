@@ -7,6 +7,7 @@ require_once 'Route.php';
 //require_once '/../controllers/RegisterController';
 require_once __DIR__ . '/../controllers/RegisterController.php';
 require_once __DIR__ . '/../controllers/LoginController.php';
+require_once __DIR__ . '/../controllers/NewsAdminController.php';
 // Lista de rutas que tiene la aplicación
 
 Route::get('/', function() {
@@ -52,5 +53,23 @@ Route::post('login', function(){
     LoginController::LoginValidation();    
 });
 
+Route::get('newsAdmin', function(){
+       //Route::render('/admin/newsAdmin');
+     $controller = new NewsAdminController();
+     $controller->seeAll();
+});
 
+Route::get('newsAdmin/{id}', function($id){
+    //Route::render('/admin/newsAdmin');
+  //$controller = new NewsAdminController();
+  //$controller->seeAll();
+  $controller1 = new NewsAdminController();
+  $controller1->seeNewId($id);
+});
+
+Route::delete('newsAdmin/delete/{id}', function($id) {
+
+    $eliminar = new NewsAdminController();
+    $eliminar->deleteNewId($id);
+}) 
 ?>

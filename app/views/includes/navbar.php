@@ -23,10 +23,25 @@
         
         <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
       </div>
-      <button class="ms-auto btn btn-primary rounded-pill">Registro</button>
+      <div>
+      <button  id="button-register" class="ms-auto btn btn-primary rounded-pill">Registrarse</button>
+      <button  id="button-login" class="ms-auto btn btn-primary rounded-pill">Iniciar sesión</button>
+      </div>
+      
     </div>
   </div>
 </nav>
+
+<script>
+  const btnLogin = document.getElementById('button-login');
+  const btnRegister = document.getElementById('button-register');
+
+const goLogin = ()=> window.location.href = '/login';
+const goRegister = ()=> window.location.href = '/register';
+
+btnLogin.addEventListener('click', goLogin);
+btnRegister.addEventListener('click', goRegister);
+</script>
 
 <script src="/js/bootstrap.bundle.min.js"></script>
     
