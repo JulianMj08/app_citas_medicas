@@ -33,6 +33,11 @@ class Route {
         $url = trim($url, '/');
     }
 
+    public static function update($url, $callback) {
+        self::$routes['PUT'][$url] = $callback;
+        $url = trim($url, '/');
+    }
+
     /**
      * envía URL
      *

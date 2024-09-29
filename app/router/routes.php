@@ -53,23 +53,101 @@ Route::post('login', function(){
     LoginController::LoginValidation();    
 });
 
-Route::get('newsAdmin', function(){
-       //Route::render('/admin/newsAdmin');
-     $controller = new NewsAdminController();
-     $controller->seeAll();
+Route::get('noticesAdmin', function(){
+    Route::render('/admin/noticesAdmin');
 });
 
-Route::get('newsAdmin/{id}', function($id){
-    //Route::render('/admin/newsAdmin');
-  //$controller = new NewsAdminController();
-  //$controller->seeAll();
-  $controller1 = new NewsAdminController();
-  $controller1->seeNewId($id);
+// ------------------------------  Rutas para la API  ------------------------------ 
+
+
+Route::post('api/noticesAdmin', function(){
+    
+    ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+    var_dump($_POST);  // Muestra los datos del formulario (sin archivos)
+    var_dump($_FILES); // Muestra los archivos subidos
+
+    die(); 
+
+    //obtener datos de la solicitud
+   /* $data = json_decode(file_get_contents("php://input"), true); // Para obtener datos JSON
+    $title = isset($data['title']) ? $data['title'] : null;
+    $image = isset($data['image']) ? $data['image'] : null;
+    $text = isset($data['text']) ? $data['text'] : null;
+    $createDate = isset($data['createDate']) ? $data['createDate'] : null;
+    $idUsuario = isset($data['idUsuario']) ? $data['idUsuario'] : null; */
+
+    // Para obtener los datos de la solicitud que no son el archivo (usando $_POST)
+    $title = isset($_POST['title']) ? $_POST['title'] : null;
+    $text = isset($_POST['text']) ? $_POST['text'] : null;
+    $createDate = isset($_POST['createDate']) ? $_POST['createDate'] : null;
+    $idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : null;
+
+    // Para obtener el archivo (usando $_FILES)
+    $image = isset($_FILES['image']) ? $_FILES['image'] : null;
+
+    // Aquí podrías agregar lógica para mover la imagen a una ubicación específica si se subió correctamente
+    if ($image && $image['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($image['name']);
+
+        // Mueve el archivo subido al directorio destino
+        if (move_uploaded_file($image['tmp_name'], $uploadFile)) {
+            echo "El archivo se subió correctamente.\n";
+        } else {
+            echo "Hubo un error al mover el archivo.\n";
+        }
+    } else {
+        echo "No se subió ningún archivo o hubo un error.\n";
+    }
+
+
+    $noticeAdminCreate = new NewsAdminController;
+    $noticeAdminCreate->createNewNotice($title, $image, $text, $createDate, $idUsuario);
+}); 
+
+Route::get('api/noticesAdmin', function(){
+
+    $noticesAdmin = new NewsAdminController();
+    $noticesAdmin->seeAll();
 });
 
-Route::delete('newsAdmin/delete/{id}', function($id) {
+Route::get('api/noticesAdmin/{id}', function($id){ // Para obtener el id dinamicamente debemmos colocarlo como para metro en la funcion
+  
+    $noticeAdminId = new NewsAdminController();
+    $noticeAdminId->seeNewId($id);  // tambien se pasa el id como parámetro
+});
 
-    $eliminar = new NewsAdminController();
-    $eliminar->deleteNewId($id);
-}) 
+Route::delete('api/noticesAdmin/{id}', function($id) {
+
+    $noticeAdminDelete = new NewsAdminController();
+    $noticeAdminDelete->deleteNewId($id);
+});
+
+/*Route::update('api/noticesAdmin/{id}', function($id) {
+
+    $newTexto = isset($data['texto']) ? $data['texto'] : null;
+    if($newTexto) {
+        $noticeAdminUpdate = new NewsAdminController();
+        $noticeAdminUpdate->updateNoticeTexto($id, $newTexto);
+    }
+    
+}) */
+
+Route::update('api/noticesAdmin/{id}', function($id) {
+    $data = json_decode(file_get_contents("php://input"), true);
+    $newTexto = isset($data['texto']) ? $data['texto'] : null;
+
+    if ($newTexto) {
+        $noticeAdminUpdate = new NewsAdminController();
+        $noticeAdminUpdate->updateNoticeTexto($id, $newTexto);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => 'Noticia actualizada correctamente.']);
+    } else {
+        header('Content-Type: application/json', true, 400);
+        echo json_encode(['error' => 'El campo texto es requerido.']);
+    }
+});
 ?>
