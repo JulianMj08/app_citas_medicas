@@ -2,32 +2,30 @@
 
 require_once 'Conexion.php';
 //echo "encendido noticias";
-class NewsAdminModel {
+class NoticeAdminModel {
 
-
-    public static function seeAllNews() {
+    // ---------------------------------------   VER TODAS LAS NOTICIAS MODELO   ---------------------------------------
+    public static function seeAllNotices() {
         $conexion = Conexion::connect();
         $sql = "SELECT * FROM noticias";
         $result = $conexion->query($sql);
-        $noticias = [];
+        $notices = [];
     
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $noticias[] = $row; // Añadir cada fila al array
+                $notices[] = $row; // Añadir cada fila al array
             }
-            return $noticias;
-            //var_dump($noticias); // Devolver todas las noticias
+            return $notices;
         } else {
             return null;
         }
     }
 
-    public static function seeNew($id) {
-
+    // ---------------------------------------   VER NOTICIAS POR MODELO   ---------------------------------------
+    public static function seeNotice($id) {
         $conexion = Conexion::connect();
         $sql = "SELECT * FROM noticias WHERE idNoticia = $id ";
-        $result = $conexion->query($sql);
-        //$noticias = [];
+        $result = $conexion->query($sql); // como solo necesitamos un id entonces no necesitamos crear un array
 
         if ($result === false) {
             return null; // Si la consulta falla, devuelve null
@@ -40,8 +38,8 @@ class NewsAdminModel {
         }
     }
 
-    public static function deleteNew($id) {
-
+    // ---------------------------------------   ELIMINAR NOTICIAS MODELO   ---------------------------------------
+    public static function deleteNotice($id) {
         $conexion = Conexion::connect();
         $sql = "DELETE FROM noticias WHERE idNoticia = $id";
         $result = $conexion->query($sql);
@@ -51,19 +49,17 @@ class NewsAdminModel {
         } else {
             return false; // Si la consulta falló
         }
-    
         //Para el delete no necesitamos obtener un array
-
     }
 
-    public static function updateNotice($id, $newTexto) {
-
+    // ---------------------------------------   ACTUALIZAR NOTICIAS MODELO   ---------------------------------------
+    public static function updateNotice($id, $newTitle, $newTexto) {
         $conexion = Conexion::connect();
-
         $newTexto = $conexion->real_escape_string($newTexto);
+        $newTitle = $conexion->real_escape_string($newTitle);
         $id = intval($id); // Asegurarse de que $id sea un entero
 
-        $sql = "UPDATE noticias SET texto = '$newTexto' WHERE idNoticia = $id";
+        $sql = "UPDATE noticias SET titulo = '$newTitle', texto = '$newTexto' WHERE idNoticia = $id";
         $result = $conexion->query($sql);
 
         if ($result) {
@@ -71,30 +67,15 @@ class NewsAdminModel {
         } else {
             return false; // Si la consulta falló
         }
-
     }
 
-    // public static function createNotice($title, $image, $text, $createDate) {
-
-    //     $conexion = Conexion::connect();
-    //     $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha) VALUES ('$title', '$image', '$text', '$createDate' )";
-    //     $result = $conexion->query($sql);
-
-    //     if($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
+    // ---------------------------------------   CREAR NOTICIA MODELO   ---------------------------------------
     public static function createNotice($title, $image, $text, $createDate, $idUsuario) {
         $conexion = Conexion::connect();
         $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
         $result = $stmt->execute([$title, $image, $text, $createDate, $idUsuario]);
     
-        
-
         if($result) {
             echo 'Datos enviados correctamente';
         } else {
@@ -103,6 +84,4 @@ class NewsAdminModel {
         return $result;
     }
 }
-
-
 ?>
