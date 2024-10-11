@@ -4,8 +4,8 @@
 
 <style>
   .logo {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
   }
 </style>
 <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">

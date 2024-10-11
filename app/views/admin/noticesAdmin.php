@@ -32,7 +32,7 @@ include __DIR__ . '/../includes/navbar.php';
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <textarea name="noticeTexUpdate" class="form-control " id="modalText" rows="10" placeholder="Descripción de la noticia"></textarea>
+        <textarea name="noticeTexUpdate" class="form-control" id="modalText" rows="10" placeholder="Descripción de la noticia"></textarea>
         <input type="file" class="form-control mt-2">
       </div>
       <div class="modal-footer">

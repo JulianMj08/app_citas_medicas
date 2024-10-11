@@ -165,13 +165,5 @@ class NoticeAdminController {
             return;
         }
     }
-
-
-        
-          
-
-    
-
-    
 }
 ?>

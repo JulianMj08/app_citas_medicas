@@ -1,4 +1,4 @@
-        alert("probando");
+        alert("juliiiiii");
         const btnOpen = document.querySelector('.open-notices');
 
         btnOpen.addEventListener('click', function() {
@@ -30,13 +30,9 @@
     
                 // Crear la tarjeta
                 const card = document.createElement('div'); //creamos el div del card
-                card.classList.add('card', 'p-3', 'bg-light', 'border', 'h-100', 'shadow'); // Añadir `h-100` para que todas las tarjetas tengan la misma altura
+                card.classList.add('card', 'p-4', 'bg-light', 'border', 'h-100', 'shadow'); // Añadir `h-100` para que todas las tarjetas tengan la misma altura
     
                 // Crear la URL de la imagen utilizando la nueva ruta
-                //const imageURL = `http://app_citas_medicas.test:3000/uploads/${notice.imagen}`;
-                //const imageURL = `http://app_citas_medicas.test:3000/uploads/${notice.imagen}.jpeg`;
-
-                //const imageURL = `http://app_citas_medicas.test:3000/uploads/${notice.imagen}`;
                 console.log(notice.imagen);
                 
                 const filenameWithoutExtension = notice.imagen.split('.').slice(0, -1).join('.');
@@ -45,19 +41,12 @@
 
                  console.log('prueba',imageURL);
                  
-                 
-                
-
-
-
                 // Agregar contenido a la tarjeta
                 card.innerHTML = `
-                    <div class="card-body">
                         <h5 class="card-title">${notice.titulo}</h5>
                         <p class="card-text">${notice.texto}</p>
-                      <img src="${imageURL}" alt="Imagen de la noticia" class="card-img-top">
-                        <button class="btn btn-primary mt-2">Ver Más</button>
-                    </div>
+                        <img src="${imageURL}" alt="Imagen de la noticia" class="object-fit-cover">
+                        <button class="btn btn-primary mt-2">Ver Más</button>  
                 `;
 
                 console.log(card); // Verifica si card es el elemento correcto
@@ -137,7 +126,7 @@
 
  // ---------------------------------------   ACTUALIZAR NOTICIAS   ---------------------------------------
     
-    async function update(id, newTitle, newTexto) {
+    async function updateNotice(id, newTitle, newTexto) {
         const URL_UPDATE = `http://app_citas_medicas.test:3000/api/noticesAdmin/${id}`;
     
         try {
@@ -181,7 +170,7 @@
         
         const newText = document.getElementById('modalText').value;
     
-        update(id, newTitle, newText);
+        updateNotice(id, newTitle, newText);
     });
 
     // ---------------------------------------   ELIMINAR NOTICIAS   ---------------------------------------
@@ -207,7 +196,7 @@
     // ---------------------------------------   CREAR NUEVAS NOTICIAS   ---------------------------------------
 
     async function createNotice(title, image, text, createDate, idUsuario) {
-        const URL_CREATE = 'http://app_citas_medicas.test:3000/api/noticesAdmin';
+        const URL_CREATE_NOTICE = 'http://app_citas_medicas.test:3000/api/noticesAdmin';
     
         try {
             // Crear un FormData para manejar el archivo y otros datos
@@ -228,7 +217,7 @@
             console.log(`${pair[0]}: ${pair[1]}`);
         }
     
-            const response = await fetch(URL_CREATE, {
+            const response = await fetch(URL_CREATE_NOTICE, {
                 method: 'POST',
                 body: formData // No incluyas headers aquí, ya que `fetch` se encargará de añadir los necesarios.
             });
