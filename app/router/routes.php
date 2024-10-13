@@ -9,6 +9,7 @@ require_once __DIR__ . '/../controllers/RegisterController.php';
 require_once __DIR__ . '/../controllers/LoginController.php';
 require_once __DIR__ . '/../controllers/NoticeAdminController.php';
 require_once __DIR__ . '/../controllers/AppointmentsAdminController.php';
+require_once __DIR__ . '/../controllers/UsersAdminController.php';
 // Lista de rutas que tiene la aplicación
 
 Route::get('/', function() {
@@ -55,6 +56,10 @@ Route::get('noticesAdmin', function(){
 
 Route::get('appointmentsAdmin', function(){
     Route::render('/admin/appointmentsAdmin');
+});
+
+Route::get('usersAdmin', function(){
+    Route::render('/admin/usersAdmin');
 });
 
 // ------------------------------  Rutas para la API  ------------------------------ 
@@ -214,4 +219,60 @@ Route::update('api/appointmentsAdmin/{idCita}', function($idCita) {
         echo json_encode(['error' => 'El campo texto es requerido.']);
     }    
 });
+
+//------------------------------ UsersAdmin ------------------------------------------
+Route::get('api/usersAdmin', function(){
+    $usersAdmin = new UsersAdminController;
+    $usersAdmin->seeAllUsersControl();
+});
+
+Route::delete('api/usersAdmin/{id}', function($id) {
+    $userAdminDelete = new UsersAdminController;
+    $userAdminDelete->deleteUserId($id);
+});
+
+Route::post('api/userAdmin', function(){
+    $data = json_decode(file_get_contents('php://input'), true); // decodificamos los datos que vienen en json
+
+    $name = $data['name'] ?? null;
+    $lastNamesUser = $data['lastNamesUser'] ?? null;
+    $nameUser = $data['nameUser'] ?? null;
+    $emailUser = $data['emailUser'] ?? null;
+    $passwordUser = $data['passwordUser'] ?? null;
+    $addressUser = $data['addressUser'] ?? null;
+    $phoneUser = $data['phoneUser'] ?? null;
+    $birthdateUser = $data['birthdateUser'] ?? null;
+    $sexUser = $data['sexUser'] ?? null;
+    $rolUser = $data['rolUser'] ?? null;
+
+    $appointmentAdmincreate = new UsersAdminController;
+    $appointmentAdmincreate->createUserControl($name, $lastNamesUser, $nameUser, $emailUser, $passwordUser, $addressUser, $phoneUser, $birthdateUser, $sexUser, $rolUser);
+
+
+});
+
+Route::update('api/userAdmin/{idUser}', function($idUser) {
+    
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    var_dump(($data));
+
+    print_r($data);
+    $name = isset($data['name']) ? $data['name'] : null;
+    $lastNamesUser = isset($data['lastNamesUser']) ? $data['lastNamesUser'] : null;
+    $nameUser = isset($data['nameUser']) ? $data['nameUser'] : null;
+    $sexUser = isset($data['sexUser']) ? $data['sexUser'] : null;
+    $rolUser = isset($data['rolUser']) ? $data['rolUser'] : null;
+
+    if ($name || $lastNamesUser || $nameUser || $sexUser || $rolUser ) {
+        $userAdminUpdate = new UsersAdminController();
+        $userAdminUpdate->updateUserControl($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => 'Usuario actualizadao correctamente.']);
+    } else {
+        header('Content-Type: application/json', true, 400);
+        echo json_encode(['error' => 'El campo texto es requerido.']);
+    }    
+});
+
 ?>

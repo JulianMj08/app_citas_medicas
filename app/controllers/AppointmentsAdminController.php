@@ -50,6 +50,7 @@ class AppointmentsAdminController {
         }
     }
 
+// ------------------------------------------------------------------------------------------------------
     public function deleteAppointmentId($id) {
 
         $method = $_SERVER['REQUEST_METHOD'];

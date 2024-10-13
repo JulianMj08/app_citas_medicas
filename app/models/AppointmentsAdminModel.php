@@ -5,7 +5,6 @@ class AppointmentsAdminModel {
 
     public static function seeAllAppointmentsModel() {
         $conexion = Conexion::connect();
-        //$sql = "SELECT nombre FROM users_data";
           $sql = "SELECT * FROM citas
                     INNER JOIN users_data ON citas.idUsuario = users_data.idUser";
         $result = $conexion->query($sql);

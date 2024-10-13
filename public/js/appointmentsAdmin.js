@@ -1,4 +1,4 @@
-alert('bkkkkkkkkkkk');
+alert('bkkkkkkkkkkkoooooo');
 
 const btnOpen = document.querySelector('.open-appointments');
 
@@ -65,6 +65,7 @@ async function showAppointments() {
     }
 }
 
+// --------------------------------------------- ELIMINAR CITA -----------------------------------------------------------
 async function deleteAppointment(id) {
     try {
         const URL_DELETE = `http://app_citas_medicas.test:3000/api/appointmentsAdmin/${id}`;
@@ -93,7 +94,7 @@ async function deleteAppointment(id) {
 //     });
 
 
-// -----------------------------------------------------------------------------------------------------------------
+// --------------------------------------------- MOSTRAS NOMBRE DE USUARIOS -----------------------------------------------------------
 
 async function showUsers() {
     const containerUsers = document.getElementById('containerSelectUsers');
@@ -140,7 +141,7 @@ showUsers();
 
 
 
-// -----------------------------------------------------------------------------------------------------------------
+// --------------------------------------------- CREAR CITA -----------------------------------------------------------
 
 document.getElementById('saveAppointment').addEventListener('click', function() {
     const nameUser = document.getElementById('appointmentSelectUser').value;
@@ -180,7 +181,7 @@ async function createAppointment() {
 }
 
 
-    
+// --------------------------------------------- ACTUALIZAR CITA -----------------------------------------------------------    
 function editRow(row) {
 
     const index = row.querySelector('th').textContent;

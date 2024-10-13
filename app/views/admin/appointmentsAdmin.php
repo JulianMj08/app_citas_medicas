@@ -49,7 +49,7 @@ include __DIR__ . '/../includes/navbar.php';
 </div>
 
 
-<!-- Modal SHOW Appointments -->
+<!-- SHOW Appointments -->
 <div id="container-table" class="class container" style="display: none;">
     <div class="class row">
         <div class="class col">
