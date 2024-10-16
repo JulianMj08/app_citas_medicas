@@ -5,3 +5,6 @@
 // const goLogin = ()=> window.location.href = '/login';
 
 // btnLogin.addEventListener('click', goLogin);
+
+
+//module.exports = probando;

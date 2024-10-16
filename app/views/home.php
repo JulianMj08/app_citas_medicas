@@ -235,5 +235,6 @@ include 'includes/navbar.php';
 </section>
 </main>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/home.js"></script>
 </body>
 </html>

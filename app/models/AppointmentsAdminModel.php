@@ -3,6 +3,7 @@ require_once 'Conexion.php';
 
 class AppointmentsAdminModel {
 
+    // --------------------------------- VER CITAS -----------------------------------------
     public static function seeAllAppointmentsModel() {
         $conexion = Conexion::connect();
           $sql = "SELECT * FROM citas
@@ -21,6 +22,7 @@ class AppointmentsAdminModel {
         }
     }
 
+    // --------------------------------- VER USUARIOS -----------------------------------------
     public static function seeAllUsersModel() {
         $conexion = Conexion::connect();
         $sql = "SELECT nombre FROM users_data
@@ -38,7 +40,7 @@ class AppointmentsAdminModel {
             return null;
         }
     }
-
+    // --------------------------------- ELIMINAR CITA -----------------------------------------
     public static function deleteAppointment($id) {
         $conexion = Conexion::connect();
         $sql = "DELETE FROM citas WHERE idCita = $id";
@@ -52,6 +54,7 @@ class AppointmentsAdminModel {
         //Para el delete no necesitamos obtener un array
     }
 
+    // --------------------------------- CREAR CITA -----------------------------------------
     public static function createAppointment($nameUser, $motivoAppointment, $dateAppointment) {
         $conexion = Conexion::connect();
 
@@ -82,7 +85,7 @@ class AppointmentsAdminModel {
         };
         //return $getIdResult;
     }  
-
+    // --------------------------------- ACTUALIZAR CITA -----------------------------------------
     public static function updateAppointmentModel($idCita,$nombre, $apellidos, $telefono, $motivoCita, $fechaCita) {
         $conexion = Conexion::connect();
 
@@ -91,7 +94,6 @@ class AppointmentsAdminModel {
         $telefono = $conexion->real_escape_string($telefono);
         $motivoCita = $conexion->real_escape_string($motivoCita);
         $fechaCita = $conexion->real_escape_string($fechaCita);
-
 
         $sql = "UPDATE citas c
                 JOIN users_Data u ON c.idUsuario = u.idUser
@@ -112,5 +114,4 @@ class AppointmentsAdminModel {
         }
     }
 }
-
 ?>

@@ -4,19 +4,18 @@ require_once __DIR__ . '/../models/UsersAdminModel.php';
 require_once __DIR__ . '/../models/Conexion.php';
 
 class UsersAdminController {
-    
 
+    // --------------------------------- VER USUARIOS -----------------------------------------
     public function seeAllUsersControl() {
 
         $method = $_SERVER['REQUEST_METHOD'];
 
-        
         if($method === 'GET') {
             $allUsers = UsersAdminModel::seeAllUsersModel();
             if($allUsers !== null) {
                 // Establecer el encabezado para devolver JSON
                 ob_clean(); // Limpiamos cualquier salida previa (muy importante)
-                // Devolver las citas como JSON
+                // Devolver usuarios como JSON
                 header('Content-Type: application/json');
                 echo json_encode($allUsers);
                 exit();
@@ -28,7 +27,7 @@ class UsersAdminController {
         }
     }
 
-    // --------------------------------------------------------------------------
+    // --------------------------------- ELIMINAR USUARIO -----------------------------------------
     public function deleteUserId($id) {
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -48,7 +47,7 @@ class UsersAdminController {
         }
     }
 
-    // ------------------------------------------------------------------------------------------------------
+    // --------------------------------- CREAR USUARIO -----------------------------------------
     public function createUserControl() {
   
         $method = $_SERVER['REQUEST_METHOD'];
@@ -89,22 +88,15 @@ class UsersAdminController {
         }
     }  
 
-    // ----------------------------------------------------------------------------------
-
+    // --------------------------------- ACTUALIZAR USUARIO -----------------------------------------
     public function updateUserControl($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser) {
 
         $method = $_SERVER['REQUEST_METHOD'];
 
         if($method === 'PUT') {
+
             $userUpdate = UsersAdminModel::updateUserModel($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser);
 
-
-            // if (!$nombre || !$apellidos || !$telefono || !$motivoCita || !$fechaCita) {
-            //     error_log("Algunos campos están vacíos o no válidos.");
-            //     echo json_encode(['error' => 'Todos los campos son obligatorios.']);
-            //     http_response_code(400);
-            //     exit();
-            // }
             if($userUpdate !== null) {
                 ob_clean();
                 header('Content-Type: application/json');
@@ -117,10 +109,6 @@ class UsersAdminController {
                 exit();
             }
         }
-
     }
 }
-
-
-
 ?>

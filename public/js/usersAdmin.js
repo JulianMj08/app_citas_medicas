@@ -1,7 +1,4 @@
-alert('Funcionando okiloooo');
-
-// --------------------------------------------- VER TODOS LOS USUARIOS -----------------------------------------------------------
-
+// --------------------------------- VER USUARIOS -----------------------------------------
 const btnOpen = document.querySelector('.open-users');
 
 btnOpen.addEventListener('click', function() {
@@ -71,7 +68,7 @@ async function showAllUsers() {
     }
 }
 
-// ------------------------------------  DELETE ----------------------------------------------
+// --------------------------------- ELIMINAR USUARIO -----------------------------------------
 async function deleteUser(id) {
     try {
         const URL_DELETE_USER = `http://app_citas_medicas.test:3000/api/usersAdmin/${id}`;
@@ -89,25 +86,8 @@ async function deleteUser(id) {
     }
 }
 
-
-// ------------------------------------  CREATE ----------------------------------------------
-
+// --------------------------------- CREAR USUARIO -----------------------------------------
 document.getElementById('saveUser').addEventListener('click', function() {
-    // const name = document.getElementById('nombre').value;
-    // const lastNamesUser = document.getElementById('apellidos').value;
-    // const nameUser = document.getElementById('usuario').value;
-    // const emailUser = document.getElementById('email').value;
-    // const passwordUser = document.getElementById('contrasena').value;
-    // const addressUser = document.getElementById('direccion').value;
-    // const phoneUser = document.getElementById('telefono').value;
-    // const birthdayUser = document.getElementById('fecha-nacimiento').value;
-    // const sexUser = document.getElementById('hombre').value;
-    // const rolUser = document.getElementById('rol').value;
-
-    // if (!nameUser || !motivoAppointment || !dateAppointment) {
-    //     alert('Por favor, completa todos los campos.');
-    //     return;
-    // }
     createAppointment();
 });
 
@@ -143,7 +123,7 @@ async function createAppointment() {
     //showAppointments();
 }
 
-// --------------------------------------------- ACTUALIZAR CITA -----------------------------------------------------------    
+// --------------------------------- ACTUALIZAR USUARIO -----------------------------------------   
 function editRow(row) {
 
     const index = row.querySelector('th').textContent;

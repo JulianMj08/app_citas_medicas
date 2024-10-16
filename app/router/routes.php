@@ -10,6 +10,7 @@ require_once __DIR__ . '/../controllers/LoginController.php';
 require_once __DIR__ . '/../controllers/NoticeAdminController.php';
 require_once __DIR__ . '/../controllers/AppointmentsAdminController.php';
 require_once __DIR__ . '/../controllers/UsersAdminController.php';
+require_once __DIR__ . '/../controllers/NoticesController.php';
 // Lista de rutas que tiene la aplicación
 
 Route::get('/', function() {
@@ -62,7 +63,20 @@ Route::get('usersAdmin', function(){
     Route::render('/admin/usersAdmin');
 });
 
+Route::get('controlPanel', function(){
+    Route::render('/admin/controlPanel');
+});
+
+Route::get('notices', function(){
+    Route::render('notices');
+});
+
 // ------------------------------  Rutas para la API  ------------------------------ 
+
+Route::get('api/notices', function(){
+    $allNotices = new NoticesController;
+    $allNotices->seeAllNoticesControl();
+});
 
 Route::post('api/noticesAdmin', function(){
     // Para obtener los datos de la solicitud que no son el archivo (usando $_POST)
@@ -247,8 +261,6 @@ Route::post('api/userAdmin', function(){
 
     $appointmentAdmincreate = new UsersAdminController;
     $appointmentAdmincreate->createUserControl($name, $lastNamesUser, $nameUser, $emailUser, $passwordUser, $addressUser, $phoneUser, $birthdateUser, $sexUser, $rolUser);
-
-
 });
 
 Route::update('api/userAdmin/{idUser}', function($idUser) {

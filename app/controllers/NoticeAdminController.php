@@ -4,7 +4,7 @@ class NoticeAdminController {
 
     public $method;
 
-    // ---------------------------------------   VER TODAS LAS NOTICIAS CONTROLADOR   ---------------------------------------
+    // --------------------------------- VER NOTICIAS -----------------------------------------
     public function seeAll() {
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -26,7 +26,7 @@ class NoticeAdminController {
         }
     }
 
-    // ---------------------------------------   VER NOTICIAS POR ID CONTROLADOR   ---------------------------------------
+    // --------------------------------- VER NOTICIA ID -----------------------------------------
     public function seeNoticeId($id){
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -46,7 +46,7 @@ class NoticeAdminController {
         }
     }
 
-    // ---------------------------------------   ELIMINAR NOTICIAS CONTROLADOR   ---------------------------------------
+    // --------------------------------- ELIMINAR NOTICIA -----------------------------------------
     public function deleteNoticeId($id) {
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -68,28 +68,7 @@ class NoticeAdminController {
         }
     }
 
-    // ---------------------------------------   ACTUALIZAR NOTICIAS CONTROLADOR   ---------------------------------------
-    public function updateNoticeTexto($id, $newTitle, $newTexto) {
-
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        if($method === 'PUT') {
-            $noticeUpdate = NoticeAdminModel::updateNotice($id, $newTitle, $newTexto);
-            if($noticeUpdate !== null) {
-                ob_clean();
-                header('Content-Type: application/json');
-
-                if($noticeUpdate) {
-                    echo json_encode(['success' => 'Noticia Actualizada correctamente']);
-                } else {
-                    echo json_encode(['error' => 'No se pudo Actualizar la noticia']);
-                }
-                exit();
-            }
-        }
-    }
-
-    // ---------------------------------------   CREAR NUEVA NOTICIA CONTROLADOR   ---------------------------------------
+    // --------------------------------- CREAR NOTICIA -----------------------------------------
     public function createNewNotice() {
         // Verificar si el método es POST
         $method = $_SERVER['REQUEST_METHOD'];
@@ -165,5 +144,26 @@ class NoticeAdminController {
             return;
         }
     }
+
+    // --------------------------------- ACTUALIZAR NOTICIA -----------------------------------------
+    public function updateNoticeTexto($id, $newTitle, $newTexto) {
+
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if($method === 'PUT') {
+            $noticeUpdate = NoticeAdminModel::updateNotice($id, $newTitle, $newTexto);
+            if($noticeUpdate !== null) {
+                ob_clean();
+                header('Content-Type: application/json');
+
+                if($noticeUpdate) {
+                    echo json_encode(['success' => 'Noticia Actualizada correctamente']);
+                } else {
+                    echo json_encode(['error' => 'No se pudo Actualizar la noticia']);
+                }
+                exit();
+            }
+        }
+    }  
 }
 ?>

@@ -7,12 +7,38 @@ require_once '../app/router/routes.php';
 require_once '../app/models/NoticeAdminModel.php';
 require_once '../app/models/AppointmentsAdminModel.php';
 require_once '../app/models/UsersAdminModel.php';
+require_once '../app/models/NoticesModel.php';
+require_once '../app/controllers/NoticesController.php';
 require_once '../app/controllers/AppointmentsAdminController.php';
 //require_once '../app/controllers/NewsAdminController.php';
 
 
  //require_once '../app/models/Conexion.php';
  Route::dispatch();
+
+//  $prueba =  new NoticesController();
+//  $prueba->seeAllNoticesControl();
+
+//  echo "<div>";
+//  var_dump($prueba);
+//  echo "</div>";
+
+/*
+$prueba = new NoticesController();
+$noticias = $prueba->seeAllNoticesControl();
+
+if (!empty($noticias)) {
+    foreach ($noticias as $notice) {
+        echo "<div>";
+        print_r($notice);
+        echo "</div>";
+    }
+} else {
+    echo "No hay noticias disponibles.";
+} */
+
+
+
 
 //  $usuarioEliminado = UsersAdminModel::deleteUserModel(1);
 

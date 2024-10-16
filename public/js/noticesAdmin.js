@@ -1,11 +1,11 @@
-        alert("juliiiiii");
+        
         const btnOpen = document.querySelector('.open-notices');
 
         btnOpen.addEventListener('click', function() {
          showNotices();
     });
 
-    // ---------------------------------------   VER TODAS LAS NOTICIAS   ---------------------------------------
+    /// --------------------------------- VER NOTICIAS -----------------------------------------
     async function showNotices() {
         const noticesRow = document.getElementById('notices-row');
     
@@ -67,8 +67,7 @@
         }
     }
 
-    // ---------------------------------------   VER NOTICIA POR ID  ---------------------------------------
-
+    // --------------------------------- VER NOTICIA ID -----------------------------------------
     async function seeNoticeId(id) {
         const URL_ID = `http://app_citas_medicas.test:3000/api/noticesAdmin/${id}`;
         try {
@@ -96,7 +95,6 @@
                 <button class="btn btn-secondary mt-3" id="closeButton">Cerrar</button>
                 <button class="btn btn-danger mt-3" id="eliminar">Eliminar</button>
             `;
-    
             noticesRow.appendChild(DetailsNotice);
     
             // Precargar datos en el modal cuando se presiona el botón "Editar"
@@ -124,57 +122,7 @@
         }
     }
 
- // ---------------------------------------   ACTUALIZAR NOTICIAS   ---------------------------------------
-    
-    async function updateNotice(id, newTitle, newTexto) {
-        const URL_UPDATE = `http://app_citas_medicas.test:3000/api/noticesAdmin/${id}`;
-    
-        try {
-            const response = await fetch(URL_UPDATE, {
-                method: 'PUT',
-                headers: { 
-                    'Content-Type': 'application/json' 
-                },
-                body: JSON.stringify({ texto: newTexto, titulo: newTitle }) // Asegúrate de enviar el nuevo texto aquí
-            });
-            console.log(response);
-    
-            // Verificar si la respuesta es exitosa
-            if (!response.ok) {
-                throw new Error('Error en la actualización: ' + response.statusText);
-            }
-    
-            // Procesar la respuesta JSON
-            const data = await response.json();
-            console.log(data);
-            console.log("dataa titulo", data.titulo);
-
-    
-            // Aquí puedes manejar el mensaje de éxito o error como desees
-            if (data.success) {
-                alert(data.success); // Muestra un mensaje de éxito
-            } else {
-                alert(data.error); // Muestra un mensaje de error
-            }
-    
-        } catch (error) {
-            console.error('Error al realizar la solicitud:', error);
-            alert('Se produjo un error al intentar actualizar la noticia.');
-        }
-    }
-
-    document.getElementById('saveChanges').addEventListener('click', function () {
-        const id = this.dataset.noticeId; // Obtiene el ID de la noticia almacenado en el dataset del botón
-        const newTitle = document.getElementById('modalTitle').value;
-        console.log(newTitle);
-        
-        const newText = document.getElementById('modalText').value;
-    
-        updateNotice(id, newTitle, newText);
-    });
-
     // ---------------------------------------   ELIMINAR NOTICIAS   ---------------------------------------
-
     async function deleteNotice(id) {
         try {
             const URL_DELETE = `http://app_citas_medicas.test:3000/api/noticesAdmin/${id}`;
@@ -192,9 +140,8 @@
             console.error("no se eliminó correctamente", error);  
         }
     }
-    
-    // ---------------------------------------   CREAR NUEVAS NOTICIAS   ---------------------------------------
 
+    // ---------------------------------------   CREAR NOTICIAS   ---------------------------------------
     async function createNotice(title, image, text, createDate, idUsuario) {
         const URL_CREATE_NOTICE = 'http://app_citas_medicas.test:3000/api/noticesAdmin';
     
@@ -216,7 +163,6 @@
         for (let pair of formData.entries()) {
             console.log(`${pair[0]}: ${pair[1]}`);
         }
-    
             const response = await fetch(URL_CREATE_NOTICE, {
                 method: 'POST',
                 body: formData // No incluyas headers aquí, ya que `fetch` se encargará de añadir los necesarios.
@@ -244,7 +190,6 @@
             alert('Se produjo un error al intentar crear la noticia.');
         }
     }
-
     const sendNotice = document.getElementById('saveNotice');
 
         sendNotice.addEventListener('click', function(){
@@ -257,5 +202,50 @@
             createNotice(title, image, text, createDate, idUsuario);
         }); 
 
-    // -------------------------------------------------------------------------------------------------------------    
+    // ---------------------------------------   ACTUALIZAR NOTICIAS   ---------------------------------------
+    async function updateNotice(id, newTitle, newTexto) {
+        const URL_UPDATE = `http://app_citas_medicas.test:3000/api/noticesAdmin/${id}`;
+    
+        try {
+            const response = await fetch(URL_UPDATE, {
+                method: 'PUT',
+                headers: { 
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify({ texto: newTexto, titulo: newTitle }) // Asegúrate de enviar el nuevo texto aquí
+            });
+            console.log(response);
+    
+            // Verificar si la respuesta es exitosa
+            if (!response.ok) {
+                throw new Error('Error en la actualización: ' + response.statusText);
+            }
+    
+            // Procesar la respuesta JSON
+            const data = await response.json();
+            console.log(data);
+            console.log("dataa titulo", data.titulo);
+
+            // Aquí puedes manejar el mensaje de éxito o error como desees
+            if (data.success) {
+                alert(data.success); // Muestra un mensaje de éxito
+            } else {
+                alert(data.error); // Muestra un mensaje de error
+            }
+    
+        } catch (error) {
+            console.error('Error al realizar la solicitud:', error);
+            alert('Se produjo un error al intentar actualizar la noticia.');
+        }
+    }
+
+    document.getElementById('saveChanges').addEventListener('click', function () {
+        const id = this.dataset.noticeId; // Obtiene el ID de la noticia almacenado en el dataset del botón
+        const newTitle = document.getElementById('modalTitle').value;
+        console.log(newTitle);
+        
+        const newText = document.getElementById('modalText').value;
+    
+        updateNotice(id, newTitle, newText);
+    });
 

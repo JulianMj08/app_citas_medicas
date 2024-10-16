@@ -2,7 +2,8 @@
 
 require_once 'Conexion.php';
 class UsersAdminModel {
-    
+
+    // --------------------------------- VER USUARIOS -----------------------------------------
     public static function seeAllUsersModel() {
         $conexion = Conexion::connect();
           $sql = "SELECT * FROM users_data
@@ -21,7 +22,7 @@ class UsersAdminModel {
         }
     }
 
-    // ---------------------------------------------- DELETE USER --------------------------------------------------
+    // --------------------------------- ELIMINAR USUARIO -----------------------------------------
     public static function deleteUserModel($id) {
         $conexion = Conexion::connect();
         //$sqlAppointment = "DELETE FROM citas WHERE idUsuario = $id";
@@ -36,7 +37,7 @@ class UsersAdminModel {
         //Para el delete no necesitamos obtener un array
     }
 
-// ------------------------------------------------------- CREATE USER ------------------------------------------------------------
+    // --------------------------------- CREAR USUARIO -----------------------------------------
     public static function createUser($name, $lastNamesUser, $nameUser, $emailUser, $passwordUser, $addressUser, $phoneUser, $birthdateUser, $sexUser, $rolUser){
 
         $conexion = Conexion::connect();
@@ -60,7 +61,7 @@ class UsersAdminModel {
         return $result && $result2;
     }
 
-  // ---------------------------------------------------------------------------------------------------------------  
+  // --------------------------------- ACTUALIZAR USUARIO ----------------------------------------- 
     public static function updateUserModel($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser) {
         $conexion = Conexion::connect();
 
@@ -70,7 +71,6 @@ class UsersAdminModel {
         $sexUser = $conexion->real_escape_string($sexUser);
         $rolUser = $conexion->real_escape_string($rolUser);
 
-       
         $sql = "UPDATE users_data d
                  JOIN users_login l ON d.idUser = l.idUsuario
                  SET d.nombre = '$name',

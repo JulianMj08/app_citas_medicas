@@ -4,7 +4,7 @@ require_once 'Conexion.php';
 //echo "encendido noticias";
 class NoticeAdminModel {
 
-    // ---------------------------------------   VER TODAS LAS NOTICIAS MODELO   ---------------------------------------
+    // --------------------------------- VER NOTICIAS -----------------------------------------
     public static function seeAllNotices() {
         $conexion = Conexion::connect();
         $sql = "SELECT * FROM noticias";
@@ -21,7 +21,7 @@ class NoticeAdminModel {
         }
     }
 
-    // ---------------------------------------   VER NOTICIAS POR MODELO   ---------------------------------------
+    // --------------------------------- VER NOTICIA ID -----------------------------------------
     public static function seeNotice($id) {
         $conexion = Conexion::connect();
         $sql = "SELECT * FROM noticias WHERE idNoticia = $id ";
@@ -38,7 +38,7 @@ class NoticeAdminModel {
         }
     }
 
-    // ---------------------------------------   ELIMINAR NOTICIAS MODELO   ---------------------------------------
+    // --------------------------------- ELIMINAR NOTICIAS -----------------------------------------
     public static function deleteNotice($id) {
         $conexion = Conexion::connect();
         $sql = "DELETE FROM noticias WHERE idNoticia = $id";
@@ -52,7 +52,22 @@ class NoticeAdminModel {
         //Para el delete no necesitamos obtener un array
     }
 
-    // ---------------------------------------   ACTUALIZAR NOTICIAS MODELO   ---------------------------------------
+    // --------------------------------- CREAR NOTICIA -----------------------------------------
+    public static function createNotice($title, $image, $text, $createDate, $idUsuario) {
+        $conexion = Conexion::connect();
+        $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conexion->prepare($sql);
+        $result = $stmt->execute([$title, $image, $text, $createDate, $idUsuario]);
+    
+        if($result) {
+            echo 'Datos enviados correctamente';
+        } else {
+            echo 'Datos no enviados';
+        };
+        return $result;
+    }
+
+    // --------------------------------- ACTUALIZAR NOTICIA -----------------------------------------
     public static function updateNotice($id, $newTitle, $newTexto) {
         $conexion = Conexion::connect();
         $newTexto = $conexion->real_escape_string($newTexto);
@@ -67,21 +82,6 @@ class NoticeAdminModel {
         } else {
             return false; // Si la consulta falló
         }
-    }
-
-    // ---------------------------------------   CREAR NOTICIA MODELO   ---------------------------------------
-    public static function createNotice($title, $image, $text, $createDate, $idUsuario) {
-        $conexion = Conexion::connect();
-        $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conexion->prepare($sql);
-        $result = $stmt->execute([$title, $image, $text, $createDate, $idUsuario]);
-    
-        if($result) {
-            echo 'Datos enviados correctamente';
-        } else {
-            echo 'Datos no enviados';
-        };
-        return $result;
-    }
+    }    
 }
 ?>

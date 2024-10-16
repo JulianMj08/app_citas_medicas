@@ -6,33 +6,11 @@ class AppointmentsAdminController {
 
     public $method;
 
-    public function seeAllUsersControl() {
-
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        
-        if($method === 'GET') {
-            $allUsers = AppointmentsAdminModel::seeAllUsersModel();
-            if($allUsers !== null) {
-                // Establecer el encabezado para devolver JSON
-                ob_clean(); // Limpiamos cualquier salida previa (muy importante)
-                // Devolver las citas como JSON
-                header('Content-Type: application/json');
-                echo json_encode($allUsers);
-                exit();
-            } else {
-                // Si no hay citas, devolver un mensaje de error
-                header('Content-Type: application/json');
-                echo json_encode(['error' => 'No se Usuarios']);
-            }
-        }
-    }
-
+    // --------------------------------- VER CITAS -----------------------------------------
     public function seeAllAppointmentsControl() {
 
         $method = $_SERVER['REQUEST_METHOD'];
 
-        
         if($method === 'GET') {
             $allAppointments = AppointmentsAdminModel::seeAllAppointmentsModel();
             if($allAppointments !== null) {
@@ -50,7 +28,29 @@ class AppointmentsAdminController {
         }
     }
 
-// ------------------------------------------------------------------------------------------------------
+    // --------------------------------- VER USUARIOS -----------------------------------------
+    public function seeAllUsersControl() {
+
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if($method === 'GET') {
+            $allUsers = AppointmentsAdminModel::seeAllUsersModel();
+            if($allUsers !== null) {
+                // Establecer el encabezado para devolver JSON
+                ob_clean(); // Limpiamos cualquier salida previa (muy importante)
+                // Devolver las citas como JSON
+                header('Content-Type: application/json');
+                echo json_encode($allUsers);
+                exit();
+            } else {
+                // Si no hay citas, devolver un mensaje de error
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'No se Usuarios']);
+            }
+        }
+    }
+
+    // --------------------------------- ELIMINAR CITA -----------------------------------------
     public function deleteAppointmentId($id) {
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -70,7 +70,7 @@ class AppointmentsAdminController {
         }
     }
 
-// ------------------------------------------------------------------------------------------------------
+    // --------------------------------- CREAR CITA -----------------------------------------
     public function createAppointmentControl() {
   
         $method = $_SERVER['REQUEST_METHOD'];
@@ -104,13 +104,13 @@ class AppointmentsAdminController {
         }
     }   
 
+    // --------------------------------- ACTUALIZAR CITA -----------------------------------------
     public function updateAppointmentControl($idCita, $nombre, $apellidos, $telefono, $motivoCita, $fechaCita) {
 
         $method = $_SERVER['REQUEST_METHOD'];
 
         if($method === 'PUT') {
             $appointmentUpdate = AppointmentsAdminModel::updateAppointmentModel($idCita, $nombre, $apellidos, $telefono, $motivoCita, $fechaCita);
-
 
             if (!$nombre || !$apellidos || !$telefono || !$motivoCita || !$fechaCita) {
                 error_log("Algunos campos están vacíos o no válidos.");
@@ -130,10 +130,6 @@ class AppointmentsAdminController {
                 exit();
             }
         }
-
     }
-
-
 }
-
 ?>

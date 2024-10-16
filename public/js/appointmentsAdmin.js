@@ -1,7 +1,5 @@
-alert('bkkkkkkkkkkkoooooo');
-
+// --------------------------------- VER CITAS -----------------------------------------
 const btnOpen = document.querySelector('.open-appointments');
-
         btnOpen.addEventListener('click', function() {   
          showAppointments();
     });
@@ -39,19 +37,14 @@ async function showAppointments() {
             // Añadir la fila al contenido del <tbody>
             tableBody.innerHTML += rowHTML;
 
-
             // Añadir eventos para editar y eliminar después de agregar las filas
             document.querySelectorAll('.btn-edit').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const row = this.closest('tr');
                     editRow(row);
-                    console.log("funciona");
-                    
+                    console.log("funciona");      
              });
         });
-
-
-
 
             // Añadir el evento al botón de eliminar
             const btnDelete = document.querySelector('#delete-appointment');
@@ -65,37 +58,7 @@ async function showAppointments() {
     }
 }
 
-// --------------------------------------------- ELIMINAR CITA -----------------------------------------------------------
-async function deleteAppointment(id) {
-    try {
-        const URL_DELETE = `http://app_citas_medicas.test:3000/api/appointmentsAdmin/${id}`;
-
-        const response = await fetch(URL_DELETE, {method: 'DELETE', headers:  {'Content-Type': 'application/json' }});
-
-        if (response.ok) {
-            alert('Cita eliminada correctamente');
-            //showNotices(); // Recargar la lista de citas
-            
-        } else {
-            alert('No se pudo eliminar la Cita');
-        }
-    } catch (error) {
-        console.error("no se eliminó correctamente", error);  
-    }
-}
-
-
-//alert('funcionando citassssssssssssss');
-
-// const btnOpenUsers = document.querySelector('.open-appointments');
-
-//         btnOpen.addEventListener('click', function() {
-//          showAppointments();
-//     });
-
-
-// --------------------------------------------- MOSTRAS NOMBRE DE USUARIOS -----------------------------------------------------------
-
+// --------------------------------- VER USUARIOS -----------------------------------------
 async function showUsers() {
     const containerUsers = document.getElementById('containerSelectUsers');
     //containerUsers.innerHTML = ''; // Limpia el contenedor antes de agregar nuevas citas
@@ -139,9 +102,26 @@ async function showUsers() {
 } 
 showUsers();
 
+// --------------------------------- ELIMINAR CITA -----------------------------------------
+async function deleteAppointment(id) {
+    try {
+        const URL_DELETE = `http://app_citas_medicas.test:3000/api/appointmentsAdmin/${id}`;
 
+        const response = await fetch(URL_DELETE, {method: 'DELETE', headers:  {'Content-Type': 'application/json' }});
 
-// --------------------------------------------- CREAR CITA -----------------------------------------------------------
+        if (response.ok) {
+            alert('Cita eliminada correctamente');
+            //showNotices(); // Recargar la lista de citas
+            
+        } else {
+            alert('No se pudo eliminar la Cita');
+        }
+    } catch (error) {
+        console.error("no se eliminó correctamente", error);  
+    }
+}
+
+// --------------------------------- CREAR CITA -----------------------------------------
 
 document.getElementById('saveAppointment').addEventListener('click', function() {
     const nameUser = document.getElementById('appointmentSelectUser').value;
@@ -180,8 +160,7 @@ async function createAppointment() {
     showAppointments();
 }
 
-
-// --------------------------------------------- ACTUALIZAR CITA -----------------------------------------------------------    
+// --------------------------------- ACTUALIZAR CITA -----------------------------------------   
 function editRow(row) {
 
     const index = row.querySelector('th').textContent;
@@ -208,7 +187,6 @@ function editRow(row) {
             </button>
         </td>
     `;
-
     // Añadir eventos para guardar y cancelar
     row.querySelector('.btn-save').addEventListener('click', function() {
         const idCita = row.getAttribute('data-id');
@@ -238,7 +216,6 @@ async function updateAppointment(idCita) {
             },
             body: JSON.stringify({ idCita, nombre, apellidos, telefono, motivoCita, fechaCita })
         });
-
 
         const responseText = await response.text();
         console.log('Contenido recibido:', responseText);
