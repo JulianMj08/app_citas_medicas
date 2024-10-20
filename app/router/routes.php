@@ -11,6 +11,7 @@ require_once __DIR__ . '/../controllers/NoticeAdminController.php';
 require_once __DIR__ . '/../controllers/AppointmentsAdminController.php';
 require_once __DIR__ . '/../controllers/UsersAdminController.php';
 require_once __DIR__ . '/../controllers/NoticesController.php';
+require_once __DIR__ . '/../controllers/AppointmentsClientController.php';
 // Lista de rutas que tiene la aplicación
 
 Route::get('/', function() {
@@ -69,6 +70,10 @@ Route::get('controlPanel', function(){
 
 Route::get('notices', function(){
     Route::render('notices');
+});
+
+Route::get('appointmentsClient', function(){
+    Route::render('/client/appointmentsClient');
 });
 
 // ------------------------------  Rutas para la API  ------------------------------ 
@@ -281,6 +286,51 @@ Route::update('api/userAdmin/{idUser}', function($idUser) {
         $userAdminUpdate->updateUserControl($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser);
         header('Content-Type: application/json');
         echo json_encode(['success' => 'Usuario actualizadao correctamente.']);
+    } else {
+        header('Content-Type: application/json', true, 400);
+        echo json_encode(['error' => 'El campo texto es requerido.']);
+    }    
+});
+
+
+// ---------------------------------- Api Appointments para usuarios --------------------------------------------------------
+
+Route::post('api/appointmentsClient', function(){
+    $data = json_decode(file_get_contents('php://input'), true); // decodificamos los datos que vienen en json
+
+    $idUser = $data['idUser'] ?? null;
+    $motivoAppointment = $data['motivoAppointment'] ?? null;
+    $dateAppointment = $data['dateAppointment'] ?? null;
+
+    $appointmentClientCreate = new AppointmentsClientController;
+    $appointmentClientCreate->createAppointmentControl($idUser, $motivoAppointment, $dateAppointment);
+});
+
+Route::get('api/appointmentsClient', function(){
+    $appointmentsClient = new AppointmentsClientController;
+    $appointmentsClient->seeAllAppointmentsControl();
+});
+
+Route::delete('api/appointmentsClient/{id}', function($id) {
+    $appointmentClientDelete = new AppointmentsClientController;
+    $appointmentClientDelete->deleteAppointmentId($id);
+});
+
+Route::update('api/appointmentsClient/{idCita}', function($idCita) {
+    
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    var_dump(($data));
+
+    print_r($data);
+    $motivoCita = isset($data['motivoCita']) ? $data['motivoCita'] : null;
+    $fechaCita = isset($data['fechaCita']) ? $data['fechaCita'] : null;
+
+    if ($idCita || $motivoCita || $fechaCita) {
+        $appointmentClientUpdate = new AppointmentsClientController();
+        $appointmentClientUpdate->updateAppointmentControl($idCita, $motivoCita, $fechaCita);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => 'cita actualizada correctamente.']);
     } else {
         header('Content-Type: application/json', true, 400);
         echo json_encode(['error' => 'El campo texto es requerido.']);

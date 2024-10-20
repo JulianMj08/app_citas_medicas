@@ -10,6 +10,7 @@ require_once '../app/models/UsersAdminModel.php';
 require_once '../app/models/NoticesModel.php';
 require_once '../app/controllers/NoticesController.php';
 require_once '../app/controllers/AppointmentsAdminController.php';
+require_once '../app/models/AppointmentsClientModel.php';
 //require_once '../app/controllers/NewsAdminController.php';
 
 
@@ -19,10 +20,13 @@ require_once '../app/controllers/AppointmentsAdminController.php';
 //  $prueba =  new NoticesController();
 //  $prueba->seeAllNoticesControl();
 
-//  echo "<div>";
-//  var_dump($prueba);
-//  echo "</div>";
+// $prueba = AppointmentsClientModel::seeAllAppointmentsModel();
 
+//   echo "<div>";
+//   var_dump($prueba);
+//   echo "</div>";
+
+AppointmentsClientModel::updateAppointmentModel(77, 'muchaTos', '2025-11-11');
 /*
 $prueba = new NoticesController();
 $noticias = $prueba->seeAllNoticesControl();
