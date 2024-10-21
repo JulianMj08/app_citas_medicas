@@ -12,6 +12,7 @@ require_once __DIR__ . '/../controllers/AppointmentsAdminController.php';
 require_once __DIR__ . '/../controllers/UsersAdminController.php';
 require_once __DIR__ . '/../controllers/NoticesController.php';
 require_once __DIR__ . '/../controllers/AppointmentsClientController.php';
+require_once __DIR__ . '/../controllers/ProfileClientController.php';
 // Lista de rutas que tiene la aplicación
 
 Route::get('/', function() {
@@ -74,6 +75,10 @@ Route::get('notices', function(){
 
 Route::get('appointmentsClient', function(){
     Route::render('/client/appointmentsClient');
+});
+
+Route::get('profileClient', function(){
+    Route::render('/client/profileClient');
 });
 
 // ------------------------------  Rutas para la API  ------------------------------ 
@@ -335,6 +340,13 @@ Route::update('api/appointmentsClient/{idCita}', function($idCita) {
         header('Content-Type: application/json', true, 400);
         echo json_encode(['error' => 'El campo texto es requerido.']);
     }    
+});
+
+// ---------------------------------- Api Profile --------------------------------------------------------
+
+Route::get('api/profileUserClient', function(){
+    $profileUserClient = new ProfileClientController;
+    $profileUserClient->seeUserControl();
 });
 
 ?>

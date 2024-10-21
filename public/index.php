@@ -11,22 +11,24 @@ require_once '../app/models/NoticesModel.php';
 require_once '../app/controllers/NoticesController.php';
 require_once '../app/controllers/AppointmentsAdminController.php';
 require_once '../app/models/AppointmentsClientModel.php';
+require_once '../app/models/ProfileClientModel.php';
 //require_once '../app/controllers/NewsAdminController.php';
 
 
  //require_once '../app/models/Conexion.php';
  Route::dispatch();
 
+//$probando = ProfileClientModel::seeAllUsersModel(); 
 //  $prueba =  new NoticesController();
 //  $prueba->seeAllNoticesControl();
 
 // $prueba = AppointmentsClientModel::seeAllAppointmentsModel();
 
-//   echo "<div>";
-//   var_dump($prueba);
-//   echo "</div>";
+   //echo "<div>";
+   //var_dump($probando);
+   //echo "</div>";
 
-AppointmentsClientModel::updateAppointmentModel(77, 'muchaTos', '2025-11-11');
+//AppointmentsClientModel::updateAppointmentModel(77, 'muchaTos', '2025-11-11');
 /*
 $prueba = new NoticesController();
 $noticias = $prueba->seeAllNoticesControl();

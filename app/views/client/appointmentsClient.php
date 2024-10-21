@@ -45,7 +45,7 @@ include __DIR__ . '/../includes/navbar.php';
   </div>
 </div>
 
-<button class="open-appointments">Ver Citas</button>
+<button class="btn btn-primary mb-2 open-appointments">Ver Citas</button>
 
 <div id="list-notices" class="container">
     <div class="row gx-4 gy-4" id="appointment-row">
