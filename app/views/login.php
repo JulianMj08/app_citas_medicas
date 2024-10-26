@@ -1,3 +1,7 @@
+<?php 
+//session_name('prueba');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -7,6 +7,8 @@ class ProfileClientController {
     // --------------------------------- VER USUARIOS -----------------------------------------
     public function seeUserControl() {
 
+        //session_start();
+
         $method = $_SERVER['REQUEST_METHOD'];
 
         if($method === 'GET') {

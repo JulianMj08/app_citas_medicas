@@ -19,9 +19,19 @@ class AppointmentsClientModel {
     
     // --------------------------------- VER CITAS -----------------------------------------
     public static function seeAllAppointmentsModel() {
+
+        session_start();
+
+        // Verifica si el ID de usuario está guardado en la sesión
+        if (!isset($_SESSION['idUser'])) {
+            return null; // No hay usuario en sesión, devolvemos null o un mensaje de error
+        }
+
         $conexion = Conexion::connect();
-          $sql = "SELECT * FROM citas
-                  WHERE idUsuario = 7";
+        $id = $_SESSION['idUser'];
+
+        $sql = "SELECT * FROM citas
+                WHERE idUsuario = $id";
         $result = $conexion->query($sql);
         $allAppointments = [];
 

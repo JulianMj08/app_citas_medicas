@@ -78,24 +78,26 @@ class LoginController {
     }
 
     public static function loginUser($userData) {
+        session_start(); // Iniciar la sesión
+    
+        // Almacenar los datos del usuario en la sesión
+        $_SESSION['email'] = $userData['email']; // Almacenar el email
+        $_SESSION['nombre'] = $userData['nombre']; // Almacenar el nombre
+        $_SESSION['idUser'] = $userData['idUser']; // Almacenar el ID del usuario
+        $_SESSION['rol'] = $userData['rol']; // Almacenar el ID del usuario
 
-        //$email = $_POST['email'];
-        //$contrasena = $_POST['contrasena'];
+        $userRol = $_SESSION['rol'] = $userData['rol'];
 
-        //if ($userData) {
-            session_start();
-            $_SESSION['nombre'] = $userData['nombre'];
-            $_SESSION['idUser'] = $userData['idUser'];
-            $_SESSION['direccion'] = $userData['direccion'];
-            $_SESSION['usuario'] = $userData['usuario'];
-
-            header('Location: home');
+        if($userRol == 'admin') {
+            header('Location: controlPanel'); // Redirigir a la página de controlPanel
             exit();
-        // } else {
-        //     echo "Correo electrónico o contraseña incorrectos.";
-        // }
-        // return "no funciono";
-    }     
+        } elseif($userRol == 'user') {
+            header('Location: home'); // Redirigir a la página de inicio
+            exit();
+        } else {
+            header('Location: login');
+        }
+    }    
 } 
 ?>
 

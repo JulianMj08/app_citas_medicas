@@ -40,6 +40,8 @@ class AppointmentsClientController {
     // --------------------------------- VER CITAS -----------------------------------------
     public function seeAllAppointmentsControl() {
 
+        //session_start();
+
         $method = $_SERVER['REQUEST_METHOD'];
 
         if($method === 'GET') {

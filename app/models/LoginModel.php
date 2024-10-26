@@ -29,7 +29,7 @@ class LoginModel {
     public static function searchUserByEmail($email) {
 
         $conexion = Conexion::connect();
-        $sql = "SELECT contrasena FROM users_data
+        $sql = "SELECT users_data.nombre, users_data.idUser, users_login.contrasena, users_login.rol FROM users_data
         INNER JOIN users_login ON users_data.idUser = users_login.idUsuario
         WHERE email = ?";
 

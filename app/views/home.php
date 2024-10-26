@@ -1,3 +1,36 @@
+<?php 
+
+session_start(); // Iniciar la sesión
+
+//$email = $_SESSION['email'];
+//$nombre = $_SESSION['nombre'];
+// $idUser = $_SESSION['idUser'];
+// $rol = $_SESSION['rol'];
+
+//$contrasena = $_SESSION['contrasena'];
+
+//var_dump($email);
+// var_dump($nombre);
+// var_dump($idUser);
+// var_dump($rol);
+
+
+//echo $email;
+
+// var_dump($contrasena);
+
+// echo $contrasena;
+
+// // Verificar si el usuario ha iniciado sesión
+// if (!isset($_SESSION['email'])) {
+//     header("Location: login");
+//     exit();
+// }
+
+// $email = $_SESSION['email'];
+
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,14 +81,25 @@ body {
 
 
     <?php
- session_start();
-//  Verifica si el usuario está autenticado
-  if (isset($_SESSION['nombre'])) {
-      echo "Bienvenido, " . htmlspecialchars($_SESSION['nombre']) . "!";   //Mostramos el nombre
-  } else {
-      echo "No has iniciado sesión.";
-  }
- session_destroy();
+//  session_start();
+// //  Verifica si el usuario está autenticado
+//   if (isset($_SESSION['nombre'])) {
+//       echo "Bienvenido, " . htmlspecialchars($_SESSION['nombre']) . "!";   //Mostramos el nombre
+//   } else {
+//       echo "No has iniciado sesión.";
+//   }
+ //session_destroy();
+
+ //session_start();
+ // Verificar si el nombre está en la sesión
+// if (isset($_SESSION['nombre'])) {
+//     $nombre = $_SESSION['nombre'];
+// } else {
+//     // Si no hay nombre, redirigir al index
+//     //header("Location: login");
+//     echo 'nooo';
+//     //exit();
+// }
 ?>
 <?php
 include 'includes/navbar.php';
@@ -82,6 +126,14 @@ include 'includes/navbar.php';
         </div>
     </div>
 </header>
+
+<!-- <h1>Hola, <?php //echo htmlspecialchars($nombre); ?>!</h1>
+    
+    <p>Dirección: <?php //echo htmlspecialchars($direccion); ?></p> -->
+    
+    <p>Correo electrónico: <?php //echo htmlspecialchars($email); ?></p>
+    <p>Bienvenido a nuestra página.</p>
+    <a href="cerrar_sesion.php">Cerrar Sesión</a>
 
 <div class="m-5">
     <h3 class="fw-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, eosilfhsukfh.</h3>
