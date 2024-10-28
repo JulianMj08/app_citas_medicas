@@ -1,12 +1,17 @@
-alert('Funciona notices 888888client3333hhheeeeeellll00000000kkkkpppppppppppppppp');
+console.log('funciona notices kkkkkkkkkkkkkkkk999999999999999990000000');
 
-const btnOpen = document.querySelector('.open-notices');
 
-        btnOpen.addEventListener('click', function() {
-         showNotices();  
-         //console.log('Funcionando la funcion');
+// const btnOpen = document.querySelector('.open-notices');
+
+//         btnOpen.addEventListener('click', function() {
+//          showNotices();  
+//          //console.log('Funcionando la funcion');
          
-    });
+//     });
+
+document.addEventListener("DOMContentLoaded", function () {
+    showNotices(); // Llama a la función que carga las noticias automáticamente
+});
 
     async function showNotices(){
         const noticesRow = document.getElementById('notices-row');
@@ -41,12 +46,14 @@ const btnOpen = document.querySelector('.open-notices');
 
                 console.log('prueba',imageURL);
                 
+                //<p class="card-text">${notice.texto}</p>
                 // Agregar contenido a la tarjeta
                 card.innerHTML = `
                         <h5 class="card-title">${notice.titulo}</h5>
-                        <p class="card-text">${notice.texto}</p>
-                        <img src="${imageURL}" alt="Imagen de la noticia" class="object-fit-cover">
-                        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#${modalId}">Ver Mas</button>
+                        
+                        <img src="${imageURL}" alt="Imagen de la noticia" class="object-fit-cover rounded">
+                        <p class="card-text pt-2"><strong>Noticia publicada en:</strong> ${notice.fecha}</p>
+                        <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#${modalId}">Ver Mas</button>
 
                         <div class="modal fade" id="${modalId}" class="container border" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
                         <div class="modal-dialog">

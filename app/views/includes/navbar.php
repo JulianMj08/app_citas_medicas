@@ -1,36 +1,10 @@
 <?php
+//include_once __DIR__ . '/../../auth/Authentication.php';
 
-// $filePath = __DIR__ . '/../../../auth/Logout.php';
+$rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 
-// if (!file_exists($filePath)) {
-//     die("El archivo no existe: " . $filePath);
-// }
-
-// require_once $filePath;
-
-include_once __DIR__ . '/../../auth/Authentication.php';
-// require_once __DIR__ . '/../../../auth/Logout.php';
-
-// $filePath = __DIR__ . '/../../../auth/Logout.php';
-
-// if (!file_exists($filePath)) {
-//     die("El archivo no existe: " . $filePath);
-// }
-
-// require_once $filePath;
-
-//Logout::logout();
-//session_start();
-// if (session_status() === PHP_SESSION_NONE) {
-//   session_start();
-// }
-
-
-  //$rol = $_SESSION['rol'];
-  $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
-
-  if($rol == 'admin') {
-    ?> 
+if($rol == 'admin') {
+?> 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
 <style>
@@ -43,7 +17,7 @@ include_once __DIR__ . '/../../auth/Authentication.php';
  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
   <div class="container-fluid">
     <img src="/assets/icons/icono_logo.png" class="logo" alt="">
-    <a class="navbar-brand fw-bold" href="#">TuHospi</a>
+    <a class="navbar-brand fw-bold" href="">TuHospi</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -55,10 +29,9 @@ include_once __DIR__ . '/../../auth/Authentication.php';
         <a class="nav-link" href="appointmentsAdmin">Citaciones-admin</a>
         <a class="nav-link" href="noticesAdmin">Noticias-admin</a>
         <a class="nav-link" href="profileClient">Perfil-admin</a>
-        <!-- <a class="nav-link" href="logout.php">Cerrar sesión</a> -->
         <form action="logout" method="POST" style="display:inline;">
           <button type="submit" class="btn btn-link nav-link" style="cursor: pointer;">Cerrar sesión</button>
-      </form>
+        </form>
       </div>
       <div>      
     </div>
@@ -68,7 +41,7 @@ include_once __DIR__ . '/../../auth/Authentication.php';
 <?php
   }
   elseif($rol == 'user') {
-    ?>
+?>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
 <style>
@@ -90,20 +63,18 @@ include_once __DIR__ . '/../../auth/Authentication.php';
         <a class="nav-link" href="notices">Noticias</a>
         <a class="nav-link" href="appointmentsClient">Citaciones</a>
         <a class="nav-link" href="profileClient">Perfil</a>
-        <!-- <a class="nav-link" href="logout.php">Cerrar sesión</a> -->
         <form action="logout" method="POST" style="display:inline;">
           <button type="submit" class="btn btn-link nav-link" style="cursor: pointer;">Cerrar sesión</button>
-      </form>
+        </form>
       </div>
       <div>
       </div>
-      
     </div>
   </div>
 </nav>
-    <?php
+<?php
   } else {
-    ?>
+?>
 
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 
@@ -129,14 +100,12 @@ include_once __DIR__ . '/../../auth/Authentication.php';
       <button  id="button-register" class="ms-auto btn btn-primary rounded-pill">Registrarse</button>
       <button  id="button-login" class="ms-auto btn btn-primary rounded-pill">Iniciar sesión</button>
       </div>
-      
     </div>
   </div>
 </nav>
 
-  <?php
+<?php
   }
-
 ?>
 
 

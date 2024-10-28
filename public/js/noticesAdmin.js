@@ -200,6 +200,7 @@
             const idUsuario = 16;
 
             createNotice(title, image, text, createDate, idUsuario);
+            
         }); 
 
     // ---------------------------------------   ACTUALIZAR NOTICIAS   ---------------------------------------

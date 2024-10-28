@@ -23,18 +23,6 @@ Route::get('/', function() {
 });
 
 Route::get('home', function() {
-
-
-
-     //session_start();
-//      session_start();
-
-// $nombre = $_SESSION['nombre'];
-
-// echo $nombre . '<br/>';
-
-// session_destroy();
-     //var_dump($_SESSION); desde aca non funciona este vardump
     Route::render('home');
 });
 
@@ -58,21 +46,11 @@ Route::post('register', function() {
 });
 
 Route::get('login', function() {
-    session_start();
-    // $_SESSION['nombre'] = 'Julitoooooooo09';
-    // $_SESSION['edad'] = 28;
-    //$_SESSION['email'] = $_POST['email'];
-    
+    session_start();        
     Route::render('login');
 });
 
 Route::post('login', function(){
-    // session_start();
-
-    // // Verificar que los datos vengan desde POST
-    // if (isset($_POST['email'])) {
-    //     $_SESSION['email'] = $_POST['email']; // Guardar el email en la sesión
-    // }
     LoginController::LoginValidation();    
 });
 
@@ -89,7 +67,6 @@ Route::get('usersAdmin', function(){
 });
 
 Route::get('controlPanel', function(){
-
     session_start();
 
     // Verificar si el usuario ha iniciado sesión y tiene el rol de 'admin'
@@ -101,17 +78,6 @@ Route::get('controlPanel', function(){
         header('Location: home');
         exit();
     }
-   /* session_start();
-    $nombre = $_SESSION['nombre'];
-
-    // Verificar si el usuario ha iniciado sesión y tiene el rol de 'admin'
-        if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-            // Redirigir al home o mostrar un mensaje de acceso denegado
-            header('Location: home'); // Redirigir al home
-            exit();
-        }
-    var_dump($nombre);
-    Route::render('/admin/controlPanel'); */
 });
 
 Route::get('notices', function(){
@@ -119,7 +85,6 @@ Route::get('notices', function(){
 });
 
 Route::get('appointmentsClient', function(){
-    //session_start();
     Route::render('/client/appointmentsClient');
 });
 
@@ -128,23 +93,10 @@ Route::get('profileClient', function(){
 });
 
 Route::post('logout', function(){
-    
-    // Iniciar sesión solo si aún no se ha iniciado
-    // if (session_status() === PHP_SESSION_NONE) {
-    //     session_start();
-    // }
-
-    // // Destruir todas las variables de sesión
-    // $_SESSION = [];
-    // session_destroy();
-
-    // // Redirigir a la página deseada (en este caso, `home`)
-    // header('Location: profileClient'); // Puedes cambiar `home` por la página de destino después del logout
-    // exit(); // Asegura la finalización del script
-        session_start();
-        session_destroy();
-        header('Location: profileClient');
-        exit();
+    session_start();
+    session_destroy();
+    header('Location: profileClient');
+    exit();
 });
 
 

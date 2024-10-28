@@ -10,7 +10,8 @@
 <?php
 include __DIR__ . '/../includes/navbar.php';
 ?>
-<h1>Estas son las citas del usuario</h1>
+<h2>Gestiona tus citas</h2>
+<hr class="mb-4">
 
 <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#appointmentCreateModal">Crear cita</button>
 <!-- Modal CREATE cita -->
@@ -54,7 +55,9 @@ include __DIR__ . '/../includes/navbar.php';
 </div>
 
 
-
+<?php
+include __DIR__ . '/../includes/footer.php';
+?>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/appointmentsClient.js"></script>
 </body>
