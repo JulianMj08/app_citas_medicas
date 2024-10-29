@@ -12,10 +12,11 @@
 include __DIR__ . '/../includes/navbar.php';
 //require_once __DIR__ . '/../../controllers/NewsAdminController.php';
 ?>
-<h1>Gestión de noticias</h1>
+<h2>Gestión de noticias</h2>
+<hr class="mb-2">
 
-<button class="btn btn-primary rounded-pill open-notices">Ver todas la noticias</button>
-<button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#noticeCreateModal">Crear Noticia</button>
+<!-- <button class="btn btn-primary rounded-pill open-notices">Ver todas la noticias</button> -->
+<button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#noticeCreateModal">Crear Noticia</button>
 
 <div id="list-notices" class="container">
     <div class="row gx-4 gy-4" id="notices-row">
@@ -68,6 +69,9 @@ include __DIR__ . '/../includes/navbar.php';
   </div>
 </div>
 
+<?php
+include __DIR__ . '/../includes/footer.php';
+?>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/noticesAdmin.js"></script>
 

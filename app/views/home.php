@@ -7,47 +7,11 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/home.css">
     <title>Home</title>
 </head>
 <body>
-
-    <style>
-
-html {
-    background-color: blue;
-    max-width: 992px;
-    margin: 0 auto;
-}
-body {
     
-    background-color: aqua;
-}
-
-.image-container {
-    position: relative;
-    height: 100%;
-}
-.image-container img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    object-fit: cover;
-    mask-image: linear-gradient(white 80%, transparent);
-}
-
-.container-dos img {
-    width: 100%;
-    object-fit: cover;
-}
-
-.border-radius-20 {
-    border-radius: 20px !important;
-}
-    </style>
-
-
 <?php
 include 'includes/navbar.php';
 ?>

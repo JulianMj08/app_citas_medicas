@@ -7,15 +7,16 @@
     <title>Gestion de usuarios</title>
 </head>
 <body>
-    <?php
+<?php
 
 include __DIR__ . '/../includes/navbar.php';
 
 ?>
-<h1>Gestion de Usuarios</h1>
+<h2>Gestion de Usuarios</h2>
+<hr class="mb-2">
 
-<button class="open-users btn btn-primary mb-2">Ver Usuarios</button> 
-<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#userCreateModal">Crear Usuario</button>
+<!-- <button class="open-users btn btn-primary mb-2">Ver Usuarios</button>  -->
+<button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#userCreateModal">Crear Usuario</button>
 
 <!-- SHOW Users -->
 <div id="container-table" class="class container" style="display: none;">
@@ -112,6 +113,9 @@ include __DIR__ . '/../includes/navbar.php';
     </div>
   </div>
 </div>
+<?php
+include __DIR__ . '/../includes/footer.php';
+?>
 
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/usersAdmin.js"></script>   

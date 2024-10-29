@@ -1,12 +1,16 @@
-console.log('Funcionando itttteeeeeeellll');
+console.log('Funcionand');
 
 
 
 // --------------------------------- VER USUARIOS -----------------------------------------
-const btnOpen = document.querySelector('.open-user');
+// const btnOpen = document.querySelector('.open-user');
 
-btnOpen.addEventListener('click', function() {
-       showUser();     
+// btnOpen.addEventListener('click', function() {
+//        showUser();     
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+    showUser(); // Llama a la función que carga las noticias automáticamente
 });
 
 async function showUser() {
@@ -25,15 +29,22 @@ async function showUser() {
             const userDiv = document.createElement('div');
             
             userDiv.innerHTML = `
-                <p><strong>Nombre:</strong> ${user.nombre}</p>
-                <p><strong>Apellidos:</strong> ${user.apellidos}</p>
-                <p><strong>Email:</strong> ${user.email}</p>
-                <p><strong>Fecha de Nacimiento:</strong> ${user.fechaNacimiento}</p>
-                <p><strong>Dirección:</strong> ${user.direccion}</p>
-                <p><strong>Sexo:</strong> ${user.sexo}</p>
-                <p><strong>Usuario:</strong> ${user.usuario}</p>
-                <p><strong>Contraseña:</strong> ${user.contrasena}</p>
-            `;
+                <div class="row w-100">
+                    <div class="col-6">
+                        <p><strong>Nombre:</strong> ${user.nombre}</p>
+                        <p><strong>Apellidos:</strong> ${user.apellidos}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                        <p><strong>Fecha de Nacimiento:</strong> ${user.fechaNacimiento}</p>
+                        <p><strong>Dirección:</strong> ${user.direccion}</p>
+                        <p><strong>Sexo:</strong> ${user.sexo}</p>
+                        <p><strong>Usuario:</strong> ${user.usuario}</p>
+                        <p><strong>Contraseña:</strong> ${user.usuario}</p>
+                    </div>
+                    <div class="col-6">
+                        <img class="img-calendario rounded shadow object-fit-cover w-75" src="/assets/img/perfil.png" alt="">
+                    </div>
+                </div>
+                `;
 
             containerData.appendChild(userDiv);
 

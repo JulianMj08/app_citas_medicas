@@ -1,8 +1,14 @@
         
-        const btnOpen = document.querySelector('.open-notices');
+    //     const btnOpen = document.querySelector('.open-notices');
 
-        btnOpen.addEventListener('click', function() {
-         showNotices();
+    //     btnOpen.addEventListener('click', function() {
+    //      showNotices();
+    // });
+
+    console.log('funcionando notices admin');
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        showNotices(); // Llama a la función que carga las noticias automáticamente
     });
 
     /// --------------------------------- VER NOTICIAS -----------------------------------------

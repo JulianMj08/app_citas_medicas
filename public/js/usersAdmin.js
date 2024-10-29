@@ -1,8 +1,15 @@
 // --------------------------------- VER USUARIOS -----------------------------------------
-const btnOpen = document.querySelector('.open-users');
+// const btnOpen = document.querySelector('.open-users');
 
-btnOpen.addEventListener('click', function() {
-    showAllUsers();
+// btnOpen.addEventListener('click', function() {
+//     showAllUsers();
+// });
+
+console.log('pagina funcionando');
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    showAllUsers(); // Llama a la función que carga las noticias automáticamente
 });
 
 async function showAllUsers() {

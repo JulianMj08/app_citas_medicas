@@ -97,8 +97,8 @@ if($rol == 'admin') {
         <a class="nav-link" href="notices">Noticias</a>
       </div>
       <div>
-      <button  id="button-register" class="ms-auto btn btn-primary rounded-pill">Registrarse</button>
-      <button  id="button-login" class="ms-auto btn btn-primary rounded-pill">Iniciar sesión</button>
+      <button  id="button-register" class="ms-auto btn btn-primary ">Registrarse</button>
+      <button  id="button-login" class="ms-auto btn btn-primary ">Iniciar sesión</button>
       </div>
     </div>
   </div>

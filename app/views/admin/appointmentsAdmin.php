@@ -10,12 +10,13 @@
 <?php
 include __DIR__ . '/../includes/navbar.php';
 ?>
-<h1>Gestión de Citas</h1>
+<h2>Gestión de Citas</h2>
+<hr class="mb-2">
 
-<button class="open-appointments btn btn-primary mb-2">Ver Citas</button> 
+<!-- <button class="open-appointments btn btn-primary mb-2">Ver Citas</button>  -->
 
 
-<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#appointmentCreateModal">Crear cita</button>
+<button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#appointmentCreateModal">Crear cita</button>
 <!-- Modal CREATE cita -->
 <div class="modal fade" id="appointmentCreateModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -73,7 +74,9 @@ include __DIR__ . '/../includes/navbar.php';
     </div>
 </div>
 
-
+<?php
+include __DIR__ . '/../includes/footer.php';
+?>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/appointmentsAdmin.js"></script>
 </body>

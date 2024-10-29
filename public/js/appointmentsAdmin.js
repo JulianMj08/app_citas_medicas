@@ -1,8 +1,14 @@
 // --------------------------------- VER CITAS -----------------------------------------
-const btnOpen = document.querySelector('.open-appointments');
-        btnOpen.addEventListener('click', function() {   
-         showAppointments();
-    });
+// const btnOpen = document.querySelector('.open-appointments');
+//         btnOpen.addEventListener('click', function() {   
+//          showAppointments();
+//     });
+
+console.log('funcionando tambien');
+
+document.addEventListener("DOMContentLoaded", function () {
+    showAppointments(); // Llama a la función que carga las noticias automáticamente
+});
 
 async function showAppointments() {
     const tableBody = document.querySelector('#container-table table tbody.table-group-divider');

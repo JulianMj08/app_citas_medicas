@@ -16,15 +16,18 @@ var_dump($nombre);
 <?php
 include __DIR__ . '/../includes/navbar.php';
 ?>
- <h1>Perfil de Usuario</h1>   
+ <h2>Perfil de Usuario</h2>
+ <hr class="mb-4">   
 
- <button class="open-user btn btn-primary mb-2">Ver Usuarios</button>
+ <!-- <button class="open-user btn btn-primary mb-2">Ver Usuarios</button> -->
 
- <div id="container-data">
+ <div class="container d-flex flex-row m-4 pt-4" id="container-data">
 
  </div>
 
-
+ <?php
+include __DIR__ . '/../includes/footer.php';
+?>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/profileClient.js"></script>
 </body>
