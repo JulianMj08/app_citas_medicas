@@ -128,21 +128,41 @@ class RegisterController {
         return $this->errors;
     }
 
-    public function registerUser(){
-
-        session_start();
-
-         // Validar antes de registrar
-         if (!$this->registerValidation()) {
-            return false; // Retorna los errores si los hay
+    public function registerUser() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
-        
+    
+        if (!$this->registerValidation()) {
+            echo "Error de validación: ";
+            print_r($this->errors);
+            return false;
+        }
+    
         $hashContrasena = password_hash($this->contrasena, PASSWORD_DEFAULT); 
-        RegisterModel::insertUser($this->nombre, $this->apellidos, $this->email, $this->telefono, $this->fechaNacimiento, $this->direccion, $this->sexo, $this->usuario, $hashContrasena);
+    
+        // Intentar insertar el usuario y obtener el idUser
+        $idUser = RegisterModel::insertUser($this->nombre, $this->apellidos, $this->email, $this->telefono, $this->fechaNacimiento, $this->direccion, $this->sexo, $this->usuario, $hashContrasena);
+    
+        if ($idUser) {
+            // Establece los datos en la sesión
+            $_SESSION['idUser'] = $idUser;         // Almacena el idUser en la sesión
+            $_SESSION['usuario'] = $this->usuario; // Nombre de usuario
+            $_SESSION['rol'] = 'user';            // Rol del usuario
+            $_SESSION['email'] = $this->email;     // Email del usuario
 
-        // Redirigir a login después de guardar los datos
-        header('Location: home');
-        exit();
-    }    
+            $_SESSION['message'] = "¡Te has registrado correctamente!";
+    
+            //echo "Registro exitoso, ID de usuario: " . $_SESSION['idUser'];
+            
+            // Redirigir al usuario a home
+            header('Location: home');
+            exit();
+        } else {
+            header('Location: login');
+            exit();
+        }
+    }
+        
 }
 ?>

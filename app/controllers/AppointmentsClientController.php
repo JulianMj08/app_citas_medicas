@@ -11,14 +11,14 @@ class AppointmentsClientController {
         if($method === 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
 
-            $idUser = $data['idUser'] ?? null;
+            //$idUser = $data['idUser'] ?? null;
             $motivoAppointment = $data['motivoAppointment'] ?? null;
             $dateAppointment = $data['dateAppointment'] ?? null;
 
             // Verifica si todos los datos requeridos están presentes
-            if ($idUser && $motivoAppointment && $dateAppointment) {
+            if ( $motivoAppointment && $dateAppointment) {
                 
-                $appointmentCreate = AppointmentsClientModel::createAppointmentModel($idUser, $motivoAppointment, $dateAppointment); // Llamar al modelo para crear la cita
+                $appointmentCreate = AppointmentsClientModel::createAppointmentModel($motivoAppointment, $dateAppointment); // Llamar al modelo para crear la cita
 
                 ob_clean();
                 header('Content-Type: application/json');

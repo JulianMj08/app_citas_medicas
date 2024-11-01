@@ -14,6 +14,11 @@
     ?>
     <div class="container d-flex">
 
+    <style>
+        .img-register {
+            mask-image: linear-gradient(white 80%, transparent);
+        }
+    </style>
     <!-- Formulario -->
     <form id="register-form" action="register"  method="post" class="container d-flex">
         <div class="col-6 p-4">
@@ -77,7 +82,7 @@
     </form>
 
     <div>
-        <img src="/assets/img/doctor-with-his-arms-crossed-white-background.jpg" width="300" height="300" alt="hjgjg">
+        <img class="object-fit-cover img-register" src="/assets/img/doctora2.jpg" width="300" height="300" alt="hjgjg">
     </div>
 
     </div>

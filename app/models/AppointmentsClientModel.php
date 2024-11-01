@@ -3,9 +3,17 @@
 require_once 'Conexion.php';
 class AppointmentsClientModel {
 
-    public static function createAppointmentModel($idUsuario, $motivoCita, $fechaCita) {
+    public static function createAppointmentModel($motivoCita, $fechaCita) {
+
+        session_start();
+
+        // Verifica si el ID de usuario está guardado en la sesión
+        if (!isset($_SESSION['idUser'])) {
+            return null; // No hay usuario en sesión, devolvemos null o un mensaje de error
+        }
 
         $conexion = Conexion::connect();
+        $idUsuario = $_SESSION['idUser'];
         $sql = "INSERT INTO citas (idUsuario, motivoCita, fechaCita) VALUES ($idUsuario, '$motivoCita', '$fechaCita')";
         $result = $conexion->query($sql);
 

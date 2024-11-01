@@ -15,6 +15,8 @@ require_once __DIR__ . '/../controllers/AppointmentsClientController.php';
 require_once __DIR__ . '/../controllers/ProfileClientController.php';
 // Lista de rutas que tiene la aplicación
 
+// ------------------------------  Rutas para visitantes  ------------------------------
+
 Route::get('/', function() {
      header('location: home', true, 301);// redirecion a el Home por medio de un header, damos true y 301 para que sea permanente
      exit(); // es buena practica dar exit para evitar errores.
@@ -42,7 +44,7 @@ Route::post('register', function() {
     if (!$userRegister->registerUser()) {
         $errors = $userRegister->getErrors(); // Obtener los errores
         Route::render('register', ['errors' => $errors]); // Pasar los errores a la vista
-    }
+    } 
 });
 
 Route::get('login', function() {
@@ -50,20 +52,67 @@ Route::get('login', function() {
     Route::render('login');
 });
 
+Route::get('notices', function(){
+    session_start();
+    Route::render('notices');
+});
+
 Route::post('login', function(){
     LoginController::LoginValidation();    
 });
 
+// ------------------------------  Rutas para administradores  ------------------------------
+
 Route::get('noticesAdmin', function(){
-    Route::render('/admin/noticesAdmin');
+
+    session_start();
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+        // Si el usuario es user, renderiza la vista del appointmentsClient
+        Route::render('/admin/noticesAdmin');
+    } else {
+        // Si no es administrador, redirige al home
+        // header('Location: home');
+        // exit();
+        //echo 'lo siento, no eres admin';
+        Route::render('login');
+    }
+    
 });
 
 Route::get('appointmentsAdmin', function(){
-    Route::render('/admin/appointmentsAdmin');
+
+    session_start();
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+        // Si el usuario es user, renderiza la vista del appointmentsClient
+        Route::render('/admin/appointmentsAdmin');
+    } else {
+        // Si no es administrador, redirige al home
+        // header('Location: home');
+        // exit();
+        //echo 'lo siento, no eres admin';
+        Route::render('login');
+    }
+    
 });
 
 Route::get('usersAdmin', function(){
-    Route::render('/admin/usersAdmin');
+
+    session_start();
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+        // Si el usuario es user, renderiza la vista del appointmentsClient
+        Route::render('/admin/usersAdmin');
+    } else {
+        // Si no es administrador, redirige al home
+        // header('Location: home');
+        // exit();
+        //echo 'lo siento, no eres admin';
+        Route::render('login');
+    }
+    
+
 });
 
 Route::get('controlPanel', function(){
@@ -75,21 +124,45 @@ Route::get('controlPanel', function(){
         Route::render('/admin/controlPanel');
     } else {
         // Si no es administrador, redirige al home
-        header('Location: home');
-        exit();
+        // header('Location: home');
+        // exit();
+        echo 'Lo siento no eres admin';
     }
 });
 
-Route::get('notices', function(){
-    Route::render('notices');
-});
+
+// ------------------------------  Rutas para los usuarios  ------------------------------ 
 
 Route::get('appointmentsClient', function(){
-    Route::render('/client/appointmentsClient');
+
+    session_start();
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'user') {
+        // Si el usuario es user, renderiza la vista del appointmentsClient
+        Route::render('/client/appointmentsClient');
+    } else {
+        // Si no es administrador, redirige al home
+        // header('Location: home');
+        // exit();
+        //echo 'lo siento, ve a registrarte';
+        Route::render('login');
+    }
 });
 
 Route::get('profileClient', function(){
-    Route::render('/client/profileClient');
+
+    session_start();
+
+    if (isset($_SESSION['rol']) && ($_SESSION['rol'] === 'user' || $_SESSION['rol'] === 'admin')) {
+        // Si el usuario es user, renderiza la vista del appointmentsClient
+        Route::render('/client/profileClient');
+    } else {
+        // Si no es administrador, redirige al home
+        // header('Location: home');
+        // exit();
+        //echo 'lo siento, no eres usuario';
+        Route::render('login');
+    }
 });
 
 Route::post('logout', function(){
@@ -323,12 +396,12 @@ Route::update('api/userAdmin/{idUser}', function($idUser) {
 Route::post('api/appointmentsClient', function(){
     $data = json_decode(file_get_contents('php://input'), true); // decodificamos los datos que vienen en json
 
-    $idUser = $data['idUser'] ?? null;
+    //$idUser = $data['idUser'] ?? null;
     $motivoAppointment = $data['motivoAppointment'] ?? null;
     $dateAppointment = $data['dateAppointment'] ?? null;
 
     $appointmentClientCreate = new AppointmentsClientController;
-    $appointmentClientCreate->createAppointmentControl($idUser, $motivoAppointment, $dateAppointment);
+    $appointmentClientCreate->createAppointmentControl( $motivoAppointment, $dateAppointment);
 });
 
 Route::get('api/appointmentsClient', function(){

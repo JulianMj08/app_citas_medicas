@@ -31,10 +31,10 @@ include __DIR__ . '/../includes/navbar.php';
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="mb-2">
+      <!-- <div class="mb-2">
             <label for="id-usuario">id usuario<span style="color: red;">*</span></label>
             <input class="form-control" type="text" name="id-usuario" id="id-usuario" placeholder="id-usuario">
-        </div>
+        </div> -->
         <div class="mb-2">
             <label for="motivo-cita">Motivo de la cita<span style="color: red;">*</span></label>
             <input class="form-control" type="text" name="motivo-cita" id="motivo-cita" placeholder="Motivo de la cita">

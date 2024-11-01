@@ -17,7 +17,7 @@ if($rol == 'admin') {
  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
   <div class="container-fluid">
     <img src="/assets/icons/icono_logo.png" class="logo" alt="">
-    <a class="navbar-brand fw-bold" href="">TuHospi</a>
+    <a class="navbar-brand fw-bold" href="home">TuHospi</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -53,7 +53,7 @@ if($rol == 'admin') {
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
   <div class="container-fluid">
     <img src="/assets/icons/icono_logo.png" class="logo" alt="">
-    <a class="navbar-brand fw-bold" href="#">TuHospi</a>
+    <a class="navbar-brand fw-bold" href="home">TuHospi</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -83,11 +83,17 @@ if($rol == 'admin') {
     width: 2rem;
     height: 2rem;
   }
+
+  .nav-link:hover {
+    color: #0056b3 !important; /* Color del texto en hover */
+    background-color: #e2e6ea; /* Color de fondo en hover */
+    border-radius: 5px;
+  }
 </style>
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
   <div class="container-fluid">
     <img src="/assets/icons/icono_logo.png" class="logo" alt="">
-    <a class="navbar-brand fw-bold" href="#">TuHospi</a>
+    <a class="navbar-brand fw-bold" href="home">TuHospi</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -95,6 +101,7 @@ if($rol == 'admin') {
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="home">Inicio</a>
         <a class="nav-link" href="notices">Noticias</a>
+        
       </div>
       <div>
       <button  id="button-register" class="ms-auto btn btn-primary ">Registrarse</button>

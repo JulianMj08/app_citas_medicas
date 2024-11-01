@@ -11,17 +11,23 @@
     <title>Login</title>
 </head>
 <body>
+<style>
+    .img-login {
+        mask-image: linear-gradient(white 80%, transparent);
+        
+    }
+</style>
     <?php
         use app\controllers\LoginController;
 
         include 'includes/navbar.php';
     ?>
-<div class="container d-flex w-50 mt-4">
-    <div>
-        <img src="/assets/img/doctor-with-his-arms-crossed-white-background.jpg" width="300" height="300" alt="hjgjg">
+<div class="container d-flex w-50 mt-4 gap-4">
+    <div class="col-6">
+        <img class="object-fit-cover img-login shadow mt-4" src="/assets/img/doctor2.jpg" width="350" height="300" alt="imagen de doctor">
     </div>
 
-    <form id="register-form" action=""  method="post" class="container d-flex flex-column w-50 border rounded shadow p-4">
+    <form id="register-form" action=""  method="post" class="container d-flex flex-column col-4 w-50 border rounded shadow p-4 m-4">
         <div>
             <img src="/assets/icons/icono_logo.png" class="logo" alt="">
             <h2 class="fw-bolder">Iniciar Sesión</h2>
@@ -36,7 +42,6 @@
         </div>
         <?php //echo isset($mensaje) ? "<div style='color:red;'>{$mensaje}</div>" : ""; ?>
 
-        
         <div class="mb-4">
             <label for="contrasena">Contraseña</label>
             <input class="form-control" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">

@@ -1,8 +1,8 @@
 <?php
-session_start();
-$nombre = $_SESSION['nombre'];
+// session_start();
+// $nombre = $_SESSION['nombre'];
 
-var_dump($nombre);
+// var_dump($nombre);
 ?>
 <!DOCTYPE html>
 <html lang="en">

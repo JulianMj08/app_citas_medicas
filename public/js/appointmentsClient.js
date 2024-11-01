@@ -1,13 +1,13 @@
-console.log('ajajjjkkkkkiiii');
+console.log('ajajjjkkkkkiiii000000000000000000000000');
 
 
 // --------------------------------- CREAR CITA -----------------------------------------
 document.getElementById('saveAppointment').addEventListener('click', function() {
-    const idUser = document.getElementById('id-usuario').value;
+    //const idUser = document.getElementById('id-usuario').value;
     const motivoAppointment = document.getElementById('motivo-cita').value;
     const dateAppointment = document.getElementById('fecha-cita').value;
 
-    if (!idUser || !motivoAppointment || !dateAppointment) {
+    if (!motivoAppointment || !dateAppointment) {
         alert('Por favor, completa todos los campos.');
         return;
     }
@@ -15,7 +15,7 @@ document.getElementById('saveAppointment').addEventListener('click', function() 
 });
 
 async function createAppointment() {
-    const idUser = document.getElementById('id-usuario').value;
+    //const idUser = document.getElementById('id-usuario').value;
     const motivoAppointment = document.getElementById('motivo-cita').value;
     const dateAppointment = document.getElementById('fecha-cita').value;
 
@@ -27,7 +27,7 @@ async function createAppointment() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ idUser, motivoAppointment, dateAppointment })
+            body: JSON.stringify({ motivoAppointment, dateAppointment })
         });
 
         const datos = await response.json();
