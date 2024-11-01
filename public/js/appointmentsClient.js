@@ -1,4 +1,4 @@
-console.log('ajajjjkkkkkiiii000000000000000000000000');
+console.log('ajajjjkkkkkiiii000000000000000000000000kkkkkkkkkkkkkkkkkkkkklllllllllllllll');
 
 
 // --------------------------------- CREAR CITA -----------------------------------------
@@ -74,10 +74,15 @@ async function showAppointments() {
 
             // Agregar contenido a la tarjeta
             card.innerHTML = `
-                <h5 class="card-title">${appointment.fechaCita}</h5>
-                <p class="card-text">${appointment.motivoCita}</p>     
-                <button class="btn-edit" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo" alt="Modificar"></button>    
-                <button class="btn-delete" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" class="logo" alt="Eliminar"></button>  
+            <p class="card-title fs-4"><strong>nombre:</strong> ${appointment.nombre} ${appointment.apellidos}</p>
+                <h6 class="car-text fs-6"><strong>fecha de la cita:</strong> ${appointment.fechaCita}</h6>
+                
+                <p class="card-text"><strong>motivo de la cita:</strong> ${appointment.motivoCita}</p>  
+                <div class="d-flex flex-row mt-4">
+                    <button class="btn-edit" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo" alt="Modificar"></button>    
+                <button class="btn-delete" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" class="logo" alt="Eliminar"></button>
+                </div>   
+                  
             `;
 
             containerAppointment.appendChild(card);
@@ -85,6 +90,8 @@ async function showAppointments() {
         });
 
     } catch (error) {
+        alert('El usuario no tiene citas agendadas en este momento')
+        
         console.error("Error al mostrar los datos:", error);
     }
 }

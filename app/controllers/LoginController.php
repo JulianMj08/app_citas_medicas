@@ -89,7 +89,7 @@ class LoginController {
         $userRol = $_SESSION['rol'] = $userData['rol'];
 
         if($userRol == 'admin') {
-            header('Location: controlPanel'); // Redirigir a la página de controlPanel
+            header('Location: home'); // Redirigir a la página de controlPanel
             exit();
         } elseif($userRol == 'user') {
             header('Location: home'); // Redirigir a la página de inicio

@@ -39,6 +39,7 @@ class AppointmentsClientModel {
         $id = $_SESSION['idUser'];
 
         $sql = "SELECT * FROM citas
+                INNER JOIN users_data ON citas.idUsuario  = users_data.idUser
                 WHERE idUsuario = $id";
         $result = $conexion->query($sql);
         $allAppointments = [];

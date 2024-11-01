@@ -115,20 +115,20 @@ Route::get('usersAdmin', function(){
 
 });
 
-Route::get('controlPanel', function(){
-    session_start();
+// Route::get('controlPanel', function(){
+//     session_start();
 
-    // Verificar si el usuario ha iniciado sesión y tiene el rol de 'admin'
-    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
-        // Si el usuario es administrador, renderiza la vista del panel de control
-        Route::render('/admin/controlPanel');
-    } else {
-        // Si no es administrador, redirige al home
-        // header('Location: home');
-        // exit();
-        echo 'Lo siento no eres admin';
-    }
-});
+//     // Verificar si el usuario ha iniciado sesión y tiene el rol de 'admin'
+//     if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+//         // Si el usuario es administrador, renderiza la vista del panel de control
+//         Route::render('/admin/controlPanel');
+//     } else {
+//         // Si no es administrador, redirige al home
+//         // header('Location: home');
+//         // exit();
+//         echo 'Lo siento no eres admin';
+//     }
+// });
 
 
 // ------------------------------  Rutas para los usuarios  ------------------------------ 
@@ -168,7 +168,7 @@ Route::get('profileClient', function(){
 Route::post('logout', function(){
     session_start();
     session_destroy();
-    header('Location: profileClient');
+    header('Location: login');
     exit();
 });
 
