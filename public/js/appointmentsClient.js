@@ -1,4 +1,4 @@
-console.log('ajajjjkkkkkiiii000000000000000000000000kkkkkkkkkkkkkkkkkkkkklllllllllllllll');
+console.log('ajajjjkkkkkiiii000000000000000000000000kkkkkkkkkkkkkkkkkkkkklllllllllllllll00000000000000000pppppppppppp');
 
 
 // --------------------------------- CREAR CITA -----------------------------------------
@@ -70,14 +70,13 @@ async function showAppointments() {
 
             // Crear la tarjeta
             const card = document.createElement('div'); //creamos el div del card
-            card.classList.add('card', 'p-4', 'bg-light', 'border', 'h-100', 'shadow'); // Añadir `h-100` para que todas las tarjetas tengan la misma altura
+            card.classList.add('card', 'mt-4', 'p-4', 'bg-light', 'border', 'h-100', 'shadow'); // Añadir `h-100` para que todas las tarjetas tengan la misma altura
 
             // Agregar contenido a la tarjeta
             card.innerHTML = `
             <p class="card-title fs-4"><strong>nombre:</strong> ${appointment.nombre} ${appointment.apellidos}</p>
-                <h6 class="car-text fs-6"><strong>fecha de la cita:</strong> ${appointment.fechaCita}</h6>
-                
-                <p class="card-text"><strong>motivo de la cita:</strong> ${appointment.motivoCita}</p>  
+                <h6 class="card-date fs-6"><strong>fecha de la cita:</strong> ${appointment.fechaCita}</h6>
+                <p class="card-reason"><strong>motivo de la cita:</strong> ${appointment.motivoCita}</p>  
                 <div class="d-flex flex-row mt-4">
                     <button class="btn-edit" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo" alt="Modificar"></button>    
                 <button class="btn-delete" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" class="logo" alt="Eliminar"></button>
@@ -106,8 +105,8 @@ document.getElementById('appointment-row').addEventListener('click', function(ev
         const button = event.target.closest('.btn-edit');
         const id = button.getAttribute('data-id');
         const card = button.closest('.card'); // Encuentra la tarjeta que contiene los datos de la cita
-        const h5 = card.querySelector('.card-title'); // Selecciona el elemento h5 que muestra la fecha
-        const p = card.querySelector('.card-text'); // Selecciona el párrafo que muestra el motivo
+        const cardDate = card.querySelector('.card-date'); // Selecciona el elemento h5 que muestra la fecha
+        const cardReason = card.querySelector('.card-reason'); // Selecciona el párrafo que muestra el motivo
 
         if (button.innerHTML.trim() === '<img src="/assets/icons/guardar.png" class="logo" alt="Modificar">') {
             // Guardar cambios
@@ -131,11 +130,11 @@ document.getElementById('appointment-row').addEventListener('click', function(ev
             button.textContent = ''; // Resetear texto a estado original
         } else {
             // Cambiar a modo edición
-            const currentFecha = h5.textContent;
-            const currentMotivo = p.textContent;
+            const currentFecha = cardDate.textContent.match(/\d{4}-\d{2}-\d{2}/) ? cardDate.textContent.match(/\d{4}-\d{2}-\d{2}/)[0] : '';
+            const currentMotivo = cardReason.textContent.replace('motivo de la cita:', '').trim();
 
-            h5.innerHTML = `<input type="date" class="form-control editFecha" value="${currentFecha}">`;
-            p.innerHTML = `<input type="text" class="form-control editMotivo" value="${currentMotivo}">`;
+            cardDate.innerHTML = `<input type="date" class="form-control editFecha" value="${currentFecha}">`;
+            cardReason.innerHTML = `<input type="text" class="form-control editMotivo" value="${currentMotivo}">`;
 
             
             //button.textContent = 'Guardar';

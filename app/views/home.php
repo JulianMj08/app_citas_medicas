@@ -31,7 +31,7 @@ include 'includes/navbar.php';
 <!-- HEADER -->
 <header class="container bg-white">
     <div class="row" >
-        <div class="col-md-8 d-flex flex-column p-5">
+        <div class="col-md-8 col-sm-12 d-flex flex-column p-5">
             <div>
                 <h2 class="fs-1 fw-bold">Bienvenido a tu sitio donde puedes gestionar todas tus citas</h2>
             </div>
@@ -49,7 +49,7 @@ include 'includes/navbar.php';
             </div>
         </div>
 
-        <div class="col-md-4 image-container">
+        <div class="col-md-4 d-none d-md-block image-container">
             <img src="/assets/img/doctor-header.png" alt=""  class="img-fluid">
         </div>
     </div>
@@ -67,9 +67,9 @@ include 'includes/navbar.php';
 
 <!-- CARDS -->
 <section class="container">
-    <div class="row d-flex justify-content-evenly m-4">
+    <div class="row d-flex justify-content-evenly gap-sm-4 m-4">
 
-            <div class="card shadow" style="width: 18rem;">
+            <div class="card shadow margin" style="width: 18rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Agenda y gestiona tus citas</h5>
@@ -81,7 +81,7 @@ include 'includes/navbar.php';
                 </div>
             </div>
 
-            <div class="card shadow" style="width: 18rem;">
+            <div class="card shadow margin" style="width: 18rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Noticias y consejos de salud</h5>
@@ -93,7 +93,7 @@ include 'includes/navbar.php';
                 </div>
             </div>
 
-            <div class="card shadow" style="width: 18rem;">
+            <div class="card shadow margin" style="width: 18rem;">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Recibe recordatorios de medicación</h5>
@@ -108,7 +108,7 @@ include 'includes/navbar.php';
 </section>
 
 <section class="container mt-5">
-    <div class="row">
+    <div class="row width-100 w-sm-100 d-sm-flex justify-content-sm-center">
         <div class="col-md-6 container-dos m-5 rounded">
             <img class="rounded" src="/assets/img/tres_doctores.jpg" alt="">
         </div>
@@ -144,7 +144,7 @@ include 'includes/navbar.php';
 </div>
 
 <!-- DOCTORES -->
-<section class="d-flex justify-content-evenly">
+<section class="d-flex justify-content-evenly doctors-movil w-sm-100 d-sm-flex flex-wrap gap-sm-4">
     
 <div class="card shadow" style="width: 18rem;">
   <img src="/assets/img/Doctor_1.jpg" class="card-img-top p-3 border-radius-20" alt="...">
@@ -198,7 +198,7 @@ include 'includes/navbar.php';
 </div>
 
 <!-- BLOGS -->
-<section class="d-flex justify-content-evenly mb-5">
+<section class="d-flex justify-content-evenly mb-5 blogs-events w-sm-100 d-sm-flex flex-wrap gap-sm-4">
     
 <div class="card" style="width: 18rem;">
   <img src="/assets/img/urgencias.jpg" class="card-img-top p-3 border-radius-20" alt="imagen urgencias">

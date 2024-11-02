@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/register.css">
     
     <title>Register</title>
 </head>
@@ -14,14 +15,9 @@
     ?>
     <div class="container d-flex">
 
-    <style>
-        .img-register {
-            mask-image: linear-gradient(white 80%, transparent);
-        }
-    </style>
     <!-- Formulario -->
-    <form id="register-form" action="register"  method="post" class="container d-flex">
-        <div class="col-6 p-4">
+    <form id="register-form" action="register"  method="post" class="container d-flex flex-wrap">
+        <div class="col-12 col-md-6 p-4">
             <?php if (!empty($errors)): ?>
         <div class="alert alert-danger">
             <ul>
@@ -53,7 +49,7 @@
         </div>
         <!-- Segunda parte del formulario -->
         </div>
-        <div class="col-6 p-4">
+        <div class="col-12 col-md-6 p-4">
         <div class="mb-2">
             <label for="direccion">Dirección</label>
             <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Dirección de residencia">
@@ -81,7 +77,7 @@
         </div>  
     </form>
 
-    <div>
+    <div class="d-none d-md-block">
         <img class="object-fit-cover img-register" src="/assets/img/doctora2.jpg" width="300" height="300" alt="hjgjg">
     </div>
 

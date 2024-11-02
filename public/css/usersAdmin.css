@@ -1,0 +1,7 @@
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+  .table td, .table th {
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}

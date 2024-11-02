@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/css/appointmentsAdmin.css">
     <title>Citas Administracion</title>
 </head>
 <body>
@@ -51,28 +53,31 @@ include __DIR__ . '/../includes/navbar.php';
 
 
 <!-- SHOW Appointments -->
-<div id="container-table" class="class container" style="display: none;">
-    <div class="class row">
-        <div class="class col">
-            <table class="table table-striped table-bordered table-hover table align-middle">
-                <thead>
-                    <tr class="table-primary">
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Numero de telefono</th>
-                    <th scope="col">Motivo de la cita</th>
-                    <th scope="col">fecha de la cita</th>
-                    <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-            
-                </tbody>
-            </table>
-         </div>
+<div id="container-table" class="container" style="display: none;">
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive-sm">
+                <table class="table table-striped table-bordered table-hover align-middle">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Número de teléfono</th>
+                            <th scope="col">Motivo de la cita</th>
+                            <th scope="col">Fecha de la cita</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <?php
 include __DIR__ . '/../includes/footer.php';

@@ -5,7 +5,7 @@
     //      showNotices();
     // });
 
-    console.log('funcionando notices admin');
+    console.log('funcionando notices admin o no');
     
     document.addEventListener("DOMContentLoaded", function () {
         showNotices(); // Llama a la función que carga las noticias automáticamente
@@ -91,15 +91,18 @@
     
             // Crear el contenedor para los detalles de la noticia
             const DetailsNotice = document.createElement('div');
-            DetailsNotice.classList.add('border');
+            DetailsNotice.classList.add('border', 'rounded', 'shadow', 'w-75', 'p-4');
     
             DetailsNotice.innerHTML = `
                 <h3>${notice.titulo}</h3>
                 <p>${notice.texto}</p>
-                <small>Publicado el: ${notice.fecha}</small>
-                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#noticeUpdateModal" id="editButton">Editar</button>
-                <button class="btn btn-secondary mt-3" id="closeButton">Cerrar</button>
-                <button class="btn btn-danger mt-3" id="eliminar">Eliminar</button>
+                <small><strong>Publicado el:</strong> ${notice.fecha}</small>
+                <div class="mt-3 mb-2">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#noticeUpdateModal" id="editButton">Editar</button>
+                    <button class="btn btn-secondary" id="closeButton">Cerrar</button>
+                    <button class="btn btn-danger" id="eliminar">Eliminar</button>
+                </div>
+                
             `;
             noticesRow.appendChild(DetailsNotice);
     
@@ -187,6 +190,7 @@
             if (data.success) {
                 alert(data.success);
                 console.log(data);
+                showNotices();
                 
             } else {
                 alert(data.error);
@@ -205,9 +209,9 @@
             const createDate = document.getElementById('fechaNotice').value;
             const idUsuario = 16;
 
-            createNotice(title, image, text, createDate, idUsuario);
-            
+            createNotice(title, image, text, createDate, idUsuario); 
         }); 
+        
 
     // ---------------------------------------   ACTUALIZAR NOTICIAS   ---------------------------------------
     async function updateNotice(id, newTitle, newTexto) {

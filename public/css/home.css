@@ -1,8 +1,8 @@
-html {
-    background-color: blue;
-    max-width: 992px;
-    margin: 0 auto;
-}
+/* html {
+     background-color: blue; 
+     max-width: 992px; 
+     margin: 0 auto; 
+} */
 body {
     
     background-color: aqua;
@@ -30,3 +30,27 @@ body {
 .border-radius-20 {
     border-radius: 20px !important;
 }
+
+@media (max-width: 575.98px) {
+    .margin {
+      margin-bottom: 14px;
+    }
+    .width-100 {
+        width: 100%;
+        display: flex;
+        justify-content: center; 
+    }
+    .doctors-movil {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+    .blogs-events {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+
+    }
+  }

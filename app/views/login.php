@@ -8,26 +8,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/css/login.css">
     <title>Login</title>
 </head>
 <body>
-<style>
-    .img-login {
-        mask-image: linear-gradient(white 80%, transparent);
-        
-    }
-</style>
     <?php
         use app\controllers\LoginController;
 
         include 'includes/navbar.php';
     ?>
-<div class="container d-flex w-50 mt-4 gap-4">
-    <div class="col-6">
-        <img class="object-fit-cover img-login shadow mt-4" src="/assets/img/doctor2.jpg" width="350" height="300" alt="imagen de doctor">
+<div class="container d-flex w-100 mt-4 gap-md-4 gap-lg-1">
+    <div class="col-6 d-none d-md-block">
+        <img class="object-fit-cover img-login shadow mt-4" src="/assets/img/doctor2.jpg" width="360" height="300" alt="imagen de doctor">
     </div>
 
-    <form id="register-form" action=""  method="post" class="container d-flex flex-column col-4 w-50 border rounded shadow p-4 m-4">
+    <form id="register-form" action=""  method="post" class="container d-flex flex-column col-10 col-md-6 login-form border rounded shadow p-4 ">
         <div>
             <img src="/assets/icons/icono_logo.png" class="logo" alt="">
             <h2 class="fw-bolder">Iniciar Sesión</h2>
@@ -64,7 +59,6 @@
  <?php
  include 'includes/footer.php';
  ?>   
-
 <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

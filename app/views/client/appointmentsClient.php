@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <title>Citas del Usuario</title>
+    <link rel="stylesheet" href="/css/appointmentsClient.css">
+    <title>Citas Usuario</title>
 </head>
 <body>
 <?php
@@ -13,12 +14,12 @@ include __DIR__ . '/../includes/navbar.php';
 <h2>Gestiona tus citas</h2>
 <hr class="mb-4">
 
-<div class="p-2">
-  <p class="fs-5">Organiza y visualiza tus citas médicas en un solo lugar.
+<section class="p-3">
+  <p>Organiza y visualiza tus citas médicas en un solo lugar.
       Agenda nuevas consultas y revisa tus próximas visitas para
       gestionar tu tiempo de manera efectiva.
 </p>
-</div>
+</section>
 
 
 <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#appointmentCreateModal">Agendar cita</button>
@@ -62,10 +63,10 @@ include __DIR__ . '/../includes/navbar.php';
     </div>
 </div>
 
-<section class="m-4 pt-4 container d-flex  ">
-  <div class="col-6">
+<section class="m-4 pt-4 container d-flex flex-column flex-md-row gap-4">
+  <div class="col-12 col-md-6">
   <h4>Prepárate para tu cita</h4>
-  <ul>
+  <ul class="p-4">
     <li>Lleva tu identificación y tarjeta de seguro.</li>
     <li>Llega 15 minutos antes de la hora programada.</li>
     <li>Trae una lista de los medicamentos que tomas.</li>
@@ -79,7 +80,7 @@ include __DIR__ . '/../includes/navbar.php';
     <li>Lleva Toda la documentacion necesaria.</li>
   </ul>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <img class="img-calendario rounded shadow" src="/assets/img/calendario.jpg" alt="">
   </div>
   
@@ -92,14 +93,6 @@ include __DIR__ . '/../includes/navbar.php';
   camino hacia una vida más saludable y plena.
 </section>
 
-<style>
-
-.img-calendario {
-  width: 300px;
-  height: 320px;
-  object-fit: cover;
-}
-</style>
 <?php
 include __DIR__ . '/../includes/footer.php';
 ?>
