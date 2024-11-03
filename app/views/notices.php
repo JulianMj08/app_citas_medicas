@@ -9,7 +9,7 @@
 <body>
     
 <?php
-include 'includes/navbar.php';
+ include 'includes/navbar.php';
 ?>
 <h2>Sección de noticias</h2>
 <hr class="mb-4">
@@ -24,7 +24,7 @@ include 'includes/navbar.php';
 
 
 <?php
-include 'includes/footer.php';
+ include 'includes/footer.php';
 ?>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <!-- <script type="module" src="/js/notices.js"></script> -->

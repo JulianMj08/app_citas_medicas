@@ -16,7 +16,6 @@ include __DIR__ . '/../includes/navbar.php';
 <h2>Gestion de Usuarios</h2>
 <hr class="mb-2">
 
-<!-- <button class="open-users btn btn-primary mb-2">Ver Usuarios</button>  -->
 <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#userCreateModal">Crear Usuario</button>
 
 <!-- SHOW Users -->
@@ -45,8 +44,6 @@ include __DIR__ . '/../includes/navbar.php';
     </div>
 </div>
 
-
-
 <!-- Modal CREATE cita -->
 <div class="modal fade" id="userCreateModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -54,8 +51,7 @@ include __DIR__ . '/../includes/navbar.php';
     <form id="createUserForm">
       <div class="modal-header">
       <div class="container d-flex">
-            <!-- <div id="containerSelectUsers"> 
-            </div> -->
+    
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -80,6 +76,7 @@ include __DIR__ . '/../includes/navbar.php';
             <label for="contrasena">Contraseña<span style="color: red;">*</span></label>
             <input class="form-control" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
         </div>
+
         <!-- Segunda parte del formulario -->
         </div>
         <div class="col-6 p-4">
@@ -121,7 +118,6 @@ include __DIR__ . '/../includes/navbar.php';
 <?php
 include __DIR__ . '/../includes/footer.php';
 ?>
-
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/usersAdmin.js"></script>   
 </body>

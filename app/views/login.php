@@ -24,7 +24,7 @@
 
     <form id="register-form" action=""  method="post" class="container d-flex flex-column col-10 col-md-6 login-form border rounded shadow p-4 ">
         <div>
-            <img src="/assets/icons/icono_logo.png" class="logo" alt="">
+            <img src="/assets/icons/icono_logo.png" class="logo" alt="imagen logo">
             <h2 class="fw-bolder">Iniciar Sesión</h2>
         </div>
         <div>
@@ -57,7 +57,7 @@
 
 </div>    
  <?php
- include 'includes/footer.php';
+    include 'includes/footer.php';
  ?>   
 <script src="/js/bootstrap.bundle.min.js"></script>
 </body>

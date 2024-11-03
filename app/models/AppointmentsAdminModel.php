@@ -7,7 +7,7 @@ class AppointmentsAdminModel {
     public static function seeAllAppointmentsModel() {
         $conexion = Conexion::connect();
           $sql = "SELECT * FROM citas
-                    INNER JOIN users_data ON citas.idUsuario = users_data.idUser";
+                  INNER JOIN users_data ON citas.idUsuario = users_data.idUser";
         $result = $conexion->query($sql);
         $allAppointments = [];
 
@@ -43,8 +43,10 @@ class AppointmentsAdminModel {
     // --------------------------------- ELIMINAR CITA -----------------------------------------
     public static function deleteAppointment($id) {
         $conexion = Conexion::connect();
-        $sql = "DELETE FROM citas WHERE idCita = $id";
-        $result = $conexion->query($sql);
+        $sql = "DELETE FROM citas WHERE idCita = ?";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("i", $id);
+        $result->execute();
 
         if ($result) {
             return true; // Si la eliminación fue exitosa
@@ -57,34 +59,46 @@ class AppointmentsAdminModel {
     // --------------------------------- CREAR CITA -----------------------------------------
     public static function createAppointment($nameUser, $motivoAppointment, $dateAppointment) {
         $conexion = Conexion::connect();
-
-        $getId = "SELECT idUser FROM users_data WHERE nombre = '$nameUser'";
-        $getIdResult = $conexion->query($getId);
-
-        if ($getIdResult) {
-            if ($getIdResult->num_rows > 0) {
-                // Obtenemos el resultado como un arreglo asociativo
-                $row = $getIdResult->fetch_assoc(); //obtengo todos los datos
-                $idUser = $row['idUser'];           // traigo el campo que necesito en el momento
-                echo 'Datos enviados correctamente. idUser: ' . $idUser;
-
-                $sql = "INSERT INTO citas (idUsuario, motivoCita, fechaCita) VALUES ( $idUser, '$motivoAppointment', '$dateAppointment')";
-                $resultInsert = $conexion->query($sql);
-            
-                if($resultInsert) {
-                    echo 'Datos enviados correctamente';
-                } else {
-                    echo 'Datos no enviados';
-                };
-                return $resultInsert;
-                
+    
+        // Preparamos la consulta para obtener el ID del usuario
+        $getId = "SELECT idUser FROM users_data WHERE nombre = ?";
+        $getIdResult = $conexion->prepare($getId);
+        $getIdResult->bind_param("s", $nameUser);
+        $getIdResult->execute();
+    
+        // Obtener el resultado de la consulta
+        $result = $getIdResult->get_result();
+    
+        // Verificamos si la consulta devolvió alguna fila
+        if ($result && $result->num_rows > 0) {
+            // Obtenemos el resultado como un arreglo asociativo
+            $row = $result->fetch_assoc();
+            $idUser = $row['idUser']; // Traemos el campo necesario en este momento
+            echo 'Datos obtenidos correctamente. idUser: ' . $idUser;
+    
+            // Preparamos la consulta para insertar la cita
+            $sql = "INSERT INTO citas (idUsuario, motivoCita, fechaCita) VALUES (?, ?, ?)";
+            $resultInsert = $conexion->prepare($sql);
+            $resultInsert->bind_param("iss", $idUser, $motivoAppointment, $dateAppointment);
+            $resultInsert->execute();
+    
+            if($resultInsert) {
+                echo 'Cita creada correctamente';
             } else {
-                echo 'No se encontraron registros con ese nombre.';
+                echo 'Error al crear la cita';
             }
-            //echo 'Datos no enviados';
-        };
-        //return $getIdResult;
-    }  
+    
+            return $resultInsert;
+    
+        } else {
+            echo 'No se encontraron registros con ese nombre.';
+        }
+    
+        // Cerramos la conexión
+        $getIdResult->close();
+        $conexion->close();
+    }
+     
     // --------------------------------- ACTUALIZAR CITA -----------------------------------------
     public static function updateAppointmentModel($idCita,$nombre, $apellidos, $telefono, $motivoCita, $fechaCita) {
         $conexion = Conexion::connect();
@@ -97,14 +111,15 @@ class AppointmentsAdminModel {
 
         $sql = "UPDATE citas c
                 JOIN users_Data u ON c.idUsuario = u.idUser
-                SET u.nombre = '$nombre',
-	                u.apellidos = '$apellidos',
-                    u.telefono = '$telefono',
-                    c.motivoCita = '$motivoCita',
-                    c.fechaCita = '$fechaCita'
-                WHERE c.idCita = $idCita ";
+                SET u.nombre = ?,
+	                u.apellidos = ?,
+                    u.telefono = ?,
+                    c.motivoCita = ?,
+                    c.fechaCita = ?
+                WHERE c.idCita =  ?";
 
-        $result = $conexion->query($sql);  
+        $result = $conexion->prepare($sql);
+        $result->bind_param("sssssi", $nombre, $apellidos, $telefono, $motivoCita,  $fechaCita, $idCita);
         
         if ($result) {
             return true; // Si la eliminación fue exitosa

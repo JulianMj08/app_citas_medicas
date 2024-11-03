@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/register.css">
-    
     <title>Register</title>
 </head>
 <body>
-    <?php
-    //include_once './../app/controllers/RegisterController.php';
-    include 'includes/navbar.php';
-    ?>
-    <div class="container d-flex">
+<?php
+ include 'includes/navbar.php';
+?>
+<div class="container d-flex">
 
     <!-- Formulario -->
     <form id="register-form" action="register"  method="post" class="container d-flex flex-wrap">
@@ -47,6 +45,7 @@
             <label for="contrasena">Contraseña<span style="color: red;">*</span></label>
             <input class="form-control" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
         </div>
+        
         <!-- Segunda parte del formulario -->
         </div>
         <div class="col-12 col-md-6 p-4">
@@ -78,13 +77,13 @@
     </form>
 
     <div class="d-none d-md-block">
-        <img class="object-fit-cover img-register" src="/assets/img/doctora2.jpg" width="300" height="300" alt="hjgjg">
+        <img class="object-fit-cover img-register" src="/assets/img/doctora2.jpg" width="300" height="300" alt="imagen doctora">
     </div>
 
     </div>
-    <?php
-    include 'includes/footer.php';
-    ?>
-    <script src="/js/bootstrap.bundle.min.js"></script>
+<?php
+ include 'includes/footer.php';
+?>
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,18 +1,4 @@
-
-<style>
-  .logo {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .iconos-contacto {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-
-</style>  
-
+<link rel="stylesheet" href="/css/footer.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <footer class="bg-light text-dark pt-5 pb-4 mt-4">
     <div class="container text-center text-md-start">

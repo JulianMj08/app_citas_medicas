@@ -1,6 +1,4 @@
 <?php
-// include_once __DIR__ . '/../../auth/Authentication.php';
-
 $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : null;
 
 if ($rol == 'admin') {
@@ -16,7 +14,7 @@ if ($rol == 'admin') {
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
         <div class="container-fluid">
-            <img src="/assets/icons/icono_logo.png" class="logo" alt="">
+            <img src="/assets/icons/icono_logo.png" class="logo" alt="imagen logo">
             <a class="navbar-brand fw-bold" href="home">TuHospi</a>
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation" id="navbar-toggler-admin">
                 <span class="navbar-toggler-icon"></span>
@@ -37,15 +35,6 @@ if ($rol == 'admin') {
         </div>
     </nav>
 
-    <script>
-        const navbarTogglerAdmin = document.getElementById('navbar-toggler-admin');
-        const navbarCollapseAdmin = document.getElementById('navbarNavAltMarkup-admin');
-
-        navbarTogglerAdmin.addEventListener('click', function() {
-            navbarCollapseAdmin.classList.toggle('show');
-        });
-    </script>
-
 <?php
 } elseif ($rol == 'user') {
 ?>
@@ -60,7 +49,7 @@ if ($rol == 'admin') {
     
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
         <div class="container-fluid">
-            <img src="/assets/icons/icono_logo.png" class="logo" alt="">
+            <img src="/assets/icons/icono_logo.png" class="logo" alt="imagen logo">
             <a class="navbar-brand fw-bold" href="home">TuHospi</a>
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation" id="navbar-toggler-user">
                 <span class="navbar-toggler-icon"></span>
@@ -78,15 +67,6 @@ if ($rol == 'admin') {
             </div>
         </div>
     </nav>
-
-    <script>
-        const navbarTogglerUser = document.getElementById('navbar-toggler-user');
-        const navbarCollapseUser = document.getElementById('navbarNavAltMarkup-user');
-
-        navbarTogglerUser.addEventListener('click', function() {
-            navbarCollapseUser.classList.toggle('show');
-        });
-    </script>
 
 <?php
 } else {
@@ -108,7 +88,7 @@ if ($rol == 'admin') {
     
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
         <div class="container-fluid">
-            <img src="/assets/icons/icono_logo.png" class="logo" alt="">
+            <img src="/assets/icons/icono_logo.png" class="logo" alt="imagen logo">
             <a class="navbar-brand fw-bold" href="home">TuHospi</a>
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation" id="navbar-toggler-visitor">
                 <span class="navbar-toggler-icon"></span>
@@ -126,28 +106,10 @@ if ($rol == 'admin') {
         </div>
     </nav>
 
-    <script>
-        const navbarTogglerVisitor = document.getElementById('navbar-toggler-visitor');
-        const navbarCollapseVisitor = document.getElementById('navbarNavAltMarkup-visitor');
-
-        navbarTogglerVisitor.addEventListener('click', function() {
-            navbarCollapseVisitor.classList.toggle('show');
-        });
-    </script>
-
 <?php
 }
 ?>
 
-<script>
-    const btnLogin = document.getElementById('button-login');
-    const btnRegister = document.getElementById('button-register');
 
-    const goLogin = () => window.location.href = '/login';
-    const goRegister = () => window.location.href = '/register';
-
-    if (btnLogin) btnLogin.addEventListener('click', goLogin);
-    if (btnRegister) btnRegister.addEventListener('click', goRegister);
-</script>
-
+<script src="/js/navbar.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>

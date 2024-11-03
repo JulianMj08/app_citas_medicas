@@ -7,15 +7,16 @@ class AppointmentsClientModel {
 
         session_start();
 
-        // Verifica si el ID de usuario está guardado en la sesión
-        if (!isset($_SESSION['idUser'])) {
+        if (!isset($_SESSION['idUser'])) { // Verifica si el ID de usuario está guardado en la sesión
             return null; // No hay usuario en sesión, devolvemos null o un mensaje de error
         }
 
         $conexion = Conexion::connect();
         $idUsuario = $_SESSION['idUser'];
-        $sql = "INSERT INTO citas (idUsuario, motivoCita, fechaCita) VALUES ($idUsuario, '$motivoCita', '$fechaCita')";
-        $result = $conexion->query($sql);
+        $sql = "INSERT INTO citas (idUsuario, motivoCita, fechaCita) VALUES (?, ?, ?)";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("iss", $idUsuario, $motivoCita, $fechaCita);
+        $result->execute();
 
         if ($result) {
             echo json_encode(['success' => 'Datos enviados correctamente']);
@@ -29,10 +30,8 @@ class AppointmentsClientModel {
     public static function seeAllAppointmentsModel() {
 
         session_start();
-
-        // Verifica si el ID de usuario está guardado en la sesión
         if (!isset($_SESSION['idUser'])) {
-            return null; // No hay usuario en sesión, devolvemos null o un mensaje de error
+            return null;
         }
 
         $conexion = Conexion::connect();
@@ -48,7 +47,6 @@ class AppointmentsClientModel {
             while ($row = $result->fetch_assoc()) {
                 $allAppointments[] = $row; // Añadir cada fila al array
             }
-            //var_dump($appointments);
             return $allAppointments;   
         } else {
             return null;
@@ -57,9 +55,12 @@ class AppointmentsClientModel {
 
     // --------------------------------- ELIMINAR CITA -----------------------------------------
     public static function deleteAppointment($id) {
+
         $conexion = Conexion::connect();
-        $sql = "DELETE FROM citas WHERE idCita = $id";
-        $result = $conexion->query($sql);
+        $sql = "DELETE FROM citas WHERE idCita = ?";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("i", $id);
+        $result->execute();
 
         if ($result) {
             return true; // Si la eliminación fue exitosa
@@ -71,17 +72,19 @@ class AppointmentsClientModel {
 
     // --------------------------------- ACTUALIZAR CITA -----------------------------------------
     public static function updateAppointmentModel($idCita, $motivoCita, $fechaCita) {
-        $conexion = Conexion::connect();
 
+        $conexion = Conexion::connect();
         $motivoCita = $conexion->real_escape_string($motivoCita);
         $fechaCita = $conexion->real_escape_string($fechaCita);
 
         $sql = "UPDATE citas 
-                SET motivoCita = '$motivoCita',
-                    fechaCita = '$fechaCita'
-                WHERE idCita = $idCita ";
+                SET motivoCita = ?,
+                    fechaCita = ?
+                WHERE idCita = ?";
 
-        $result = $conexion->query($sql);  
+        $result = $conexion->prepare($sql);
+        $result->bind_param("ssi", $motivoCita, $fechaCita, $idCita);
+        $result->execute();
         
         if ($result) {
             return true; // Si la eliminación fue exitosa

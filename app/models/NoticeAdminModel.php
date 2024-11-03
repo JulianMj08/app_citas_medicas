@@ -40,9 +40,12 @@ class NoticeAdminModel {
 
     // --------------------------------- ELIMINAR NOTICIAS -----------------------------------------
     public static function deleteNotice($id) {
+
         $conexion = Conexion::connect();
-        $sql = "DELETE FROM noticias WHERE idNoticia = $id";
-        $result = $conexion->query($sql);
+        $sql = "DELETE FROM noticias WHERE idNoticia = ?";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("i", $id);
+        $result->execute();
 
         if ($result) {
             return true; // Si la eliminación fue exitosa
@@ -54,6 +57,7 @@ class NoticeAdminModel {
 
     // --------------------------------- CREAR NOTICIA -----------------------------------------
     public static function createNotice($title, $image, $text, $createDate, $idUsuario) {
+
         $conexion = Conexion::connect();
         $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
@@ -69,13 +73,16 @@ class NoticeAdminModel {
 
     // --------------------------------- ACTUALIZAR NOTICIA -----------------------------------------
     public static function updateNotice($id, $newTitle, $newTexto) {
+
         $conexion = Conexion::connect();
         $newTexto = $conexion->real_escape_string($newTexto);
         $newTitle = $conexion->real_escape_string($newTitle);
         $id = intval($id); // Asegurarse de que $id sea un entero
 
-        $sql = "UPDATE noticias SET titulo = '$newTitle', texto = '$newTexto' WHERE idNoticia = $id";
-        $result = $conexion->query($sql);
+        $sql = "UPDATE noticias SET titulo = ? , texto = ? WHERE idNoticia = ?";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("ssi", $newTitle, $newTexto, $id);
+        $result->execute();
 
         if ($result) {
             return true; // Si la eliminación fue exitosa

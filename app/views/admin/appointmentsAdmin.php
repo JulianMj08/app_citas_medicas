@@ -15,9 +15,6 @@ include __DIR__ . '/../includes/navbar.php';
 <h2>Gestión de Citas</h2>
 <hr class="mb-2">
 
-<!-- <button class="open-appointments btn btn-primary mb-2">Ver Citas</button>  -->
-
-
 <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#appointmentCreateModal">Crear cita</button>
 <!-- Modal CREATE cita -->
 <div class="modal fade" id="appointmentCreateModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
@@ -51,7 +48,6 @@ include __DIR__ . '/../includes/navbar.php';
   </div>
 </div>
 
-
 <!-- SHOW Appointments -->
 <div id="container-table" class="container" style="display: none;">
     <div class="row">
@@ -78,9 +74,8 @@ include __DIR__ . '/../includes/navbar.php';
     </div>
 </div>
 
-
 <?php
-include __DIR__ . '/../includes/footer.php';
+  include __DIR__ . '/../includes/footer.php';
 ?>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/appointmentsAdmin.js"></script>

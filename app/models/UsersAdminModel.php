@@ -5,9 +5,10 @@ class UsersAdminModel {
 
     // --------------------------------- VER USUARIOS -----------------------------------------
     public static function seeAllUsersModel() {
+
         $conexion = Conexion::connect();
-          $sql = "SELECT * FROM users_data
-          INNER JOIN users_login on users_data.idUser = users_login.idUsuario";
+        $sql = "SELECT * FROM users_data
+                INNER JOIN users_login on users_data.idUser = users_login.idUsuario";
         $result = $conexion->query($sql);
         $allUsers = [];
 
@@ -24,10 +25,12 @@ class UsersAdminModel {
 
     // --------------------------------- ELIMINAR USUARIO -----------------------------------------
     public static function deleteUserModel($id) {
+
         $conexion = Conexion::connect();
-        //$sqlAppointment = "DELETE FROM citas WHERE idUsuario = $id";
-        $sql = "DELETE FROM users_data WHERE idUser = $id";
-        $result = $conexion->query($sql);
+        $sql = "DELETE FROM users_data WHERE idUser = ?";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("i", $id);
+        $result->execute();
 
         if ($result) {
             return true; // Si la eliminación fue exitosa
@@ -47,7 +50,6 @@ class UsersAdminModel {
 
         $result->bind_param("sssssss", $name, $lastNamesUser, $emailUser, $phoneUser, $birthdateUser, $addressUser, $sexUser);
         $result->execute();
-        //$rol = 'user';
 
         if ($result) {
             $lastId = $conexion->insert_id;
@@ -63,8 +65,8 @@ class UsersAdminModel {
 
   // --------------------------------- ACTUALIZAR USUARIO ----------------------------------------- 
     public static function updateUserModel($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser) {
-        $conexion = Conexion::connect();
 
+        $conexion = Conexion::connect();
         $name = $conexion->real_escape_string($name);
         $lastNamesUser = $conexion->real_escape_string($lastNamesUser);
         $nameUser = $conexion->real_escape_string($nameUser);
@@ -73,14 +75,15 @@ class UsersAdminModel {
 
         $sql = "UPDATE users_data d
                  JOIN users_login l ON d.idUser = l.idUsuario
-                 SET d.nombre = '$name',
-                     d.apellidos = '$lastNamesUser',
-                     d.sexo = '$sexUser',
-                     l.usuario = '$nameUser',
-                     l.rol = '$rolUser'
-                WHERE d.idUser = $idUser ";            
+                 SET d.nombre = ?,
+                     d.apellidos = ?,
+                     d.sexo = ?,
+                     l.usuario = ?,
+                     l.rol = ?
+                WHERE d.idUser =  ?";            
 
-        $result = $conexion->query($sql);  
+        $result = $conexion->prepare($sql);
+        $result->bind_param("sssssi", $name, $lastNamesUser, $sexUser, $nameUser, $rolUser, $idUser);
         
         if ($result) {
             return true; // Si la eliminación fue exitosa

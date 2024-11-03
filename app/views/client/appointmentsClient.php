@@ -21,7 +21,6 @@ include __DIR__ . '/../includes/navbar.php';
 </p>
 </section>
 
-
 <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#appointmentCreateModal">Agendar cita</button>
 <!-- Modal CREATE cita -->
 <div class="modal fade" id="appointmentCreateModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
@@ -81,7 +80,7 @@ include __DIR__ . '/../includes/navbar.php';
   </ul>
   </div>
   <div class="col-12 col-md-6">
-    <img class="img-calendario rounded shadow" src="/assets/img/calendario.jpg" alt="">
+    <img class="img-calendario rounded shadow" src="/assets/img/calendario.jpg" alt="imagen calendario ">
   </div>
   
 </section>

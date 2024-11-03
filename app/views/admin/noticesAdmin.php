@@ -10,12 +10,10 @@
     
 <?php
 include __DIR__ . '/../includes/navbar.php';
-//require_once __DIR__ . '/../../controllers/NewsAdminController.php';
 ?>
 <h2>Gestión de noticias</h2>
 <hr class="mb-2">
 
-<!-- <button class="btn btn-primary rounded-pill open-notices">Ver todas la noticias</button> -->
 <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#noticeCreateModal">Crear Noticia</button>
 
 <div id="list-notices" class="container">
@@ -23,7 +21,6 @@ include __DIR__ . '/../includes/navbar.php';
         <!-- Aquí se insertarán las tarjetas de forma dinámica -->
     </div>
 </div>
-
 
 <!-- Modal UPDATE -->
 <div class="modal fade" id="noticeUpdateModal" class="container border" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
@@ -57,10 +54,8 @@ include __DIR__ . '/../includes/navbar.php';
       <div class="modal-body">
         <textarea name="noticeTextCreate" class="form-control " id="textNotice" rows="10" placeholder="Descripción de la noticia"></textarea>
         <input type="file" id="imageNotice" class="form-control mt-2" name="image">
-        
         <input class="form-control mt-2" type="date" id="fechaNotice">
       </div>
-      
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" id="saveNotice">Guardar</button>

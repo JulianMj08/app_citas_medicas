@@ -1,11 +1,6 @@
 <?php 
 session_start();  
 
-// if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'user') {
-//   header('Location: login');
-//   exit();
-// }
-
 // Mostrar mensaje si existe
 if (isset($_SESSION['message'])) {
   echo "<script>alert('" . htmlspecialchars($_SESSION['message']) . "');</script>";
@@ -26,6 +21,7 @@ if (isset($_SESSION['message'])) {
 <?php
 include 'includes/navbar.php';
 ?>
+
 <main class="container bg-light">
 
 <!-- HEADER -->
@@ -50,11 +46,10 @@ include 'includes/navbar.php';
         </div>
 
         <div class="col-md-4 d-none d-md-block image-container">
-            <img src="/assets/img/doctor-header.png" alt=""  class="img-fluid">
+            <img src="/assets/img/doctor-header.png" alt="imagen doctor"  class="img-fluid">
         </div>
     </div>
 </header>
-
 
 <div class="m-5">
     <h3 class="fw-bold text-center">Todo lo que necesitas para tu atención médica fácil</h3>
@@ -68,9 +63,7 @@ include 'includes/navbar.php';
 <!-- CARDS -->
 <section class="container">
     <div class="row d-flex justify-content-evenly gap-sm-4 m-4">
-
             <div class="card shadow margin" style="width: 18rem;">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Agenda y gestiona tus citas</h5>
                     <p class="card-text">
@@ -82,7 +75,6 @@ include 'includes/navbar.php';
             </div>
 
             <div class="card shadow margin" style="width: 18rem;">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Noticias y consejos de salud</h5>
                     <p class="card-text">
@@ -94,7 +86,6 @@ include 'includes/navbar.php';
             </div>
 
             <div class="card shadow margin" style="width: 18rem;">
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="card-title">Recibe recordatorios de medicación</h5>
                     <p class="card-text">
@@ -110,11 +101,10 @@ include 'includes/navbar.php';
 <section class="container mt-5">
     <div class="row width-100 w-sm-100 d-sm-flex justify-content-sm-center">
         <div class="col-md-6 container-dos m-5 rounded">
-            <img class="rounded" src="/assets/img/tres_doctores.jpg" alt="">
+            <img class="rounded" src="/assets/img/tres_doctores.jpg" alt="imagen tres doctores">
         </div>
         
         <div class="card col-md-6" style="width: 18rem;">
-            <!-- <img src="..." class="card-img-top" alt="..."> -->
             <div class="card-body">
                 <h5 class="card-title">Servicios Médicos Destacados</h5>
                 <p class="card-text">
@@ -147,7 +137,7 @@ include 'includes/navbar.php';
 <section class="d-flex justify-content-evenly doctors-movil w-sm-100 d-sm-flex flex-wrap gap-sm-4">
     
 <div class="card shadow" style="width: 18rem;">
-  <img src="/assets/img/Doctor_1.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <img src="/assets/img/Doctor_1.jpg" class="card-img-top p-3 border-radius-20" alt="imagen doctor">
   <div class="card-body">
     <h5 class="card-title">Dr. Carlos Méndez</h5>
     <p class="card-text">
@@ -155,12 +145,11 @@ include 'includes/navbar.php';
         Comprometido con la salud cardiovascular, brinda una atención dedicada y
         detallada a cada paciente.
     </p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
 
 <div class="card shadow" style="width: 18rem;">
-  <img src="/assets/img/Doctora.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <img src="/assets/img/Doctora.jpg" class="card-img-top p-3 border-radius-20" alt="imagen doctora">
   <div class="card-body">
     <h5 class="card-title">Dra. Ana Salazar</h5>
     <p class="card-text">
@@ -168,12 +157,11 @@ include 'includes/navbar.php';
         Apasionada por la prevención y educación en salud para mejorar la calidad
          de vida..
     </p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
 
 <div class="card shadow" style="width: 18rem;">
-  <img src="/assets/img/Doctor_2.jpg" class="card-img-top p-3 border-radius-20" alt="...">
+  <img src="/assets/img/Doctor_2.jpg" class="card-img-top p-3 border-radius-20" alt="imagen doctor">
   <div class="card-body">
     <h5 class="card-title">Dr. Julio Ramos</h5>
     <p class="card-text">
@@ -181,7 +169,6 @@ include 'includes/navbar.php';
         recuperación. Su objetivo es ayudar a cada paciente a mejorar su movilidad
         y bienestar.
     </p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
 </section>
@@ -240,17 +227,13 @@ include 'includes/navbar.php';
     <p class="card-text">Mantente informado con lo último en salud, eventos y consejos prácticos. Únete a nuestro boletín y no te pierdas ninguna novedad importante..</p>
     <a href="#" class="btn btn-primary border">Suscríbete aquí</a>
   </div>
-  <!-- <div class=" text-body-secondary">
-    2 days ago
-  </div> -->
 </div>
 </section>
 </main>
-<?php
-    
-    include 'includes/footer.php';
+<?php 
+  include 'includes/footer.php';
 ?>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/home.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/home.js"></script>
 </body>
 </html>
