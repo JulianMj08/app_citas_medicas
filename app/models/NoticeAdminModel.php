@@ -7,7 +7,8 @@ class NoticeAdminModel {
     // --------------------------------- VER NOTICIAS -----------------------------------------
     public static function seeAllNotices() {
         $conexion = Conexion::connect();
-        $sql = "SELECT * FROM noticias";
+        $sql = "SELECT * FROM noticias
+                INNER JOIN users_data on noticias.idUsuario = users_data.idUser";
         $result = $conexion->query($sql);
         $notices = [];
     
@@ -56,9 +57,14 @@ class NoticeAdminModel {
     }
 
     // --------------------------------- CREAR NOTICIA -----------------------------------------
-    public static function createNotice($title, $image, $text, $createDate, $idUsuario) {
+    public static function createNotice($title, $image, $text, $createDate) {
 
+        session_start();
+        if (!isset($_SESSION['idUser'])) {
+            return null;
+        }
         $conexion = Conexion::connect();
+        $idUsuario = $_SESSION['idUser'];
         $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
         $result = $stmt->execute([$title, $image, $text, $createDate, $idUsuario]);

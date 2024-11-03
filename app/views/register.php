@@ -16,15 +16,22 @@
     <!-- Formulario -->
     <form id="register-form" action="register"  method="post" class="container d-flex flex-wrap">
         <div class="col-12 col-md-6 p-4">
-            <?php if (!empty($errors)): ?>
-        <div class="alert alert-danger">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?= htmlspecialchars($error) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-            <?php endif; ?>
+        <?php if (!empty($errors)): ?>
+<div class="alert alert-danger">
+    <ul>
+        <?php foreach ($errors as $error): ?>
+            <li><?= htmlspecialchars($error) ?></li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
+
+<?php if (!empty($_SESSION['message'])): ?>
+<div class="alert alert-success">
+    <?= htmlspecialchars($_SESSION['message']) ?>
+    <?php unset($_SESSION['message']); // Elimina el mensaje después de mostrarlo ?>
+</div>
+<?php endif; ?>
         <div class="mb-2">
             <label for="nombre">Nombre<span style="color: red;">*</span></label>
             <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
@@ -73,7 +80,10 @@
         <div>
              <input type="submit" class="btn btn-primary" name="register-btn" value="Registrarse">
         </div>
-        </div>  
+        </div> 
+        <div class="m-4">
+            <p>¿Ya estás registrado? <a href="login">Inicia sesión aquí</a></p>
+        </div> 
     </form>
 
     <div class="d-none d-md-block">
@@ -81,6 +91,7 @@
     </div>
 
     </div>
+    
 <?php
  include 'includes/footer.php';
 ?>

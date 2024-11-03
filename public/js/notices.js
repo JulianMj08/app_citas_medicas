@@ -1,4 +1,4 @@
-console.log('funciona notices kkkkkkkkkkkkkkkk999999999999999990000000');
+console.log('funciona notices kkkkkkkkkkkkkkkk999999999999999990000000jjjjjjjj');
 
 
 // const btnOpen = document.querySelector('.open-notices');
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                         <img src="${imageURL}" alt="Imagen de la noticia" class="object-fit-cover rounded">
                         <p class="card-text pt-2"><strong>Noticia publicada en:</strong> ${notice.fecha}</p>
+                        <p class="card-autor pt-2"><strong>Autor:</strong> ${notice.nombre} ${notice.apellidos}</p>
                         <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#${modalId}">Ver Mas</button>
 
                         <div class="modal fade" id="${modalId}" class="container border" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">

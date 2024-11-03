@@ -70,8 +70,8 @@ class NoticeAdminController {
 
     // --------------------------------- CREAR NOTICIA -----------------------------------------
     public function createNewNotice() {
-        // Verificar si el método es POST
-        $method = $_SERVER['REQUEST_METHOD'];
+        
+        $method = $_SERVER['REQUEST_METHOD']; // Verificar si el método es POST
 
         if (isset($_FILES['image'])) {
             var_dump($_FILES['image']);
@@ -80,13 +80,12 @@ class NoticeAdminController {
                 die();
             }
         }
-    
         if ($method === 'POST') {
             // Obtener los datos del formulario
             $title = $_POST['title'];
             $text = $_POST['text'];
             $createDate = $_POST['createDate'];
-            $idUsuario = $_POST['idUsuario'];
+            //$idUsuario = $_POST['idUsuario'];
     
             // Inicializar el valor de $image
             $image = '';
@@ -129,7 +128,7 @@ class NoticeAdminController {
             }
     
             // Llamar al modelo para crear la noticia
-            $noticeCreated = NoticeAdminModel::createNotice($title, $image, $text, $createDate, $idUsuario);
+            $noticeCreated = NoticeAdminModel::createNotice($title, $image, $text, $createDate);
     
             // Limpiar el buffer de salida y preparar la respuesta
             ob_clean();

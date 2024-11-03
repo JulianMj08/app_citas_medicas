@@ -13,15 +13,14 @@ require_once __DIR__ . '/../controllers/UsersAdminController.php';
 require_once __DIR__ . '/../controllers/NoticesController.php';
 require_once __DIR__ . '/../controllers/AppointmentsClientController.php';
 require_once __DIR__ . '/../controllers/ProfileClientController.php';
+
 // Lista de rutas que tiene la aplicación
 
-// ------------------------------  Rutas para visitantes  ------------------------------
+// ------------------------------  RUTAS PARA VISITANTES  ------------------------------
 
 Route::get('/', function() {
      header('location: home', true, 301);// redirecion a el Home por medio de un header, damos true y 301 para que sea permanente
      exit(); // es buena practica dar exit para evitar errores.
-
-    echo "desde el index";
 });
 
 Route::get('home', function() {
@@ -35,13 +34,10 @@ Route::get('register', function() {
 Route::post('register', function() {
     $userRegister = new RegisterController;
 
-    // Solo llenamos los datos si el formulario fue enviado
-    if (isset($_POST['register-btn'])) {
+    if (isset($_POST['register-btn'])) { // Solo llenamos los datos si el formulario fue enviado
         $userRegister->fillFromPost($_POST);
     }
-
-    // Si el registro falla por validación, muestra los errores en pantalla
-    if (!$userRegister->registerUser()) {
+    if (!$userRegister->registerUser()) { // Si el registro falla por validación, muestra los errores en pantalla
         $errors = $userRegister->getErrors(); // Obtener los errores
         Route::render('register', ['errors' => $errors]); // Pasar los errores a la vista
     } 
@@ -61,38 +57,25 @@ Route::post('login', function(){
     LoginController::LoginValidation();    
 });
 
-// ------------------------------  Rutas para administradores  ------------------------------
+// ------------------------------  RUTAS PARA ADMINISTRADORES  ------------------------------
 
 Route::get('noticesAdmin', function(){
 
     session_start();
-
-    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
-        // Si el usuario es user, renderiza la vista del appointmentsClient
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') { // Si el usuario es admin, renderiza la vista del noticesAdmin
         Route::render('/admin/noticesAdmin');
     } else {
-        // Si no es administrador, redirige al home
-        // header('Location: home');
-        // exit();
-        //echo 'lo siento, no eres admin';
-        Route::render('login');
+        Route::render('login'); // Si no es administrador, renderiza al login
     }
-    
 });
 
 Route::get('appointmentsAdmin', function(){
 
     session_start();
-
     if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
-        // Si el usuario es user, renderiza la vista del appointmentsClient
-        Route::render('/admin/appointmentsAdmin');
+        Route::render('/admin/appointmentsAdmin'); // Si el usuario es admin, renderiza la vista del appointmentsAdmin
     } else {
-        // Si no es administrador, redirige al home
-        // header('Location: home');
-        // exit();
-        //echo 'lo siento, no eres admin';
-        Route::render('login');
+        Route::render('login'); // Si no es administrador, redirige al login
     }
     
 });
@@ -100,81 +83,45 @@ Route::get('appointmentsAdmin', function(){
 Route::get('usersAdmin', function(){
 
     session_start();
-
-    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
-        // Si el usuario es user, renderiza la vista del appointmentsClient
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') { // Si el usuario es admin, renderiza la vista del usersAdmin
         Route::render('/admin/usersAdmin');
     } else {
-        // Si no es administrador, redirige al home
-        // header('Location: home');
-        // exit();
-        //echo 'lo siento, no eres admin';
-        Route::render('login');
+        Route::render('login'); // Si no es administrador, redirige al login
     }
-    
-
 });
 
-// Route::get('controlPanel', function(){
-//     session_start();
-
-//     // Verificar si el usuario ha iniciado sesión y tiene el rol de 'admin'
-//     if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
-//         // Si el usuario es administrador, renderiza la vista del panel de control
-//         Route::render('/admin/controlPanel');
-//     } else {
-//         // Si no es administrador, redirige al home
-//         // header('Location: home');
-//         // exit();
-//         echo 'Lo siento no eres admin';
-//     }
-// });
-
-
-// ------------------------------  Rutas para los usuarios  ------------------------------ 
+// ------------------------------  RUTAS PARA USUARIOS  ------------------------------ 
 
 Route::get('appointmentsClient', function(){
 
     session_start();
-
-    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'user') {
-        // Si el usuario es user, renderiza la vista del appointmentsClient
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'user') { // Si el usuario es user, renderiza la vista del appointmentsClient
         Route::render('/client/appointmentsClient');
     } else {
-        // Si no es administrador, redirige al home
-        // header('Location: home');
-        // exit();
-        //echo 'lo siento, ve a registrarte';
-        Route::render('login');
+        Route::render('login'); // Si no es Usuario, redirige al login
     }
 });
 
 Route::get('profileClient', function(){
 
     session_start();
-
-    if (isset($_SESSION['rol']) && ($_SESSION['rol'] === 'user' || $_SESSION['rol'] === 'admin')) {
-        // Si el usuario es user, renderiza la vista del appointmentsClient
+    if (isset($_SESSION['rol']) && ($_SESSION['rol'] === 'user' || $_SESSION['rol'] === 'admin')) { // Si el usuario es user o admin renderiza la vista del profileClient
         Route::render('/client/profileClient');
     } else {
-        // Si no es administrador, redirige al home
-        // header('Location: home');
-        // exit();
-        //echo 'lo siento, no eres usuario';
-        Route::render('login');
+        Route::render('login'); // Si no es administrador o usuario, redirige al login
     }
 });
 
-Route::post('logout', function(){
+Route::post('logout', function(){ // destruimos la session
     session_start();
     session_destroy();
-    header('Location: login');
+    header('Location: login'); // redirigimos a el login
     exit();
 });
 
+// ------------------------------  RUTAS PARA LA API  ------------------------------ 
 
-
-// ------------------------------  Rutas para la API  ------------------------------ 
+// ------------------------------  NoticesAdmin  ----------------------------------- 
 
 Route::get('api/notices', function(){
     $allNotices = new NoticesController;
@@ -186,12 +133,12 @@ Route::post('api/noticesAdmin', function(){
     $title = isset($_POST['title']) ? $_POST['title'] : null;
     $text = isset($_POST['text']) ? $_POST['text'] : null;
     $createDate = isset($_POST['createDate']) ? $_POST['createDate'] : null;
-    $idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : null;
+    //$idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : null;
 
     // Para obtener el archivo (usando $_FILES)
     $image = isset($_FILES['image']) ? $_FILES['image'] : null;
 
-    // Aquí podrías agregar lógica para mover la imagen a una ubicación específica si se subió correctamente
+    // lógica para mover la imagen a una ubicación específica si se subió correctamente
     if ($image && $image['error'] == UPLOAD_ERR_OK) {
         $uploadDir = 'uploads/';
         $uploadFile = $uploadDir . basename($image['name']);
@@ -205,9 +152,8 @@ Route::post('api/noticesAdmin', function(){
     } else {
         echo "No se subió ningún archivo o hubo un error.\n";
     }
-
     $noticeAdminCreate = new NoticeAdminController;
-    $noticeAdminCreate->createNewNotice($title, $image, $text, $createDate, $idUsuario);
+    $noticeAdminCreate->createNewNotice($title, $image, $text, $createDate);
 }); 
 
 Route::get('api/noticesAdmin', function(){
@@ -215,7 +161,7 @@ Route::get('api/noticesAdmin', function(){
     $noticesAdmin->seeAll();
 });
 
-Route::get('api/noticesAdmin/{id}', function($id){ // Para obtener el id dinamicamente debemmos colocarlo como para metro en la funcion
+Route::get('api/noticesAdmin/{id}', function($id){ // Para obtener el id dinamicamente debemmos colocarlo como parametro en la función
     $noticeAdminId = new NoticeAdminController();
     $noticeAdminId->seeNoticeId($id);  // tambien se pasa el id como parámetro
 });
@@ -264,10 +210,6 @@ Route::get('uploads/{filename}', function($filename) {
             }
         }
     }
-
-    // Depuración: Mostrar la ruta generada
-    echo "Ruta generada: $filePath <br>";
-
     // Verificar si el archivo existe (debería existir en este punto)
     if (file_exists($filePath)) {
         ob_clean();
@@ -317,9 +259,6 @@ Route::update('api/appointmentsAdmin/{idCita}', function($idCita) {
     
     $data = json_decode(file_get_contents("php://input"), true);
 
-    var_dump(($data));
-
-    print_r($data);
     $nombre = isset($data['nombre']) ? $data['nombre'] : null;
     $apellidos = isset($data['apellidos']) ? $data['apellidos'] : null;
     $telefono = isset($data['telefono']) ? $data['telefono'] : null;
@@ -370,9 +309,6 @@ Route::update('api/userAdmin/{idUser}', function($idUser) {
     
     $data = json_decode(file_get_contents("php://input"), true);
 
-    var_dump(($data));
-
-    print_r($data);
     $name = isset($data['name']) ? $data['name'] : null;
     $lastNamesUser = isset($data['lastNamesUser']) ? $data['lastNamesUser'] : null;
     $nameUser = isset($data['nameUser']) ? $data['nameUser'] : null;
@@ -396,7 +332,6 @@ Route::update('api/userAdmin/{idUser}', function($idUser) {
 Route::post('api/appointmentsClient', function(){
     $data = json_decode(file_get_contents('php://input'), true); // decodificamos los datos que vienen en json
 
-    //$idUser = $data['idUser'] ?? null;
     $motivoAppointment = $data['motivoAppointment'] ?? null;
     $dateAppointment = $data['dateAppointment'] ?? null;
 
@@ -418,9 +353,6 @@ Route::update('api/appointmentsClient/{idCita}', function($idCita) {
     
     $data = json_decode(file_get_contents("php://input"), true);
 
-    var_dump(($data));
-
-    print_r($data);
     $motivoCita = isset($data['motivoCita']) ? $data['motivoCita'] : null;
     $fechaCita = isset($data['fechaCita']) ? $data['fechaCita'] : null;
 
@@ -435,7 +367,7 @@ Route::update('api/appointmentsClient/{idCita}', function($idCita) {
     }    
 });
 
-// ---------------------------------- Api Profile --------------------------------------------------------
+// ---------------------------------- ProfileClient --------------------------------------------------------
 
 Route::get('api/profileUserClient', function(){
     $profileUserClient = new ProfileClientController;

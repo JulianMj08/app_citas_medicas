@@ -133,9 +133,13 @@ class RegisterController {
             session_start();
         }
     
+        if (RegisterModel::isUserExists($this->email)) {
+            $this->errors[] = "El usuario o correo ya está registrado. Intente con otro.";
+            return false;
+        }
+
         if (!$this->registerValidation()) {
-            echo "Error de validación: ";
-            print_r($this->errors);
+            $this->errors[] = "Completa bien el formulario.";
             return false;
         }
     
@@ -145,6 +149,8 @@ class RegisterController {
         $idUser = RegisterModel::insertUser($this->nombre, $this->apellidos, $this->email, $this->telefono, $this->fechaNacimiento, $this->direccion, $this->sexo, $this->usuario, $hashContrasena);
     
         if ($idUser) {
+
+            $_SESSION['message'] = "¡Te has registrado correctamente!";
             // Establece los datos en la sesión
             $_SESSION['idUser'] = $idUser;         // Almacena el idUser en la sesión
             $_SESSION['usuario'] = $this->usuario; // Nombre de usuario
@@ -159,6 +165,7 @@ class RegisterController {
             header('Location: home');
             exit();
         } else {
+            $this->errors[] = "Error en el registro. Intente de nuevo.";
             header('Location: login');
             exit();
         }

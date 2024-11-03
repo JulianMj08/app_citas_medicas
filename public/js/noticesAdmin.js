@@ -5,7 +5,7 @@
     //      showNotices();
     // });
 
-    console.log('funcionando notices admin o no');
+    console.log('funcionando notices admin o noooooo');
     
     document.addEventListener("DOMContentLoaded", function () {
         showNotices(); // Llama a la función que carga las noticias automáticamente
@@ -19,7 +19,6 @@
             console.error('El contenedor notices-row no se encontró en el DOM.');
             return;
         }
-    
         const URL = 'http://app_citas_medicas.test:3000/api/noticesAdmin';
         try {
             const response = await fetch(URL, {headers: {'Content-Type': 'application/json'}});
@@ -51,6 +50,7 @@
                 card.innerHTML = `
                         <h5 class="card-title">${notice.titulo}</h5>
                         <p class="card-text">${notice.texto}</p>
+                        <p class="card-text"><strong>publicado por: </strong>${notice.nombre} ${notice.apellidos}</p>
                         <img src="${imageURL}" alt="Imagen de la noticia" class="object-fit-cover">
                         <button class="btn btn-primary mt-2">Ver Más</button>  
                 `;
@@ -207,9 +207,9 @@
             const image = document.getElementById('imageNotice');
             const text = document.getElementById('textNotice').value;
             const createDate = document.getElementById('fechaNotice').value;
-            const idUsuario = 16;
+            //const idUsuario = 16;
 
-            createNotice(title, image, text, createDate, idUsuario); 
+            createNotice(title, image, text, createDate); 
         }); 
         
 
