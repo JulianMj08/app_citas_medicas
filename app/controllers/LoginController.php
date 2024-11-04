@@ -37,6 +37,13 @@ class LoginController {
 
         $userData = LoginModel::searchUserByEmail($email); // si no tiene errores entonces entra a validar la contraseña hasheada
 
+        if (!$userData) {
+            // Si no existe el usuario, añadir un mensaje de error
+            $errors[] = "El correo electrónico que colocaste no tiene una cuenta con nosotros.";
+            Route::render('login', ['errors' => $errors]);
+            return false;
+        }
+
         if ($userData && password_verify($contrasena, $userData['contrasena'])) {
             // Si la verificación de la contraseña es correcta, iniciar sesión
             return self::loginUser($userData);
@@ -46,45 +53,18 @@ class LoginController {
             Route::render('login', ['errors' => $errors]);
             return false;
         }
-        
-
-       
-
-        /* $hashedcontrasena = LoginModel::verified($email);
-
-         // Verificar si existe el usuario y si la contraseña es correcta
-         $hashedcontrasena = LoginModel::verified($email); // Obtiene la contraseña hasheada desde la BD
-         if ($hashedcontrasena && password_verify($contrasena, $hashedcontrasena)) {
-             // Si la verificación de la contraseña es correcta, iniciar sesión
-             return self::loginUser();
-         } else {
-             echo "<div style='color:red;'>Correo electrónico o contraseña incorrectos.</div>";
-             return false;
-         } */
-        
-
-        /*if (isset($_POST['login-btn'])) {
-            $email = $_POST['email'];
-            $contrasena = $_POST['contrasena'];
-
-            if (empty($email) || empty($contrasena)) {
-                $error = " DATOS VACIOS ";
-            } else {
-                echo " DATOS COMPLETOS ";
-                self::loginUser();
-            }
-        }*/
-        //Route::render('login', ['error' => $error]);
     }
 
     public static function loginUser($userData) {
         session_start(); // Iniciar la sesión
     
+        $_SESSION['message'] = "¡Haz iniciado sesion correctamente!";
         // Almacenar los datos del usuario en la sesión
         $_SESSION['email'] = $userData['email']; // Almacenar el email
         $_SESSION['nombre'] = $userData['nombre']; // Almacenar el nombre
         $_SESSION['idUser'] = $userData['idUser']; // Almacenar el ID del usuario
         $_SESSION['rol'] = $userData['rol']; // Almacenar el ID del usuario
+
 
         $userRol = $_SESSION['rol'] = $userData['rol'];
 

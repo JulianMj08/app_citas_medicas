@@ -27,5 +27,40 @@ class ProfileClientModel {
             }
         
         }
+
+    public static function updateUserProfileModel($idUser, $name, $lastNamesUser, $email, $fechaNacimiento, $direccion, $sexUser, $nameUser, $password) {
+
+            $conexion = Conexion::connect();
+            $name = $conexion->real_escape_string($name);
+            $lastNamesUser = $conexion->real_escape_string($lastNamesUser);
+            $email = $conexion->real_escape_string($email);
+            $fechaNacimiento = $conexion->real_escape_string($fechaNacimiento);
+            $direccion = $conexion->real_escape_string($direccion);
+            $sexUser = $conexion->real_escape_string($sexUser);
+            $nameUser = $conexion->real_escape_string($nameUser);
+            $password = $conexion->real_escape_string($password);
+        
+            $sql = "UPDATE users_data d
+                     JOIN users_login l ON d.idUser = l.idUsuario
+                     SET d.nombre = ?,
+                         d.apellidos = ?,
+                         d.email = ?,
+                         d.fechaNacimiento = ?,
+                         d.direccion = ?,
+                         d.sexo = ?,
+                         l.usuario = ?,
+                         l.contrasena = ?
+                    WHERE d.idUser =  ?";
+                    
+            $result = $conexion->prepare($sql);
+            $result->bind_param("ssssssssi", $name, $lastNamesUser, $email, $fechaNacimiento, $direccion, $sexUser, $nameUser, $password, $idUser);
+            
+            if ($result && $result->execute()) { // Ejecuta la consulta y verifica el éxito
+                return true; // Si la actualización fue exitosa
+            } else {
+                error_log("Error en la consulta SQL: " . $conexion->error); // Agregar logs de errores SQL
+                return false; // Si la consulta falló
+            }
+        }
     }
 ?>

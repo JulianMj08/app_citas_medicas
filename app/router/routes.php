@@ -374,4 +374,40 @@ Route::get('api/profileUserClient', function(){
     $profileUserClient->seeUserControl();
 });
 
+Route::update('api/profileUserClient/{idUser}', function($idUser) {
+    
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    // Ajustamos los nombres de las variables para que coincidan con los nombres enviados desde fetch
+    $nombre = isset($data['nombre']) ? $data['nombre'] : null;
+    $apellidos = isset($data['apellidos']) ? $data['apellidos'] : null;
+    $email = isset($data['email']) ? $data['email'] : null;
+    $fechaNacimiento = isset($data['fechaNacimiento']) ? $data['fechaNacimiento'] : null;
+    $direccion = isset($data['direccion']) ? $data['direccion'] : null;
+    $sexo = isset($data['sexo']) ? $data['sexo'] : null;
+    $usuario = isset($data['usuario']) ? $data['usuario'] : null;
+    $contrasena = isset($data['contrasena']) ? $data['contrasena'] : null;
+
+    // Verificar si al menos uno de los campos tiene datos
+    if ($nombre || $apellidos || $email || $fechaNacimiento || $direccion || $sexo || $usuario || $contrasena) {
+        $profileUserUpdate = new ProfileClientController();
+
+        // Si hay una nueva contraseña, encriptarla
+        if (!empty($contrasena)) {
+            $contrasena = password_hash($contrasena, PASSWORD_DEFAULT); // Encriptar la nueva contraseña
+        } else {
+            $contrasena = null; // No modificar la contraseña si no se proporciona
+        }
+        
+        $profileUserUpdate->updateUserProfileControl($idUser, $nombre, $apellidos, $email, $fechaNacimiento, $direccion, $sexo, $usuario, $contrasena);
+
+        header('Content-Type: application/json');
+        echo json_encode(['success' => 'Usuario actualizado correctamente.']);
+    } else {
+        header('Content-Type: application/json', true, 400);
+        echo json_encode(['error' => 'Se requiere al menos un campo para actualizar.']);
+    } 
+});
+
+
 ?>

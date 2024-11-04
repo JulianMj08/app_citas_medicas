@@ -18,15 +18,17 @@ require_once '../app/models/ProfileClientModel.php';
  //require_once '../app/models/Conexion.php';
  Route::dispatch();
 
+ //ProfileClientModel::updateUserProfileModel(52,'probando', 'cama y mesa', 'camamesa@gmail.com', '2024-09-05', 'direccion de prueba', 'mujer', 'camamesa', 'contraseprueba');
+
 //$probando = ProfileClientModel::seeAllUsersModel(); 
 //  $prueba =  new NoticesController();
 //  $prueba->seeAllNoticesControl();
 
 // $prueba = AppointmentsClientModel::seeAllAppointmentsModel();
 
-   //echo "<div>";
-   //var_dump($probando);
-   //echo "</div>";
+//    echo "<div>";
+//    var_dump($probando);
+//    echo "</div>";
 
 //AppointmentsClientModel::updateAppointmentModel(77, 'muchaTos', '2025-11-11');
 /*

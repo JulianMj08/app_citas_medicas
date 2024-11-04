@@ -53,8 +53,17 @@
         <div>
              <input type="submit" class="btn btn-primary" name="login-btn" value="Iniciar Sesion">
         </div>
+
+        <div class="m-4">
+            <p>¿Nuevo usuario? <a href="register">Registrarse</a></p>
+        </div> 
     </form>    
 
+    <?php if (!empty($_SESSION['message'])): ?>
+        <div class="alert alert-success">
+            <?= htmlspecialchars($_SESSION['message']) ?>
+            <?php unset($_SESSION['message']); // Elimina el mensaje después de mostrarlo ?>
+            <?php endif; ?>
 </div>    
  <?php
     include 'includes/footer.php';

@@ -134,7 +134,7 @@ class RegisterController {
         }
     
         if (RegisterModel::isUserExists($this->email)) {
-            $this->errors[] = "El usuario o correo ya está registrado. Intente con otro.";
+            $this->errors[] = "El usuario o correo ya está registrado. Intenta con otro.";
             return false;
         }
 
@@ -157,7 +157,6 @@ class RegisterController {
             $_SESSION['rol'] = 'user';            // Rol del usuario
             $_SESSION['email'] = $this->email;     // Email del usuario
 
-            $_SESSION['message'] = "¡Te has registrado correctamente!";
     
             //echo "Registro exitoso, ID de usuario: " . $_SESSION['idUser'];
             

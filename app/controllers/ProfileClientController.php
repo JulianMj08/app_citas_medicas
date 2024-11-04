@@ -27,5 +27,27 @@ class ProfileClientController {
             }
         }
     }
+
+    public function updateUserProfileControl($idUser, $name, $lastNamesUser, $email, $fechaNacimiento, $direccion, $sexUser, $nameUser, $password) {
+
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if($method === 'PUT') {
+
+            $userUpdate = ProfileClientModel::updateUserProfileModel($idUser, $name, $lastNamesUser, $email, $fechaNacimiento, $direccion, $sexUser, $nameUser, $password);
+
+            if($userUpdate !== null) {
+                ob_clean();
+                header('Content-Type: application/json');
+
+                if($userUpdate) {
+                    echo json_encode(['success' => 'Usuario Actualizado correctamente']);
+                } else {
+                    echo json_encode(['error' => 'No se pudo Actualizar el Usuario']);
+                }
+                exit();
+            }
+        }
+    }
 }
 ?>

@@ -95,10 +95,10 @@ async function deleteUser(id) {
 
 // --------------------------------- CREAR USUARIO -----------------------------------------
 document.getElementById('saveUser').addEventListener('click', function() {
-    createAppointment();
+    createUser();
 });
 
-async function createAppointment() {
+async function createUser() {
     const name = document.getElementById('nombre').value;
     const lastNamesUser = document.getElementById('apellidos').value;
     const nameUser = document.getElementById('nombre-usuario').value;
