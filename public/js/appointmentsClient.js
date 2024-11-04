@@ -1,4 +1,4 @@
-console.log('ajajjjkkkkkiiii000000000000000000000000kkkkkkkkkkkkkkkkkkkkklllllllllllllll00000000000000000pppppppppppp');
+console.log('ajajjjkk');
 
 
 // --------------------------------- CREAR CITA -----------------------------------------
@@ -15,7 +15,6 @@ document.getElementById('saveAppointment').addEventListener('click', function() 
 });
 
 async function createAppointment() {
-    //const idUser = document.getElementById('id-usuario').value;
     const motivoAppointment = document.getElementById('motivo-cita').value;
     const dateAppointment = document.getElementById('fecha-cita').value;
 
@@ -36,7 +35,7 @@ async function createAppointment() {
         showAppointments(); // Mostrar las citas después de crear una nueva
     } catch (error) {
         console.error('Error al enviar las citas:', error);
-        alert('Error al crear la cita');
+        alert('Error al crear la cita, la fecha no puede ser anteior a la fecha actual');
     }
 }
 
@@ -64,6 +63,8 @@ async function showAppointments() {
         // Limpiar el contenido del contenedor `appointmentRow`
         appointmentRow.innerHTML = '';
 
+        const today = new Date().toISOString().split('T')[0]; // Obtener la fecha de hoy en formato YYYY-MM-DD
+
         data.forEach(appointment => {
             const containerAppointment = document.createElement('div'); // Crear el contenedor de cada cita
             containerAppointment.classList.add('col-12', 'col-md-6', 'col-lg-3');
@@ -72,16 +73,18 @@ async function showAppointments() {
             const card = document.createElement('div'); //creamos el div del card
             card.classList.add('card', 'mt-4', 'p-4', 'bg-light', 'border', 'h-100', 'shadow'); // Añadir `h-100` para que todas las tarjetas tengan la misma altura
 
+            // Comprobar si la fecha de la cita es anterior a la fecha actual
+            const isPastDate = appointment.fechaCita < today;
+
             // Agregar contenido a la tarjeta
             card.innerHTML = `
             <p class="card-title fs-4"><strong>nombre:</strong> ${appointment.nombre} ${appointment.apellidos}</p>
                 <h6 class="card-date fs-6"><strong>fecha de la cita:</strong> ${appointment.fechaCita}</h6>
                 <p class="card-reason"><strong>motivo de la cita:</strong> ${appointment.motivoCita}</p>  
                 <div class="d-flex flex-row mt-4">
-                    <button class="btn-edit" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo" alt="Modificar"></button>    
-                <button class="btn-delete" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" class="logo" alt="Eliminar"></button>
-                </div>   
-                  
+                    ${isPastDate ? '' : `<button class="btn-edit" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo" alt="Modificar"></button>`}
+                    <button class="btn-delete" data-id="${appointment.idCita}" style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" class="logo" alt="Eliminar"></button>
+                </div> 
             `;
 
             containerAppointment.appendChild(card);
@@ -158,7 +161,7 @@ async function deleteAppointment(id) {
             alert('Cita eliminada correctamente');
             showAppointments(); // Recargar la lista de citas
         } else {
-            alert('No se pudo eliminar la Cita');
+            alert('No se puede eliminar una cita que ya ha pasado.');
         }
     } catch (error) {
         console.error("No se eliminó correctamente", error);  

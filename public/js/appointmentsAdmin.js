@@ -4,12 +4,13 @@
 //          showAppointments();
 //     });
 
-console.log('funcionando tambien');
+console.log('funcionando tambienppppp');
 
 document.addEventListener("DOMContentLoaded", function () {
     showAppointments(); // Llama a la función que carga las noticias automáticamente
 });
 
+// --------------------------------- VER USUARIOS -----------------------------------------
 async function showAppointments() {
     const tableBody = document.querySelector('#container-table table tbody.table-group-divider');
     tableBody.innerHTML = ''; // Limpia el contenido previo para evitar duplicados
@@ -35,27 +36,30 @@ async function showAppointments() {
                     <td class="motivoCita">${appointment.motivoCita}</td>
                     <td class="fechaCita">${appointment.fechaCita}</td>
                     <td class="text-center">
-                    <button style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo btn-edit" alt="Modificar"></button>
-                    <button style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" id="delete-appointment" class="logo" alt="Eliminar"></button>
+                        <button style="border: none; background-color: transparent"><img src="/assets/icons/editar.png" class="logo btn-edit" alt="Modificar"></button>
+                        <button style="border: none; background-color: transparent"><img src="/assets/icons/borrar.png" class="logo delete-appointment" alt="Eliminar"></button>
                     </td>
                 </tr>
             `;
             // Añadir la fila al contenido del <tbody>
             tableBody.innerHTML += rowHTML;
-
-            // Añadir eventos para editar y eliminar después de agregar las filas
-            document.querySelectorAll('.btn-edit').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    editRow(row);
-                    console.log("funciona");      
-             });
         });
 
-            // Añadir el evento al botón de eliminar
-            const btnDelete = document.querySelector('#delete-appointment');
-            btnDelete.addEventListener('click', function() {
-                deleteAppointment(appointment.idCita);
+        // Añadir eventos para editar
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                editRow(row);
+                console.log("funciona");      
+            });
+        });
+
+        // Añadir eventos para eliminar
+        document.querySelectorAll('.delete-appointment').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const idCita = row.getAttribute('data-id');
+                deleteAppointment(idCita);
             });
         });
 
@@ -64,68 +68,24 @@ async function showAppointments() {
     }
 }
 
-// --------------------------------- VER USUARIOS -----------------------------------------
-async function showUsers() {
-    const containerUsers = document.getElementById('containerSelectUsers');
-    //containerUsers.innerHTML = ''; // Limpia el contenedor antes de agregar nuevas citas
-
-    const URL_USERS = 'http://app_citas_medicas.test:3000/api/appointmentsAdminUsers';
-    try {
-        const response = await fetch(URL_USERS, { headers: { 'Content-Type': 'application/json' } });
-        const allUsers = await response.json();
-        //console.log(allUsers);
-
-        // Crear el select
-        const selectElement = document.createElement('select');
-        selectElement.id = 'appointmentSelectUser'; //asigno id por si es necesario
-        selectElement.name = 'appointmentSelectUser';        // asigno name para envio de formulario
-
-        selectElement.classList.add('form-select', 'w-100');
-
-        // Añadir un <option> por defecto
-        const defaultOption = document.createElement('option'); //La opción predeterminada proporciona una instrucción clara al usuario sobre lo que debe hacer
-        defaultOption.value = '';
-        defaultOption.textContent = 'Selecciona un usuario';
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        selectElement.appendChild(defaultOption);
-
-        // Crear un <option> para cada cita
-        allUsers.forEach(user => {
-            const option = document.createElement('option');
-            option.value = user.nombre;
-            //option.textContent = `Cita de ${appointment.idUsuario} - ${appointment.nombre}`;
-            option.textContent = `${user.nombre}`;
-            selectElement.appendChild(option);
-        });
-
-        // Añadir el select al contenedor
-        containerUsers.appendChild(selectElement);
-
-    } catch (error) {
-        console.error('Error al obtener las citas:', error);
-    }
-} 
-showUsers();
-
 // --------------------------------- ELIMINAR CITA -----------------------------------------
 async function deleteAppointment(id) {
     try {
         const URL_DELETE = `http://app_citas_medicas.test:3000/api/appointmentsAdmin/${id}`;
 
-        const response = await fetch(URL_DELETE, {method: 'DELETE', headers:  {'Content-Type': 'application/json' }});
+        const response = await fetch(URL_DELETE, { method: 'DELETE', headers: { 'Content-Type': 'application/json' } });
 
         if (response.ok) {
             alert('Cita eliminada correctamente');
-            //showNotices(); // Recargar la lista de citas
-            
+            showAppointments(); // Recargar la lista de citas para reflejar los cambios
         } else {
             alert('No se pudo eliminar la Cita');
         }
     } catch (error) {
-        console.error("no se eliminó correctamente", error);  
+        console.error("Error al eliminar la cita:", error);  
     }
 }
+
 
 // --------------------------------- CREAR CITA -----------------------------------------
 

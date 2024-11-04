@@ -5,7 +5,7 @@
     //      showNotices();
     // });
 
-    console.log('funcionando notices admin o noooooo');
+    console.log('funcionando notices admin o nooooooTTTTTTTTTT');
     
     document.addEventListener("DOMContentLoaded", function () {
         showNotices(); // Llama a la función que carga las noticias automáticamente
@@ -151,7 +151,7 @@
     }
 
     // ---------------------------------------   CREAR NOTICIAS   ---------------------------------------
-    async function createNotice(title, image, text, createDate, idUsuario) {
+    async function createNotice(title, image, text) {
         const URL_CREATE_NOTICE = 'http://app_citas_medicas.test:3000/api/noticesAdmin';
     
         try {
@@ -159,8 +159,8 @@
             const formData = new FormData();
             formData.append('title', title);
             formData.append('text', text);
-            formData.append('createDate', createDate);
-            formData.append('idUsuario', idUsuario);
+            //formData.append('createDate', createDate);
+            //formData.append('idUsuario', idUsuario);
             
             console.log(image.files[0]);
             // image es un <input type="file">, por lo que debes acceder al archivo seleccionado
@@ -206,10 +206,10 @@
             const title = document.getElementById('titleNotice').value;
             const image = document.getElementById('imageNotice');
             const text = document.getElementById('textNotice').value;
-            const createDate = document.getElementById('fechaNotice').value;
+            //const createDate = document.getElementById('fechaNotice').value;
             //const idUsuario = 16;
 
-            createNotice(title, image, text, createDate); 
+            createNotice(title, image, text); 
         }); 
         
 

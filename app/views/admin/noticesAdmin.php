@@ -54,7 +54,7 @@ include __DIR__ . '/../includes/navbar.php';
       <div class="modal-body">
         <textarea name="noticeTextCreate" class="form-control " id="textNotice" rows="10" placeholder="Descripción de la noticia"></textarea>
         <input type="file" id="imageNotice" class="form-control mt-2" name="image">
-        <input class="form-control mt-2" type="date" id="fechaNotice">
+        <!-- <input class="form-control mt-2" type="date" id="fechaNotice"> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

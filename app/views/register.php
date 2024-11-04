@@ -66,7 +66,8 @@
         </div>
         <div class="mb-2">
             <label for="fecha-nacimiento">Fecha-nacimiento<span style="color: red;">*</span></label>
-            <input class="form-control" type="date" name="fecha-nacimiento" id="fecha-nacimiento" placeholder="Fecha de nacimiento">
+            <input class="form-control" type="date" name="fecha-nacimiento" id="fecha-nacimiento" max="<?= date('Y-m-d'); ?>" placeholder="Fecha de nacimiento">
+
         </div>
         <span>Sexo</span>
         <div class="form-check">

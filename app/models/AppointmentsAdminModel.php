@@ -100,33 +100,45 @@ class AppointmentsAdminModel {
     }
      
     // --------------------------------- ACTUALIZAR CITA -----------------------------------------
-    public static function updateAppointmentModel($idCita,$nombre, $apellidos, $telefono, $motivoCita, $fechaCita) {
+    public static function updateAppointmentModel($idCita, $nombre, $apellidos, $telefono, $motivoCita, $fechaCita) {
         $conexion = Conexion::connect();
-
+    
+        // Escapar los valores para evitar inyecciones SQL
         $nombre = $conexion->real_escape_string($nombre);
         $apellidos = $conexion->real_escape_string($apellidos);
         $telefono = $conexion->real_escape_string($telefono);
         $motivoCita = $conexion->real_escape_string($motivoCita);
         $fechaCita = $conexion->real_escape_string($fechaCita);
-
+    
         $sql = "UPDATE citas c
                 JOIN users_Data u ON c.idUsuario = u.idUser
                 SET u.nombre = ?,
-	                u.apellidos = ?,
+                    u.apellidos = ?,
                     u.telefono = ?,
                     c.motivoCita = ?,
                     c.fechaCita = ?
-                WHERE c.idCita =  ?";
-
+                WHERE c.idCita = ?";
+    
         $result = $conexion->prepare($sql);
-        $result->bind_param("sssssi", $nombre, $apellidos, $telefono, $motivoCita,  $fechaCita, $idCita);
-        
+    
         if ($result) {
-            return true; // Si la eliminación fue exitosa
+            // Vincular los parámetros
+            $result->bind_param("sssssi", $nombre, $apellidos, $telefono, $motivoCita, $fechaCita, $idCita);
+            
+            // Ejecutar la consulta y verificar si tuvo éxito
+            if ($result->execute()) {
+                $result->close();
+                return true; // Actualización exitosa
+            } else {
+                error_log("Error al ejecutar la consulta SQL: " . $result->error); // Log de errores en la ejecución
+                $result->close();
+                return false; // Ejecución fallida
+            }
         } else {
-            error_log("Error en la consulta SQL: " . $conexion->error); // Agregar logs de errores SQL
-            return false; // Si la consulta falló
+            error_log("Error en la preparación de la consulta SQL: " . $conexion->error); // Log de errores en la preparación
+            return false; // Preparación fallida
         }
     }
+    
 }
 ?>

@@ -61,13 +61,16 @@ function editRow(row, userId) {
     const sexo = row.querySelector('.sexo').textContent.replace("Sexo: ", "").trim();
     const usuario = row.querySelector('.usuario').textContent.replace("Usuario: ", "").trim();
 
+   // <p><strong>Fecha de nacimiento: </strong><input type="date" class="form-control" value="${fechaNacimiento}" id="edit-fechaNacimiento"></p>
+
     // Reemplazar el contenido de la tarjeta con campos editables
     row.innerHTML = `
         <div class="col-6">
             <p><strong>Nombre:</strong> ${nombre}</p>
             <p><strong>Apellidos:</strong> ${apellidos}</p>
             <p><strong>Email:</strong><input type="text" class="form-control" value="${email}" id="edit-email"></p>
-            <p><strong>Fecha de nacimiento:</strong><input type="date" class="form-control" value="${fechaNacimiento}" id="edit-fechaNacimiento"></p>
+            <p><strong>Fecha de nacimiento:</strong><input type="date" class="form-control" value="${fechaNacimiento}" id="edit-fechaNacimiento" max="<?= date('Y-m-d');?></p>
+            
             <p><strong>Direccion:</strong><input type="text" class="form-control" value="${direccion}" id="edit-direccion"></p>
             <p><strong>Sexo:</strong><input type="text" class="form-control" value="${sexo}" id="edit-sexo"></p>
             <p><strong>Usuario:</strong><input type="text" class="form-control" value="${usuario}" id="edit-usuario"></p>

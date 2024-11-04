@@ -64,33 +64,45 @@ class UsersAdminModel {
     }
 
   // --------------------------------- ACTUALIZAR USUARIO ----------------------------------------- 
-    public static function updateUserModel($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser) {
+  public static function updateUserModel($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser) {
+    $conexion = Conexion::connect();
+    
+    // Escapar los valores para evitar inyecciones de SQL
+    $name = $conexion->real_escape_string($name);
+    $lastNamesUser = $conexion->real_escape_string($lastNamesUser);
+    $nameUser = $conexion->real_escape_string($nameUser);
+    $sexUser = $conexion->real_escape_string($sexUser);
+    $rolUser = $conexion->real_escape_string($rolUser);
 
-        $conexion = Conexion::connect();
-        $name = $conexion->real_escape_string($name);
-        $lastNamesUser = $conexion->real_escape_string($lastNamesUser);
-        $nameUser = $conexion->real_escape_string($nameUser);
-        $sexUser = $conexion->real_escape_string($sexUser);
-        $rolUser = $conexion->real_escape_string($rolUser);
+    $sql = "UPDATE users_data d
+             JOIN users_login l ON d.idUser = l.idUsuario
+             SET d.nombre = ?,
+                 d.apellidos = ?,
+                 d.sexo = ?,
+                 l.usuario = ?,
+                 l.rol = ?
+            WHERE d.idUser = ?";            
 
-        $sql = "UPDATE users_data d
-                 JOIN users_login l ON d.idUser = l.idUsuario
-                 SET d.nombre = ?,
-                     d.apellidos = ?,
-                     d.sexo = ?,
-                     l.usuario = ?,
-                     l.rol = ?
-                WHERE d.idUser =  ?";            
+    $result = $conexion->prepare($sql);
 
-        $result = $conexion->prepare($sql);
+    if ($result) {
+        // Vincular los parámetros
         $result->bind_param("sssssi", $name, $lastNamesUser, $sexUser, $nameUser, $rolUser, $idUser);
         
-        if ($result) {
-            return true; // Si la eliminación fue exitosa
+        // Ejecutar la consulta y verificar si tuvo éxito
+        if ($result->execute()) {
+            $result->close();
+            return true; // Si la actualización fue exitosa
         } else {
-            error_log("Error en la consulta SQL: " . $conexion->error); // Agregar logs de errores SQL
-            return false; // Si la consulta falló
+            error_log("Error al ejecutar la consulta SQL: " . $result->error); // Log de errores de ejecución
+            $result->close();
+            return false; // Si la ejecución falló
         }
+    } else {
+        error_log("Error en la preparación de la consulta SQL: " . $conexion->error); // Log de errores de preparación
+        return false; // Si la preparación falló
     }
+}
+
 }
 ?>

@@ -57,7 +57,7 @@ class NoticeAdminModel {
     }
 
     // --------------------------------- CREAR NOTICIA -----------------------------------------
-    public static function createNotice($title, $image, $text, $createDate) {
+    public static function createNotice($title, $image, $text) {
 
         session_start();
         if (!isset($_SESSION['idUser'])) {
@@ -65,9 +65,9 @@ class NoticeAdminModel {
         }
         $conexion = Conexion::connect();
         $idUsuario = $_SESSION['idUser'];
-        $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO noticias (titulo, imagen, texto, fecha, idUsuario) VALUES (?, ?, ?, NOW(), ?)";
         $stmt = $conexion->prepare($sql);
-        $result = $stmt->execute([$title, $image, $text, $createDate, $idUsuario]);
+        $result = $stmt->execute([$title, $image, $text, $idUsuario]);
     
         if($result) {
             echo 'Datos enviados correctamente';

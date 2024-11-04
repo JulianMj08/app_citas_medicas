@@ -93,6 +93,26 @@ class AppointmentsClientModel {
             return false; // Si la consulta falló
         }
     }
+
+    // --------------------------------- OBTENER CITA POR ID -----------------------------------------
+    public static function getAppointmentById($idCita) {
+
+        $conexion = Conexion::connect();
+        $sql = "SELECT * FROM citas WHERE idCita = ?";
+        $result = $conexion->prepare($sql);
+        $result->bind_param("i", $idCita);
+        $result->execute();
+        $result = $result->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc(); // Devuelve la cita como un array asociativo
+        } else {
+            return null; // Si no existe la cita
+        }
+    }
+
 }
+
+
 
 ?>

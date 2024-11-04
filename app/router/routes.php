@@ -132,7 +132,7 @@ Route::post('api/noticesAdmin', function(){
     // Para obtener los datos de la solicitud que no son el archivo (usando $_POST)
     $title = isset($_POST['title']) ? $_POST['title'] : null;
     $text = isset($_POST['text']) ? $_POST['text'] : null;
-    $createDate = isset($_POST['createDate']) ? $_POST['createDate'] : null;
+    //$createDate = isset($_POST['createDate']) ? $_POST['createDate'] : null;
     //$idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : null;
 
     // Para obtener el archivo (usando $_FILES)
@@ -153,7 +153,7 @@ Route::post('api/noticesAdmin', function(){
         echo "No se subió ningún archivo o hubo un error.\n";
     }
     $noticeAdminCreate = new NoticeAdminController;
-    $noticeAdminCreate->createNewNotice($title, $image, $text, $createDate);
+    $noticeAdminCreate->createNewNotice($title, $image, $text);
 }); 
 
 Route::get('api/noticesAdmin', function(){

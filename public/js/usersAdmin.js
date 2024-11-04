@@ -5,7 +5,7 @@
 //     showAllUsers();
 // });
 
-console.log('pagina funcionando');
+console.log('pagina funcionandooooooooooo99999');
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -84,7 +84,7 @@ async function deleteUser(id) {
 
         if (response.ok) {
             alert('Usuario eliminado correctamente');
-            //showNotices(); // Recargar la lista de citas
+            showAllUsers();
         } else {
             alert('No se pudo eliminar el Usuario');
         }
@@ -199,7 +199,7 @@ async function updateUser(idUser) {
         
         if (data.success) {
             alert('Usuario actualizado correctamente');
-            showAllUsers(); // Recargar la lista de citas
+            showAllUsers(); // Recargar la lista de usuarios
         } else {
             alert('Error al actualizar Usuario');
         }

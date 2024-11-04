@@ -84,7 +84,7 @@ class NoticeAdminController {
             // Obtener los datos del formulario
             $title = $_POST['title'];
             $text = $_POST['text'];
-            $createDate = $_POST['createDate'];
+            //$createDate = $_POST['createDate'];
             //$idUsuario = $_POST['idUsuario'];
     
             // Inicializar el valor de $image
@@ -128,7 +128,7 @@ class NoticeAdminController {
             }
     
             // Llamar al modelo para crear la noticia
-            $noticeCreated = NoticeAdminModel::createNotice($title, $image, $text, $createDate);
+            $noticeCreated = NoticeAdminModel::createNotice($title, $image, $text);
     
             // Limpiar el buffer de salida y preparar la respuesta
             ob_clean();
