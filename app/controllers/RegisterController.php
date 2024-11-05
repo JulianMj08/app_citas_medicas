@@ -100,8 +100,6 @@ class RegisterController {
 
         //validación campo fecha de nacimiento
         $fechaActual = new DateTime();
-        // var_dump($this->fechaNacimiento);
-        // var_dump($fechaActual);
 
         if (empty($this->fechaNacimiento)) {
             $this->errors[] = "El campo fecha de nacimiento es obligatorio";
@@ -156,9 +154,6 @@ class RegisterController {
             $_SESSION['usuario'] = $this->usuario; // Nombre de usuario
             $_SESSION['rol'] = 'user';            // Rol del usuario
             $_SESSION['email'] = $this->email;     // Email del usuario
-
-    
-            //echo "Registro exitoso, ID de usuario: " . $_SESSION['idUser'];
             
             // Redirigir al usuario a home
             header('Location: home');
@@ -168,7 +163,6 @@ class RegisterController {
             header('Location: login');
             exit();
         }
-    }
-        
+    } 
 }
 ?>

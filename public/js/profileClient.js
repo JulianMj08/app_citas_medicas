@@ -1,4 +1,4 @@
-console.log('Funcionando profile client3333333333333377777777777777');
+console.log('Funcionando profile client333333333333337777777777777799999999999');
 
 // Cargar los datos del usuario al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
@@ -66,11 +66,10 @@ function editRow(row, userId) {
     // Reemplazar el contenido de la tarjeta con campos editables
     row.innerHTML = `
         <div class="col-6">
-            <p><strong>Nombre:</strong> ${nombre}</p>
-            <p><strong>Apellidos:</strong> ${apellidos}</p>
+            <p><strong>Nombre:</strong><input type="text" class="form-control" value="${nombre}" id="edit-nombre" readonly></p>
+            <p><strong>Apellidos:</strong><input type="text" class="form-control" value="${apellidos}" id="edit-apellidos" readonly></p>
             <p><strong>Email:</strong><input type="text" class="form-control" value="${email}" id="edit-email"></p>
-            <p><strong>Fecha de nacimiento:</strong><input type="date" class="form-control" value="${fechaNacimiento}" id="edit-fechaNacimiento" max="<?= date('Y-m-d');?></p>
-            
+            <p><strong>Fecha de nacimiento:</strong><input type="date" class="form-control" value="${fechaNacimiento}" id="edit-fechaNacimiento" max="<?= date('Y-m-d'); ?>"></p>
             <p><strong>Direccion:</strong><input type="text" class="form-control" value="${direccion}" id="edit-direccion"></p>
             <p><strong>Sexo:</strong><input type="text" class="form-control" value="${sexo}" id="edit-sexo"></p>
             <p><strong>Usuario:</strong><input type="text" class="form-control" value="${usuario}" id="edit-usuario"></p>
@@ -96,6 +95,8 @@ function editRow(row, userId) {
 
 async function updateUser(idUser) {
     // Obtener los valores de los inputs editables
+    const nombre = document.getElementById('edit-nombre').value;
+    const apellidos = document.getElementById('edit-apellidos').value;
     const email = document.getElementById('edit-email').value;
     const fechaNacimiento = document.getElementById('edit-fechaNacimiento').value;
     const direccion = document.getElementById('edit-direccion').value;
@@ -111,7 +112,7 @@ async function updateUser(idUser) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ idUser, email, fechaNacimiento, direccion, sexo, usuario, contrasena })
+            body: JSON.stringify({ idUser, nombre, apellidos, email, fechaNacimiento, direccion, sexo, usuario, contrasena })
         });
 
         const data = await response.json();

@@ -25,9 +25,9 @@ class ProfileClientModel {
             } else {
                 return null; // Si no se encuentra ningun usuario con ese ID
             }
-        
         }
 
+    // --------------------------------- UPDATE USUARIOS -----------------------------------------    
     public static function updateUserProfileModel($idUser, $name, $lastNamesUser, $email, $fechaNacimiento, $direccion, $sexUser, $nameUser, $password) {
 
             $conexion = Conexion::connect();

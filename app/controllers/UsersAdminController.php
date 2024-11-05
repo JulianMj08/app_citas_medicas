@@ -96,7 +96,6 @@ class UsersAdminController {
         if($method === 'PUT') {
 
             $userUpdate = UsersAdminModel::updateUserModel($idUser, $name, $lastNamesUser, $nameUser, $sexUser, $rolUser);
-
             if($userUpdate !== null) {
                 ob_clean();
                 header('Content-Type: application/json');

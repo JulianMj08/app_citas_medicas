@@ -56,8 +56,6 @@ class NoticeAdminController {
             if($noticeDelete !== null) {
                 ob_clean();
                 header('Content-Type: application/json');
-                //echo json_encode($noticeDelete);
-                //exit();
                 if($noticeDelete) {
                     echo json_encode(['success' => 'Noticia eliminada correctamente']);
                 } else {
@@ -84,8 +82,6 @@ class NoticeAdminController {
             // Obtener los datos del formulario
             $title = $_POST['title'];
             $text = $_POST['text'];
-            //$createDate = $_POST['createDate'];
-            //$idUsuario = $_POST['idUsuario'];
     
             // Inicializar el valor de $image
             $image = '';
@@ -104,8 +100,6 @@ class NoticeAdminController {
             // Verificar si hay un archivo en $_FILES
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
-                
-                //die();
                 // Configuración del directorio donde se guardarán las imágenes
                 $uploadDir = __DIR__ . '/../uploads/';  // Ruta donde almacenarás las imágenes
                 $imageName = basename($_FILES['image']['name']); // Obtener el nombre del archivo

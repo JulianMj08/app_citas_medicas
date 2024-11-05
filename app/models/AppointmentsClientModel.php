@@ -110,7 +110,6 @@ class AppointmentsClientModel {
             return null; // Si no existe la cita
         }
     }
-
 }
 
 

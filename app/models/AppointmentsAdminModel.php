@@ -15,7 +15,6 @@ class AppointmentsAdminModel {
             while ($row = $result->fetch_assoc()) {
                 $allAppointments[] = $row; // Añadir cada fila al array
             }
-            //var_dump($appointments);
             return $allAppointments;   
         } else {
             return null;
@@ -87,13 +86,11 @@ class AppointmentsAdminModel {
             } else {
                 echo 'Error al crear la cita';
             }
-    
             return $resultInsert;
     
         } else {
             echo 'No se encontraron registros con ese nombre.';
         }
-    
         // Cerramos la conexión
         $getIdResult->close();
         $conexion->close();
@@ -138,7 +135,6 @@ class AppointmentsAdminModel {
             error_log("Error en la preparación de la consulta SQL: " . $conexion->error); // Log de errores en la preparación
             return false; // Preparación fallida
         }
-    }
-    
+    }  
 }
 ?>

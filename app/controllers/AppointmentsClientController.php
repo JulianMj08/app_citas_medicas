@@ -42,12 +42,9 @@ class AppointmentsClientController {
             exit(); 
         }
     }
-    
 
     // --------------------------------- VER CITAS -----------------------------------------
     public function seeAllAppointmentsControl() {
-
-        //session_start();
 
         $method = $_SERVER['REQUEST_METHOD'];
 
@@ -133,7 +130,5 @@ class AppointmentsClientController {
             }
         }
     }
-
 }
-
 ?>
