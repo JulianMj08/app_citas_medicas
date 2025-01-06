@@ -22,6 +22,8 @@ if (isset($_SESSION['message'])) {
 include 'includes/navbar.php';
 ?>
 
+
+
 <main class="container bg-light">
 
 <!-- HEADER -->
