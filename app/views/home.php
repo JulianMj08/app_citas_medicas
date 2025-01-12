@@ -1,11 +1,11 @@
-<?php 
-session_start();  
+<?php
+/*session_start();  
 
 // Mostrar mensaje si existe
 if (isset($_SESSION['message'])) {
   echo "<script>alert('" . htmlspecialchars($_SESSION['message']) . "');</script>";
   unset($_SESSION['message']); // Eliminar el mensaje para que no se muestre de nuevo
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
