@@ -2,21 +2,21 @@
 <script src="/js/bootstrap.bundle.min.js"></script>
 
 <?php
-require_once '../app/router/Route.php';
-require_once '../app/router/routes.php';
-require_once '../app/models/NoticeAdminModel.php';
-require_once '../app/models/AppointmentsAdminModel.php';
-require_once '../app/models/UsersAdminModel.php';
-require_once '../app/models/NoticesModel.php';
-require_once '../app/controllers/NoticesController.php';
-require_once '../app/controllers/AppointmentsAdminController.php';
-require_once '../app/models/AppointmentsClientModel.php';
-require_once '../app/models/ProfileClientModel.php';
+require_once __DIR__ . '/../app/router/Route.php';
+// require_once __DIR__ . '/../app/router/routes.php';
+// require_once __DIR__ . '/../app/models/NoticeAdminModel.php';
+// require_once __DIR__ . '/../app/models/AppointmentsAdminModel.php';
+// require_once __DIR__ . '/../app/models/UsersAdminModel.php';
+// require_once __DIR__ . '/../app/models/NoticesModel.php';
+// require_once __DIR__ . '/../app/controllers/NoticesController.php';
+// require_once __DIR__ . '/../app/controllers/AppointmentsAdminController.php';
+// require_once __DIR__ . '/../app/models/AppointmentsClientModel.php';
+// require_once __DIR__ . '/../app/models/ProfileClientModel.php';
 //require_once '../app/controllers/NewsAdminController.php';
 
 
  //require_once '../app/models/Conexion.php';
- Route::dispatch();
+ //Route::dispatch();
 
  //ProfileClientModel::updateUserProfileModel(52,'probando', 'cama y mesa', 'camamesa@gmail.com', '2024-09-05', 'direccion de prueba', 'mujer', 'camamesa', 'contraseprueba');
 
