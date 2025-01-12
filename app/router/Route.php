@@ -1,7 +1,4 @@
 <?php
-
-echo "Funcionando Route";
-/*
 class Route {
 
     private static $routes = []; // declaramos un array vacio el cual contendra los diferentes metodos [GET], [POST], etc y otras propiedades que utilizaremos
@@ -28,7 +25,9 @@ class Route {
     }
 
     public static function dispatch() {       
-    $url = $_SERVER['REQUEST_URI'];
+    //$url = $_SERVER['REQUEST_URI'];
+    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
     $url = trim($url, '/'); // quitamos el '/' que viene al comenzar la ruta
     if ($url === '') {
         $url = '/'; // Si es cadena vacía, trátala como '/'
@@ -46,9 +45,9 @@ class Route {
                 array_shift($matches); // Elimina el primer valor del array que es la URL completa
                 call_user_func_array($callback, $matches); // Pasa los parámetros al callback
                 return;
-             if ($route === $url) {              // si el method que viene es exactamente igual a la url
+            /* if ($route === $url) {              // si el method que viene es exactamente igual a la url
                 call_user_func($callback);      // con la función call_user_func invocamos el callback
-                return;                    // retorname el callback.
+                return;    */                 // retorname el callback.
             }
         }
     }
@@ -61,5 +60,5 @@ class Route {
     }
 
 }
-*/
+
 ?>
