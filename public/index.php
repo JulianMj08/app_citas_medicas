@@ -1,7 +1,9 @@
+
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <script src="/js/bootstrap.bundle.min.js"></script>
 
 <?php
+session_start();
 require_once __DIR__ . '/../app/router/Route.php';
 require_once __DIR__ . '/../app/router/routes.php';
 require_once __DIR__ . '/../app/models/NoticeAdminModel.php';
