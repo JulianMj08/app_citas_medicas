@@ -18,10 +18,6 @@ require_once __DIR__ . '/../app/models/ProfileClientModel.php';
 
  //require_once '../app/models/Conexion.php';
  Route::dispatch();
- ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 
  //ProfileClientModel::updateUserProfileModel(52,'probando', 'cama y mesa', 'camamesa@gmail.com', '2024-09-05', 'direccion de prueba', 'mujer', 'camamesa', 'contraseprueba');
 
