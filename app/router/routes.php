@@ -19,8 +19,9 @@ require_once __DIR__ . '/../controllers/ProfileClientController.php';
 // ------------------------------  RUTAS PARA VISITANTES  ------------------------------
 
 Route::get('/', function() {
-     header('location: home', true, 301);// redirecion a el Home por medio de un header, damos true y 301 para que sea permanente
-     exit(); // es buena practica dar exit para evitar errores.
+     //header('location: home', true, 301);// redirecion a el Home por medio de un header, damos true y 301 para que sea permanente
+     //exit(); // es buena practica dar exit para evitar errores.
+     Route::render('home');
 });
 
 Route::get('home', function() {

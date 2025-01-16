@@ -78,6 +78,6 @@ class LoginController {
             header('Location: login');
         }
     }    
-} 
+}
 ?>
 
